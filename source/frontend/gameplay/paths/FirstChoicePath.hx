@@ -80,6 +80,14 @@ class FirstChoicePath extends PathState
 	{
 		super.update(elapsed);
 
+		yes.color = FlxColor.WHITE;
+		no.color = FlxColor.WHITE;
+
+		if (selection == 0)
+			yes.color = FlxColor.YELLOW;
+		if (selection == 1)
+			no.color = FlxColor.YELLOW;
+
 		if (FlxG.keys.anyJustReleased([UP, W, DOWN, S, ENTER]))
 		{
 			if (FlxG.keys.anyJustReleased([UP, W]))
@@ -91,14 +99,6 @@ class FirstChoicePath extends PathState
 				selection = 0;
 			if (selection > 1)
 				selection = 1;
-
-			yes.color = FlxColor.WHITE;
-			no.color = FlxColor.WHITE;
-
-			if (selection == 0)
-				yes.color = FlxColor.YELLOW;
-			if (selection == 1)
-				no.color = FlxColor.YELLOW;
 
 			if (FlxG.keys.anyJustReleased([ENTER]))
 			{
@@ -138,7 +138,14 @@ class FirstChoicePath extends PathState
 			{
 				dialog.text = text;
 				playDialogueSound();
-				dialog.setPosition(FlxG.random.float(80, (FlxG.width - 80) - dialog.width), FlxG.random.float(80, (FlxG.height - 80) - dialog.height));
+				var randomPos:Void->Void = () ->
+				{
+					dialog.setPosition(FlxG.random.float(80, (FlxG.width - 80) - dialog.width), FlxG.random.float(80, (FlxG.height - 80) - dialog.height));
+				}
+
+				randomPos();
+				while (dialog.overlaps(yes) || dialog.overlaps(no))
+					randomPos();
 				TextTags.apply(dialog);
 
 				FlxTween.tween(dialog, {alpha: 1}, 1.0, {

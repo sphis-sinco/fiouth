@@ -27,20 +27,18 @@ class MainMenu extends State
 		add(title);
 
 		playText = new FlxText();
-		
+
 		playText.size = 24;
 		playText.text = "Play";
-		
+
 		add(playText);
 
 		optionsText = new FlxText();
-		
+
 		optionsText.size = 24;
 		optionsText.text = "Options";
 
 		add(optionsText);
-
-		
 
 		playText.screenCenter();
 		playText.y += playText.height * 2;
@@ -55,7 +53,7 @@ class MainMenu extends State
 	{
 		super.update(elapsed);
 
-		if (FlxG.keys.anyJustReleased([UP, W, DOWN, S]))
+		if (FlxG.keys.anyJustReleased([UP, W, DOWN, S, ENTER]))
 		{
 			if (FlxG.keys.anyJustReleased([UP, W]))
 				selection--;
@@ -68,6 +66,11 @@ class MainMenu extends State
 				selection = 1;
 
 			updateOptionTexts();
+
+			if (FlxG.keys.anyJustReleased([ENTER]))
+			{
+				switch (selection) {}
+			}
 		}
 	}
 

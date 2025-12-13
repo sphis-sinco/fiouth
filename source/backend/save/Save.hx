@@ -27,6 +27,10 @@ class Save
 			gameplay: {
 				hasBegun: false,
 				path: START
+			},
+
+			settings: {
+				volume: 100
 			}
 		}
 	}

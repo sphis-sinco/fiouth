@@ -7,10 +7,15 @@ typedef SaveData =
 	version:String,
 	slot:Null<Int>,
 
-	?gameplay:
+	gameplay:
 		{
 			hasBegun:Null<Bool>,
 			path:GameplayPaths
-		}
+		},
+	
+	settings:
+	{
+		volume:Int
+	}
 }
 

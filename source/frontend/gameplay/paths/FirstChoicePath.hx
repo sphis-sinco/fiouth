@@ -1,6 +1,6 @@
 package frontend.gameplay.paths;
 
-import frontend.menus.MainMenu;
+import frontend.gameplay.scenes.KeypadScene;
 import flixel.util.FlxTimer;
 import backend.TextTags;
 import flixel.tweens.FlxEase;
@@ -179,7 +179,7 @@ class FirstChoicePath extends PathState
 									{
 										dialog.visible = false;
 										version.visible = false;
-										FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new MainMenu()));
+										FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new KeypadScene()));
 										FlxG.sound.music.fadeOut(3, 0);
 									});
 								});

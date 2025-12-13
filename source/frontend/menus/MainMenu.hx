@@ -36,7 +36,7 @@ class MainMenu extends State
 		playText.size = 24;
 		playText.text = "Play";
 		if (Save.data.gameplay.hasBegun)
-			playText.text = "Continue";
+			playText.text = "Continue" #if debug + " [" + Save.data.gameplay.path + "]" #end;
 
 		add(playText);
 

@@ -58,7 +58,7 @@ class GameplayStartingScene extends State
 		FlxTimer.wait(20, () ->
 		{
 			FlxG.sound.play('transportation'.soundsPath());
-			FlxTimer.wait(20, () ->
+			FlxTimer.wait(2, () ->
 			{
 				FlxG.camera.flash();
 			});

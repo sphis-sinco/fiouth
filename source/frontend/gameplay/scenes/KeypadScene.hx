@@ -88,6 +88,8 @@ class KeypadScene extends PathState
 			if (scene > 2)
 				scene = 2;
 		}
+
+		FlxG.mouse.visible = true;
 	}
 
 	public var canSelect:Bool = true;
@@ -128,6 +130,7 @@ class KeypadScene extends PathState
 
 					if (hasKeycard)
 					{
+						FlxG.mouse.visible = false;
 						keycard.visible = false;
 						canSelect = false;
 						hasKeycard = !hasKeycard;

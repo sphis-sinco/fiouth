@@ -17,6 +17,8 @@ class State extends FlxState
 		version.alpha = 0.25;
 		if (displayVersion)
 			add(version);
+
+		FlxG.mouse.visible = false;
 	}
 
 	override public function update(elapsed:Float)

@@ -131,6 +131,17 @@ class Save
 			if (data.gameplay.path == null)
 				data.gameplay.path = getDefault().gameplay.path;
 		}
+
+		if (data.settings == null)
+		{
+			trace('Missing settings field');
+			data.settings = getDefault().settings;
+		}
+		else
+		{
+			if (data.settings.volume == null)
+				data.settings.volume = getDefault().settings.volume;
+		}
 	}
 
 	public static function save()

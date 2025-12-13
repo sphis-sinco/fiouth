@@ -34,4 +34,9 @@ class Save
 			slot: 1
 		}
 	}
+
+	public static function init()
+    {
+        loadFromSlot(1);
+    }
 }

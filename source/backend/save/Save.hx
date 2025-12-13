@@ -1,5 +1,6 @@
 package backend.save;
 
+import haxe.macro.Compiler;
 import lime.app.Application;
 
 class Save
@@ -17,7 +18,7 @@ class Save
 	{
 		return {
 			version: Application.current.meta.get('version'),
-			slot: 1
+			slot: DEFAULT_SAVE
 		}
 	}
 
@@ -29,9 +30,14 @@ class Save
 		trace('Saved');
 	}
 
+	public static var DEFAULT_SAVE:Int = 1;
+
 	public static function init()
 	{
-		loadFromSlot(1);
+		if (Compiler.getDefine('SAVE_SLOT') != null && Compiler.getDefine('SAVE_SLOT') != "1")
+			loadFromSlot(Std.parseInt(Compiler.getDefine('SAVE_SLOT').split("=")[0]));
+		else
+			loadFromSlot(DEFAULT_SAVE);
 	}
 
 	public static function loadFromSlot(slot:Int = 1)

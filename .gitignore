@@ -2,3 +2,5 @@
 export/
 dump/
 .haxelib/
+*.drawio.bkp
+*.drawio.dtmp

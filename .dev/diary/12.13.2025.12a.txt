@@ -1,0 +1,45 @@
+December 13th, 2025 : 12am
+
+I've done a bit today, it's something atleast.
+
+It beats starting up the protect with the idea and not doing anything because of lack of motivation,
+I go to do something else then I forget...
+
+I guess the main thing I really wanted to talk about in the first entry would be the versioning system,
+might dive a lil bit into my "philosophy" of making this too with how messy the code is / will be.
+
+So, versioning system. My latest obsession lately, god...
+
+The versioning system sofar is kinda simple? Right now it's ev1, "Early Version 1". First version of the early ones,
+where I'll be testing out ideas n shit before I start, or even get close to starting on a final release.
+Speaking of which that's the next thing, I'll probably prefix it with rv for "Release Version", I say it'll work.
+
+I think for hotfixes and patches I'll probably add suffixes to the end like "p5" for the 5th patch for the version,
+or "f2" for the 2nd bugFix update for the version so we could get a version called "rv6f4" or "rv6p5". I know it's a bit...
+Bleh... on the saying of it. But once you get used to it, it works. And it beats calling it v6.5 where everyone's so used to
+semver where they'll think : oh! v7? major update les gooo! or v6.6? minor update, maybe some new content, where actually v7 
+could be either a major or minor, you'll just have to go see, but when an f or p appears at the end you know : "oh its just
+a patch update".
+
+And my brain will be screaming at me again and again until I manage to make something where I make or
+use a Custom Versioning System (example on existing CVS': 26.1 (minecraft (java)), 26h1 (windows)).
+
+Philosophy time!
+"Fail faster" or whatever people say now (I'm 14 sounding 40, lord.) Basically I'm just trying to get content out.
+Not in a desperate attempt to make money, I'll have the game free on itch and you can donate anything you want to support me.
+
+I just wanna make something. That's it. And the faster I do it less worrying on all this code optimization and
+organization and cleanliness. The faster I can make something I can be proud of.
+
+Cause being clean sometimes comes at a sacrifice.
+
+In this scenario probably, I can't think of anything IRL...
+Actually... My room being cleaned because of someone else (my mother) comes at the sacrifice of "personality" you could say since
+it's not whatever vision I had for my room. (Not like I do much besides sitting at my desk or laying on my bed...) And the other
+scenarios I came up with were related to crimes n homelessness so... I'll let your brain roam for that.
+
+Anyway, It's 12 am. I'm goin' to bed.
+
+Fun Fact:
+This project started because of a video called "if life were a video game, this would be the full soundtrack"
+by semiquaver. It just, calmed my brain down and I could think.

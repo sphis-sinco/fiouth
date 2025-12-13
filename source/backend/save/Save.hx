@@ -26,6 +26,9 @@ class Save
 				trace('Status : ' + FlxG.save.status);
 				data = FlxG.save.data;
 		}
+
+        if (data.slot == null) data.slot = slot;
+        if (data.version == null) data.version = getDefault().version;
 		
         trace('Save : ' + data);
         save();

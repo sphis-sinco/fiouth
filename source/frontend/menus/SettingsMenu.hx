@@ -78,7 +78,7 @@ class SettingsMenu extends State
 
 		saveSlotText.text = 'Save Slot: ${Save.currentSaveSlot}';
 		saveSlotText.color = (selection == 1) ? FlxColor.YELLOW : FlxColor.WHITE;
-		saveSlotText.setPosition(clearSaveText.x + clearSaveText.width, clearSaveText.y);
+		saveSlotText.setPosition(clearSaveText.x, clearSaveText.y + clearSaveText.height);
 
 		if (selection == 1 && changedSaveSlot)
 		{
@@ -92,7 +92,7 @@ class SettingsMenu extends State
 		volumeText.text = 'Volume: ${Save.data.settings.volume}%';
 		volumeText.color = (selection == 2) ? FlxColor.YELLOW : FlxColor.WHITE;
 
-		volumeText.setPosition(clearSaveText.x, clearSaveText.y + clearSaveText.height);
+		volumeText.setPosition(saveSlotText.x, saveSlotText.y + saveSlotText.height);
 	}
 
 	var changedSaveSlot:Bool = false;

@@ -166,6 +166,9 @@ class FirstChoicePath extends PathState
 								FlxTimer.wait(2, () -> setDialogueTextNoFade('YOU REMEMBER WHAT WE DID TO THEM.'));
 								FlxTimer.wait(4, () -> setDialogueTextNoFade('WOULD YOU LIKE TO REALLY SUFFER THE SAME FATE?'));
 								FlxTimer.wait(6, () -> setDialogueTextNoFade('OR MAYBE WE HAVENT HURT YOUR FAMILY ENOUGH'));
+								FlxTimer.wait(10, () -> setDialogueTextNoFade('THEY AREN\'T SAVE OAPS.'));
+								FlxTimer.wait(15, () -> setDialogueTextNoFade('AND NOW.'));
+								FlxTimer.wait(20, () -> setDialogueTextNoFade('THEY\'RE DEAD.'));
 							});
 
 							FlxG.sound.music.fadeIn(3, 0, 1, t -> {});

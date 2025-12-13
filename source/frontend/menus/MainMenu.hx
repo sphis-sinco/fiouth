@@ -1,5 +1,6 @@
 package frontend.menus;
 
+import frontend.gameplay.FindPath;
 import backend.save.Save;
 import flixel.tweens.FlxTween;
 import flixel.FlxSprite;
@@ -93,7 +94,7 @@ class MainMenu extends State
 						blk.alpha = 0;
 						FlxTween.tween(blk, {alpha: 1}, 3);
 
-						FlxG.sound.music.fadeOut(3, 0, t -> FlxG.switchState(() -> new GameplayStartingScene()));
+						FlxG.sound.music.fadeOut(3, 0, t -> FlxG.switchState(() -> FindPath.sendToStateBasedOnGameplayPath(Save.data.gameplay.path)));
 					#if debug
 					case 1:
 						FlxG.switchState(() -> new SettingsMenu());

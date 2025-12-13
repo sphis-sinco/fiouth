@@ -33,6 +33,8 @@ class GameplayStartingScene extends State
 		setDialogueText('Welcome.');
 
 		FlxG.sound.playMusic('welcome'.musicPath());
+		FlxG.sound.music.fadeIn(3, 0, 1);
+		
 		Save.data.gameplay.hasBegun = true;
 
 		FlxTimer.wait(3, () -> setDialogueText('I\'m glad to finally get in touch'));

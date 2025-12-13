@@ -48,6 +48,9 @@ class MainMenu extends State
 		optionsText.y = playText.y + playText.height * 2;
 
 		updateOptionTexts();
+
+		FlxG.sound.playMusic('hello'.musicPath());
+		FlxG.sound.music.fadeIn(3, 0, 1);
 	}
 
 	override public function update(elapsed:Float)
@@ -71,7 +74,9 @@ class MainMenu extends State
 			if (FlxG.keys.anyJustReleased([ENTER]))
 			{
 				switch (selection) {
-					case 0: FlxG.switchState(() -> new GameplayStartingScene());
+					case 0:
+						FlxG.camera.fade(0x000000, 3);
+						FlxG.sound.music.fadeOut(3, 0, () -> FlxG.switchState(() -> new GameplayStartingScene()););
 					#if debug
 					case 1: FlxG.switchState(() -> new SettingsMenu());
 					#end

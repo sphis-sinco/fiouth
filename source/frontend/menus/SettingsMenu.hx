@@ -92,7 +92,7 @@ class SettingsMenu extends State
 		volumeText.text = 'Volume: ${Save.data.settings.volume}%';
 		volumeText.color = (selection == 2) ? FlxColor.YELLOW : FlxColor.WHITE;
 
-		volumeText.setPosition(saveSlotText.x, saveSlotText.y + saveSlotText.height);
+		volumeText.setPosition(clearSaveText.x, clearSaveText.y + clearSaveText.height);
 	}
 
 	var changedSaveSlot:Bool = false;

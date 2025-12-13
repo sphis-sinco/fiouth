@@ -1,5 +1,6 @@
 package backend;
 
+import lime.app.Application;
 import backend.save.Save;
 import frontend.menus.MainMenu;
 
@@ -8,10 +9,11 @@ class InitState extends State
 	override public function create()
 	{
 		super.create();
+		trace(version.text);
 
 		Save.init();
 
-		trace(version.text);
+		Application.current.onExit.add(l -> Save.save());
 
 		FlxG.switchState(() -> new MainMenu());
 	}

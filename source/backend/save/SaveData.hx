@@ -8,14 +8,12 @@ typedef SaveData =
 	slot:Null<Int>,
 
 	gameplay:
-		{
-			hasBegun:Null<Bool>,
-			path:GameplayPaths
-		},
-	
+	{
+		hasBegun:Null<Bool>, path:GameplayPaths
+	},
+
 	settings:
 	{
 		volume:Null<Int>
 	}
 }
-

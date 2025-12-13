@@ -20,7 +20,8 @@ class InitState extends State
 		FlxG.sound.soundTrayEnabled = false;
 
 		// FlxG.debugger.toggleKeys = [];
-		FlxG.debugger.visibilityChanged.add(() -> {
+		FlxG.debugger.visibilityChanged.add(() ->
+		{
 			if (!FlxG.debugger.visible)
 			{
 				if (Std.isOfType(FlxG.state, State))

@@ -6,7 +6,8 @@ import flixel.sound.FlxSound;
 
 class MusicMan
 {
-	public static function playMusic(track:String, ?volume:Float = 1, ?group:FlxSoundGroup, ?onMusicPlay:Void->Void) @:privateAccess
+	public static function playMusic(track:String, ?volume:Float = 1, ?group:FlxSoundGroup, ?onMusicPlay:Void->Void,
+			?onIntroPlay:FlxSound->Void) @:privateAccess
 	{
 		var intro = (track + '-intro').musicPath();
 		var loop = (track + '-loop').musicPath();
@@ -32,6 +33,7 @@ class MusicMan
 			else
 				oneToPlay = general;
 
+			trace('playing : ' + oneToPlay);
 			FlxG.sound.playMusic(oneToPlay, volume, true, group);
 
 			if (onMusicPlay != null)
@@ -39,7 +41,13 @@ class MusicMan
 		};
 
 		if (intro != null)
-			FlxG.sound.play(intro, volume, false, group, false, playTracks);
+		{
+			trace('playing (intro) : ' + intro);
+			var sound = FlxG.sound.play(intro, volume, false, group, false, playTracks);
+
+			if (onIntroPlay != null)
+				onIntroPlay(sound);
+		}
 		else
 			playTracks();
 	}

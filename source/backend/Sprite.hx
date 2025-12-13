@@ -16,6 +16,6 @@ class Sprite extends FlxSprite
 	public function resetScale()
 	{
 		scale.set(DEFAULT_SCALE, DEFAULT_SCALE);
-        updateHitbox();
+		updateHitbox();
 	}
 }

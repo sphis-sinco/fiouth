@@ -14,14 +14,17 @@ class FindPath
 	{
 		switch (path)
 		{
-			case START, START_OLD: return new StartPath();
+			case START, START_OLD:
+				return new StartPath();
 
 			case FAKE_END:
 				trace('CHEATING USER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 				return new FakeEnd();
 
-			case FIRST_CHOICE: return new FirstChoiceScene();
-			case KEYPAD_SCENE: return new KeypadScene();
+			case FIRST_CHOICE:
+				return new FirstChoiceScene();
+			case KEYPAD_SCENE:
+				return new KeypadScene();
 
 			default:
 				trace('Unknown : going to start scene');

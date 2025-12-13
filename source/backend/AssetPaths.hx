@@ -9,7 +9,7 @@ class AssetPaths
 		if (!path.startsWith('assets/'))
 			path = 'assets/$path';
 
-		trace(path);
+		// trace(path);
 		return path;
 	}
 

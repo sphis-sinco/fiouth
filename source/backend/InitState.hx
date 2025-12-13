@@ -17,6 +17,7 @@ class InitState extends State
 		FlxG.sound.muteKeys = [];
 		FlxG.sound.volumeUpKeys = [];
 		FlxG.sound.volumeUpKeys = [];
+		FlxG.sound.soundTrayEnabled = false;
 
 		FlxG.switchState(() -> new MainMenu());
 	}

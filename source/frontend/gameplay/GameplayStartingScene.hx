@@ -34,10 +34,7 @@ class GameplayStartingScene extends State
 		FlxG.sound.playMusic('welcome'.musicPath());
 		Save.data.gameplay.hasBegun = true;
 
-		FlxTimer.wait(3, () ->
-		{
-			setDialogueText('I\'m glad to finally get in touch');
-		});
+		FlxTimer.wait(3, () -> setDialogueText('I\'m glad to finally get in touch'));
 	}
 
 	public function setDialogueText(text:String)

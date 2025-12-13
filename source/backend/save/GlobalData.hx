@@ -3,5 +3,7 @@ package backend.save;
 typedef GlobalData =
 {
 	lastSlot:Null<Int>,
-	lastVersion:String
+	lastVersion:String,
+
+	?testingShit:Dynamic
 }

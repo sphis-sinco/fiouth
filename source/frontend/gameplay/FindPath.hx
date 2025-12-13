@@ -1,5 +1,7 @@
 package frontend.gameplay;
 
+import frontend.gameplay.eastereggs.FakeEnd;
+import frontend.gameplay.paths.StartPath;
 import flixel.FlxState;
 import backend.save.Save;
 import backend.GameplayPaths;
@@ -12,13 +14,17 @@ class FindPath
 		{
 			case START, START_OLD:
 				Save.data.gameplay.path = START;
-				return new GameplayStartingScene();
+				return new StartPath();
+
+			case FAKE_END:
+				Save.data.gameplay.path = START;
+				return new FakeEnd();
 
 			default:
 				trace('Unknown : going to start scene');
 
 				Save.data.gameplay.path = START;
-				return new GameplayStartingScene();
+				return new StartPath();
 		}
 	}
 }

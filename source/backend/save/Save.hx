@@ -33,13 +33,23 @@ class Save
 
 	public static function save()
 	{
-		FlxG.save.mergeData(data, true);
-		FlxG.save.flush();
-
 		globalData.lastSlot = data.slot;
 
 		globalSave.mergeData(globalData, true);
 		globalSave.flush();
+
+		/*
+			trace('Save: ' + data);
+			trace('FlxG: ' + FlxG.save.data);
+			if (FlxG.save.data == null)
+			{
+				@:privateAccess
+				FlxG.save.data = getDefault();
+			}
+		 */
+		if (data != null && FlxG.save.data != null)
+			FlxG.save.mergeData(data, true);
+		FlxG.save.flush();
 
 		trace('Saved');
 	}
@@ -48,9 +58,16 @@ class Save
 
 	public static function init()
 	{
+		var defaultSave = new FlxSave();
+		defaultSave.bind('Fiouth/Default', Application.current.meta.get('company'));
+		defaultSave.mergeData(getDefault(), true);
+		defaultSave.flush();
+
 		globalSave = new FlxSave();
 		globalSave.bind('Fiouth/Global', Application.current.meta.get('company'));
 		globalData = globalSave.data;
+		globalData.testingShit ??= {};
+		globalData.testingShit.path = 'end';
 		trace('Global : ' + globalData);
 
 		if (Compiler.getDefine('SAVE_SLOT') != null && Compiler.getDefine('SAVE_SLOT') != "1")
@@ -61,24 +78,43 @@ class Save
 
 	public static function loadFromSlot(slot:Int = 1)
 	{
-		FlxG.save.bind('Fiouth/Slot$slot', Application.current.meta.get('company'));
+		var fakeendEasterEgg:Bool = false;
+
+		FlxG.save.bind('Fiouth/Slot$slot', Application.current.meta.get('company'), (s, exception) ->
+		{
+			trace('Backup Parsing (${exception.message})');
+			trace('Save file data: ' + s);
+
+			fakeendEasterEgg = (s == 'end');
+
+			return getDefault();
+		});
 
 		switch (FlxG.save.status)
 		{
 			case EMPTY:
 				trace('Empty Save');
 				data = getDefault();
+			case LOAD_ERROR(_):
+				data = getDefault();
+			// loadFromSlot(slot + 1);
 			default:
 				trace('Status : ' + FlxG.save.status);
 				data = FlxG.save.data;
 		}
 
-		if (data.slot == null)
+		if (data == null)
+			data = getDefault();
+
+		if (data?.slot == null)
 		{
 			trace('Missing slot field');
 			data.slot = slot;
 		}
 		performSaveChecks();
+
+		if (fakeendEasterEgg)
+			data.gameplay.path = FAKE_END;
 
 		trace('Save : ' + data);
 		save();

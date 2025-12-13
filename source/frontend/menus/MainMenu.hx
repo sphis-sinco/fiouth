@@ -4,7 +4,6 @@ import frontend.gameplay.FindPath;
 import backend.save.Save;
 import flixel.tweens.FlxTween;
 import flixel.FlxSprite;
-import frontend.gameplay.GameplayStartingScene;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
 import backend.State;

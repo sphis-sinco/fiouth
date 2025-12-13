@@ -1,5 +1,6 @@
 package frontend.menus;
 
+import backend.MusicMan;
 import frontend.gameplay.FindPath;
 import backend.save.Save;
 import flixel.tweens.FlxTween;
@@ -58,8 +59,10 @@ class MainMenu extends State
 
 		if (FlxG.sound.music == null)
 		{
-			FlxG.sound.playMusic('hello'.musicPath());
-			FlxG.sound.music.fadeIn(3, 0, 1);
+			MusicMan.playMusic('hello', 1, null, () ->
+			{
+				FlxG.sound.music.fadeIn(3, 0, 1);
+			});
 
 			var blk = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 			add(blk);

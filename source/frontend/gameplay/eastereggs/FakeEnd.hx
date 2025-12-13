@@ -1,5 +1,6 @@
 package frontend.gameplay.eastereggs;
 
+import backend.MusicMan;
 import frontend.menus.MainMenu;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
@@ -23,7 +24,6 @@ class FakeEnd extends PathState
 	var randomCheaterCheaterLines:Array<String> = [
 		'Cheater Cheater Meater Beater',
 		'Cheater Cheater Pussy Eatter',
-
 		'Cheater Cheater Pumpkin Eatter'
 	];
 
@@ -56,8 +56,10 @@ class FakeEnd extends PathState
 		FlxTimer.wait(3, () ->
 		{
 			setDialogueText(randomCheaterCheaterLines[FlxG.random.int(0, randomCheaterCheaterLines.length - 1)]);
-			FlxG.sound.playMusic('cheaterCheater'.musicPath());
-			FlxG.sound.music.fadeIn(3, 0, 1);
+			MusicMan.playMusic('cheaterCheater', 1, null, () ->
+			{
+				FlxG.sound.music.fadeIn(3, 0, 1);
+			});
 		});
 
 		FlxTimer.wait(20, () ->

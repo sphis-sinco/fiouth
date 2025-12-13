@@ -1,5 +1,6 @@
 package frontend.gameplay.paths;
 
+import backend.MusicMan;
 import frontend.gameplay.scenes.FirstChoiceScene;
 import backend.gameplay.PathState;
 import flixel.util.FlxColor;
@@ -40,8 +41,10 @@ class StartPath extends PathState
 
 		setDialogueText('Welcome.');
 
-		FlxG.sound.playMusic('welcome'.musicPath());
-		FlxG.sound.music.fadeIn(3, 0, 1);
+		MusicMan.playMusic('welcome', 1, null, () ->
+		{
+			FlxG.sound.music.fadeIn(3, 0, 1);
+		});
 
 		var blk = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		add(blk);

@@ -1,5 +1,6 @@
 package frontend.gameplay.scenes;
 
+import backend.MusicMan;
 import frontend.gameplay.scenes.KeypadScene;
 import flixel.util.FlxTimer;
 import backend.TextTags;
@@ -40,8 +41,10 @@ class FirstChoiceScene extends PathState
 	{
 		super.create();
 
-		FlxG.sound.playMusic('thereAreNoWrongOptions'.musicPath());
-		FlxG.sound.music.fadeIn((!pathWasAlreadySet) ? 3 : 1, 0, 1);
+		MusicMan.playMusic('thereAreNoWrongOptions', 1, null, () ->
+		{
+			FlxG.sound.music.fadeIn((!pathWasAlreadySet) ? 3 : 1, 0, 1);
+		});
 
 		dialog = new FlxText();
 
@@ -116,19 +119,35 @@ class FirstChoiceScene extends PathState
 			{
 				FlxTimer.globalManager.clear();
 
-				switch (selection)
+				FlxTween.tween(yes, {alpha: 0}, 6);
+				FlxTween.tween(no, {alpha: 0}, 6);
+
+				FlxG.sound.music.fadeOut(3, 0, t ->
 				{
-					case 0:
-						setDialogueText('You have done well.');
-					case 1:
-						setDialogueText('...');
+					switch (selection)
+					{
+						case 0:
+							setDialogueText('You have done well.');
 
-						FlxTween.tween(yes, {alpha: 0}, 6);
-						FlxTween.tween(no, {alpha: 0}, 6);
+							MusicMan.playMusic('butYouPickedTheWorstOption', 1, null, () ->
+							{
+								FlxG.sound.music.fadeIn(3, 0, 1);
+							});
 
-						FlxG.sound.music.fadeOut(3, 0, t ->
-						{
-							FlxG.sound.playMusic('butYouPickedTheWorstOption'.musicPath());
+							FlxG.sound.play('transportation'.soundsPath());
+							FlxTimer.wait(3.65, () ->
+							{
+								dialog.visible = false;
+								FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new KeypadScene()));
+								FlxG.sound.music.fadeOut(3, 0, t -> FlxG.sound.music.stop());
+							});
+						case 1:
+							setDialogueText('...');
+
+							MusicMan.playMusic('butYouPickedTheWorstOption', 1, null, () ->
+							{
+								FlxG.sound.music.fadeIn(3, 0, 1);
+							});
 
 							var line = 'Why did you do that?';
 
@@ -160,10 +179,8 @@ class FirstChoiceScene extends PathState
 									});
 								});
 							});
-
-							FlxG.sound.music.fadeIn(3, 0, 1, t -> {});
-						});
-				}
+					}
+				});
 			}
 		}
 	}

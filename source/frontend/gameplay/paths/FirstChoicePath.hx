@@ -107,6 +107,8 @@ class FirstChoicePath extends PathState
 
 			if (FlxG.keys.anyJustReleased([ENTER]))
 			{
+				FlxTimer.globalManager.clear();
+
 				switch (selection)
 				{
 					case 0:
@@ -137,6 +139,7 @@ class FirstChoicePath extends PathState
 
 	public function setDialogueText(text:String)
 	{
+		FlxTween.cancelTweensOf(dialog);
 		FlxTween.tween(dialog, {alpha: 0}, 1.0, {
 			ease: FlxEase.sineInOut,
 			onComplete: t ->

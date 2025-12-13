@@ -67,7 +67,13 @@ class Save
 		slot = Std.int(FlxMath.bound(slot, DEFAULT_SLOT, FlxMath.MAX_VALUE_INT));
 
 		if (data != null)
+		{
 			globalData.lastSlot = data.slot;
+			if (data.slot > globalData.maxSlot)
+				globalData.maxSlot = data.slot;
+			if (slot == data.slot)
+				return;
+		}
 
 		FlxG.save.bind('slot$slot', Application.current.meta.get('company') + '/fiouth', (s, exception) ->
 		{
@@ -146,9 +152,6 @@ class Save
 	public static function save()
 	{
 		globalData.lastSlot = data.slot;
-
-		if (data.slot > globalData.maxSlot)
-			globalData.maxSlot = data.slot;
 
 		globalSave.mergeData(globalData, true);
 		globalSave.flush();

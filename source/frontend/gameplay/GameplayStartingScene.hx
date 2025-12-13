@@ -29,6 +29,8 @@ class GameplayStartingScene extends State
 		});
 
 		playDialogueSound();
+
+		FlxG.sound.playMusic('welcome'.musicPath(), 0.5);
 	}
 
 	public function playDialogueSound()

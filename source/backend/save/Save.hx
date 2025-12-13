@@ -84,7 +84,9 @@ class Save
 
 			fakeendEasterEgg = (s == 'end');
 
-			return getDefault();
+			var backupData = getDefault();
+			backupData.slot = slot;
+			return backupData;
 		});
 
 		switch (FlxG.save.status)

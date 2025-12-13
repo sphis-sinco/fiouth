@@ -95,7 +95,11 @@ class MainMenu extends State
 						blk.alpha = 0;
 						FlxTween.tween(blk, {alpha: 1}, 3);
 
-						FlxG.sound.music.fadeOut(3, 0, t -> FlxG.switchState(() -> FindPath.sendToStateBasedOnGameplayPath(Save.data.gameplay.path)));
+						FlxG.sound.music.fadeOut(3, 0, t ->
+						{
+							FlxG.sound.music.stop();
+							FlxG.switchState(() -> FindPath.sendToStateBasedOnGameplayPath(Save.data.gameplay.path));
+						});
 					case 1:
 						FlxG.switchState(() -> new SettingsMenu());
 				}

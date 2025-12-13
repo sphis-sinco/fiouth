@@ -1,5 +1,7 @@
 package backend.save;
 
+import backend.gameplay.GameplayPaths;
+
 typedef SaveData =
 {
 	version:String,

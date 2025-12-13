@@ -9,9 +9,9 @@ import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.text.FlxText;
-import backend.State;
+import backend.gameplay.PathState;
 
-class FakeEnd extends State
+class FakeEnd extends PathState
 {
 	public var dialog:FlxText;
 

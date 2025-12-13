@@ -1,5 +1,6 @@
 package frontend.gameplay.paths;
 
+import backend.gameplay.PathState;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import backend.TextTags;
@@ -8,9 +9,8 @@ import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.text.FlxText;
-import backend.State;
 
-class StartPath extends State
+class StartPath extends PathState
 {
 	public var dialog:FlxText;
 

@@ -56,9 +56,12 @@ class Save
 	public static function loadFromSlot(slot:Int = 1)
 	{
 		var fakeendEasterEgg:Bool = false;
+		var usedBackupParser:Bool = false;
 
 		FlxG.save.bind('Fiouth/Slot$slot', Application.current.meta.get('company'), (s, exception) ->
 		{
+			usedBackupParser = true;
+
 			trace('Backup Parsing (${exception.message})');
 			trace('Save file data: ' + s);
 
@@ -80,7 +83,8 @@ class Save
 				data = FlxG.save.data;
 		}
 
-		trace('Loaded Save Data : ' + data);
+		if (!usedBackupParser)
+			trace('Loaded Save Data : ' + data);
 
 		if (data == null)
 			data = getDefault();

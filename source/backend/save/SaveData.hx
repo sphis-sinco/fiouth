@@ -15,7 +15,7 @@ typedef SaveData =
 	
 	settings:
 	{
-		volume:Int
+		volume:Null<Int>
 	}
 }
 

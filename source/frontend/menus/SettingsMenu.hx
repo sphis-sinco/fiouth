@@ -62,6 +62,8 @@ class SettingsMenu extends State
 	{
 		volumeText.text = 'Volume: ${Save.data.settings.volume}%';
 		volumeText.color = (selection == 0) ? FlxColor.YELLOW : FlxColor.WHITE;
+
+		FlxG.sound.volume = Std.int(Save.data.settings.volume / 100);
 	}
 
 	public function optionsEnter() {}

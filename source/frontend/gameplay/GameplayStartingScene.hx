@@ -7,24 +7,24 @@ import backend.State;
 
 class GameplayStartingScene extends State
 {
-	public var welcome:FlxText;
+	public var dialog:FlxText;
 
 	override function create()
 	{
 		super.create();
 
-		welcome = new FlxText();
+		dialog = new FlxText();
 
-		welcome.text = "Welcome.";
-		welcome.size = 128;
+		dialog.text = "Welcome.";
+		dialog.size = 128;
 
-		welcome.screenCenter();
+		dialog.screenCenter();
 
-		add(welcome);
+		add(dialog);
 
-		welcome.alpha = 0;
+		dialog.alpha = 0;
 
-		FlxTween.tween(welcome, {alpha: 1}, 1.0, {
+		FlxTween.tween(dialog, {alpha: 1}, 1.0, {
 			ease: FlxEase.sineInOut
 		});
 

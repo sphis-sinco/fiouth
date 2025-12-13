@@ -32,6 +32,9 @@ class KeypadScene extends PathState
 		keypad = new Sprite();
 		keypad.loadGraphic('objects/keypad'.imagePath());
 
+		keycard.resetScale();
+		keypad.resetScale();
+
 		add(keycard);
 		add(keypad);
 
@@ -52,8 +55,8 @@ class KeypadScene extends PathState
 		left.screenCenter(Y);
 		right.screenCenter(Y);
 
-		left.x = left.width * 2;
-		right.x = FlxG.width - (right.width * 2);
+		left.x = 0;
+		right.x = FlxG.width - (right.width);
 
 		add(left);
 		add(right);
@@ -83,6 +86,8 @@ class KeypadScene extends PathState
 		keycard.visible = hasKeycard;
 		keypad.visible = false;
 
+		if (scene == 0)
+			keypad.visible = true;
 		if (scene == 2)
 		{
 			if (!hasKeycard)

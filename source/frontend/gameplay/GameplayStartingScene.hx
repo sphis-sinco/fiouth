@@ -38,7 +38,8 @@ class GameplayStartingScene extends State
 		FlxTimer.wait(3, () -> setDialogueText('I\'m glad to finally get in touch'));
 		FlxTimer.wait(6, () -> setDialogueText('<cyan>We<cyan> have been watching you'));
 		FlxTimer.wait(7, () -> dialog.screenCenter());
-		FlxTimer.wait(9, () -> setDialogueText('It\'s time for you to join your people once more.'));
+		FlxTimer.wait(9, () -> setDialogueText('It\'s time for you to join <blue>your<blue> <cyan>people<cyan> once more.'));
+		FlxTimer.wait(10, () -> dialog.screenCenter());
 		FlxTimer.wait(12, () -> setDialogueText('You will know what to do.'));
 		FlxTimer.wait(14, () -> setDialogueText('If not then lord have mercy upon your soul.'));
 	}

@@ -53,13 +53,13 @@ class Save
 			trace('Missing slot field');
 			data.slot = slot;
 		}
-		performNullChecksOnSave();
+		performSaveChecks();
 
 		trace('Save : ' + data);
 		save();
 	}
 
-	public static function performNullChecksOnSave()
+	public static function performSaveChecks()
 	{
 		if (data.version == null)
 		{

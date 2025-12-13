@@ -1,5 +1,6 @@
 package frontend.gameplay;
 
+import backend.TextTags;
 import backend.save.Save;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
@@ -35,6 +36,11 @@ class GameplayStartingScene extends State
 		Save.data.gameplay.hasBegun = true;
 
 		FlxTimer.wait(3, () -> setDialogueText('I\'m glad to finally get in touch'));
+		FlxTimer.wait(6, () -> setDialogueText('<cyan>We<cyan> have been watching you'));
+		FlxTimer.wait(7, () -> dialog.screenCenter());
+		FlxTimer.wait(9, () -> setDialogueText('It\'s time for you to join your people once more.'));
+		FlxTimer.wait(12, () -> setDialogueText('You will know what to do.'));
+		FlxTimer.wait(14, () -> setDialogueText('If not then lord have mercy upon your soul.'));
 	}
 
 	public function setDialogueText(text:String)
@@ -46,6 +52,7 @@ class GameplayStartingScene extends State
 				dialog.text = text;
 				playDialogueSound();
 				dialog.setPosition(FlxG.random.float(80, (FlxG.width - 80) - dialog.width), FlxG.random.float(80, (FlxG.height - 80) - dialog.height));
+				TextTags.apply(dialog);
 
 				FlxTween.tween(dialog, {alpha: 1}, 1.0, {
 					ease: FlxEase.sineInOut

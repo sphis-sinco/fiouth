@@ -1,5 +1,6 @@
 package frontend.gameplay.paths;
 
+import frontend.menus.MainMenu;
 import flixel.util.FlxTimer;
 import backend.TextTags;
 import flixel.tweens.FlxEase;
@@ -171,6 +172,17 @@ class FirstChoicePath extends PathState
 								FlxTimer.wait(15, () -> dialog.screenCenter());
 								FlxTimer.wait(20, () -> setDialogueTextNoFade('THEY\'RE DEAD.'));
 								FlxTimer.wait(20, () -> dialog.screenCenter());
+								FlxTimer.wait(20, () ->
+								{
+									FlxG.sound.play('transportation'.soundsPath());
+									FlxTimer.wait(3.65, () ->
+									{
+										dialog.visible = false;
+										version.visible = false;
+										FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new MainMenu()));
+										FlxG.sound.music.fadeOut(3, 0);
+									});
+								});
 							});
 
 							FlxG.sound.music.fadeIn(3, 0, 1, t -> {});

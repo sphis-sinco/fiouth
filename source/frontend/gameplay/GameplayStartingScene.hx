@@ -34,7 +34,7 @@ class GameplayStartingScene extends State
 		FlxG.sound.playMusic('welcome'.musicPath());
 		Save.data.gameplay.hasBegun = true;
 
-		FlxTimer.wait(1, () ->
+		FlxTimer.wait(3, () ->
 		{
 			setDialogueText('I\'m glad to finally get in touch');
 		});
@@ -42,9 +42,19 @@ class GameplayStartingScene extends State
 
 	public function setDialogueText(text:String)
 	{
-		dialog.text = text;
-		playDialogueSound();
-		dialog.setPosition(FlxG.random.float(80, (FlxG.width - 80) - dialog.width), FlxG.random.float(80, (FlxG.height - 80) - dialog.height));
+		FlxTween.tween(dialog, {alpha: 0}, 1.0, {
+			ease: FlxEase.sineInOut,
+			onComplete: t ->
+			{
+				dialog.text = text;
+				playDialogueSound();
+				dialog.setPosition(FlxG.random.float(80, (FlxG.width - 80) - dialog.width), FlxG.random.float(80, (FlxG.height - 80) - dialog.height));
+
+				FlxTween.tween(dialog, {alpha: 1}, 1.0, {
+					ease: FlxEase.sineInOut
+				});
+			}
+		});
 	}
 
 	public function playDialogueSound()

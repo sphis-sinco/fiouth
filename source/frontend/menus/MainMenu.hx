@@ -58,6 +58,10 @@ class MainMenu extends State
 		{
 			FlxG.sound.playMusic('hello'.musicPath());
 			FlxG.sound.music.fadeIn(3, 0, 1);
+
+			var blk = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+			add(blk);
+			FlxTween.tween(blk, {alpha: 0}, 3);
 		}
 	}
 

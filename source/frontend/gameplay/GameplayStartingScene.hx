@@ -17,8 +17,7 @@ class GameplayStartingScene extends State
 
 		dialog = new FlxText();
 
-		dialog.text = "Welcome.";
-		dialog.size = 128;
+		dialog.size = 32;
 
 		dialog.screenCenter();
 
@@ -30,13 +29,22 @@ class GameplayStartingScene extends State
 			ease: FlxEase.sineInOut
 		});
 
-		playDialogueSound();
+		setDialogueText('Welcome.');
 
 		FlxG.sound.playMusic('welcome'.musicPath());
+		Save.data.gameplay.hasBegun = true;
 
-		FlxTimer.wait(1, () -> {
-			Save.data.gameplay.hasBegun = true;
+		FlxTimer.wait(1, () ->
+		{
+			setDialogueText('I\'m glad to finally get in touch');
 		});
+	}
+
+	public function setDialogueText(text:String)
+	{
+		dialog.text = text;
+		playDialogueSound();
+		dialog.setPosition(FlxG.random.float(80, (FlxG.width - 80) - dialog.width), FlxG.random.float(80, (FlxG.height - 80) - dialog.height));
 	}
 
 	public function playDialogueSound()

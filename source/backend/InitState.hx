@@ -12,8 +12,11 @@ class InitState extends State
 		trace(version.text);
 
 		Save.init();
-
 		Application.current.onExit.add(l -> Save.save());
+
+		FlxG.sound.muteKeys = [];
+		FlxG.sound.volumeUpKeys = [];
+		FlxG.sound.volumeUpKeys = [];
 
 		FlxG.switchState(() -> new MainMenu());
 	}

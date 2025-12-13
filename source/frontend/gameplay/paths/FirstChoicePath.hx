@@ -90,6 +90,8 @@ class FirstChoicePath extends PathState
 
 		if (FlxG.keys.anyJustReleased([UP, W, DOWN, S, ENTER]))
 		{
+			var prevSel = selection;
+
 			if (FlxG.keys.anyJustReleased([UP, W]))
 				selection--;
 			if (FlxG.keys.anyJustReleased([DOWN, S]))
@@ -99,6 +101,9 @@ class FirstChoicePath extends PathState
 				selection = 0;
 			if (selection > 1)
 				selection = 1;
+
+			if (prevSel != selection)
+				randomDialog();
 
 			if (FlxG.keys.anyJustReleased([ENTER]))
 			{

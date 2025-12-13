@@ -1,12 +1,13 @@
 package frontend.gameplay.scenes;
 
+import backend.gameplay.PathState;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import frontend.objects.ui.Directional;
 import flixel.FlxSprite;
 import backend.State;
 
-class KeypadScene extends State
+class KeypadScene extends PathState
 {
 	public var keycard:FlxSprite;
 	public var keypad:FlxSprite;
@@ -17,6 +18,11 @@ class KeypadScene extends State
 	public var right:Directional = new Directional(RIGHT);
 
 	public var hasKeycard:Bool = false;
+
+	override public function new()
+	{
+		super(KEYPAD_SCENE);
+	}
 
 	override function create()
 	{
@@ -82,8 +88,8 @@ class KeypadScene extends State
 				if (FlxG.mouse.overlaps(keycard) && FlxG.mouse.justReleased)
 				{
 					hasKeycard = !hasKeycard;
-                    keycard.screenCenter();
-                    keycard.y = FlxG.height - (keycard.height * 2);
+					keycard.screenCenter();
+					keycard.y = FlxG.height - (keycard.height * 2);
 				}
 			}
 		}

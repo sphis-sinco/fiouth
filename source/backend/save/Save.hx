@@ -1,5 +1,6 @@
 package backend.save;
 
+import flixel.math.FlxMath;
 import flixel.util.FlxSave;
 import haxe.macro.Compiler;
 import lime.app.Application;
@@ -15,14 +16,14 @@ class Save
 
 	static function get_currentSaveSlot():Int
 	{
-		return data?.slot ?? 0;
+		return data?.slot ?? DEFAULT_SLOT - 1;
 	}
 
 	public static function getDefault():SaveData
 	{
 		return {
 			version: Application.current.meta.get('version'),
-			slot: DEFAULT_SAVE,
+			slot: data?.slot ?? DEFAULT_SLOT,
 
 			gameplay: {
 				hasBegun: false,
@@ -35,26 +36,27 @@ class Save
 		}
 	}
 
-	public static var DEFAULT_SAVE:Int = 1;
+	public static var DEFAULT_SLOT:Int = 1;
 
 	public static function init()
 	{
-		var defaultSave = new FlxSave();
-		defaultSave.bind('Fiouth/Default', Application.current.meta.get('company'));
-		defaultSave.mergeData(getDefault(), true);
-		defaultSave.flush();
-
 		globalSave = new FlxSave();
-		globalSave.bind('Fiouth/Global', Application.current.meta.get('company'));
+		globalSave.bind('slot_Global', Application.current.meta.get('company') + '/fiouth');
+		globalSave.mergeDataFrom('Fiouth/Global', Application.current.meta.get('company'), true, false);
 		globalData = globalSave.data;
 		globalData.testingShit ??= {};
-		globalData.testingShit.path = 'end';
+
+		// globalData.testingShit.path = 'end';
+
 		trace('Loaded Global Data: ' + globalData);
+		if (globalData.lastSlot < DEFAULT_SLOT)
+			globalData.lastSlot = DEFAULT_SLOT;
+		globalData.lastSlot = Std.int(FlxMath.bound(globalData.lastSlot, DEFAULT_SLOT, FlxMath.MAX_VALUE_INT));
 
 		if (Compiler.getDefine('SAVE_SLOT') != null && Compiler.getDefine('SAVE_SLOT') != "1")
 			loadFromSlot(Std.parseInt(Compiler.getDefine('SAVE_SLOT').split("=")[0]));
 		else
-			loadFromSlot(globalData.lastSlot ?? DEFAULT_SAVE);
+			loadFromSlot(globalData.lastSlot ?? DEFAULT_SLOT);
 	}
 
 	public static function loadFromSlot(slot:Int = 1)
@@ -62,10 +64,12 @@ class Save
 		var fakeendEasterEgg:Bool = false;
 		var usedBackupParser:Bool = false;
 
+		slot = Std.int(FlxMath.bound(slot, DEFAULT_SLOT, FlxMath.MAX_VALUE_INT));
+
 		if (data != null)
 			globalData.lastSlot = data.slot;
 
-		FlxG.save.bind('Fiouth/Slot$slot', Application.current.meta.get('company'), (s, exception) ->
+		FlxG.save.bind('slot$slot', Application.current.meta.get('company') + '/fiouth', (s, exception) ->
 		{
 			usedBackupParser = true;
 

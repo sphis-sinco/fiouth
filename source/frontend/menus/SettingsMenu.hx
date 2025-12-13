@@ -1,5 +1,6 @@
 package frontend.menus;
 
+import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 import backend.save.Save;
 import flixel.text.FlxText;
@@ -85,18 +86,13 @@ class SettingsMenu extends State
 			FlxG.resetState();
 		}
 
-		
+		Save.data.settings.volume = Std.int(FlxMath.bound(Save.data.settings.volume, 0, 100));
+		FlxG.sound.volume = Save.data.settings.volume / 100;
+
 		volumeText.text = 'Volume: ${Save.data.settings.volume}%';
 		volumeText.color = (selection == 2) ? FlxColor.YELLOW : FlxColor.WHITE;
 
 		volumeText.setPosition(saveSlotText.x, saveSlotText.y + saveSlotText.height);
-
-		if (Save.data.settings.volume < 0)
-			Save.data.settings.volume = 100;
-		if (Save.data.settings.volume > 100)
-			Save.data.settings.volume = 0;
-
-		FlxG.sound.volume = Save.data.settings.volume / 100;
 	}
 
 	var changedSaveSlot:Bool = false;

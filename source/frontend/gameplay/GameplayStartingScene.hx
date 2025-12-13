@@ -44,8 +44,8 @@ class GameplayStartingScene extends State
 		FlxTimer.wait(10, () -> dialog.screenCenter());
 
 		FlxTimer.wait(12, () -> setDialogueText('You will know what to do.'));
-		
-		FlxTimer.wait(14, () -> setDialogueText('If not then lord have mercy upon your soul.'));
+
+		FlxTimer.wait(16, () -> setDialogueText('If not then lord have mercy upon your soul.'));
 	}
 
 	public function setDialogueText(text:String)

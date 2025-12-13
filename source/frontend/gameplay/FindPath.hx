@@ -17,6 +17,7 @@ class FindPath
 				return new StartPath();
 
 			case FAKE_END:
+				trace('CHEATING USER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 				Save.data.gameplay.path = START;
 				return new FakeEnd();
 

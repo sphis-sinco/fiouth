@@ -42,7 +42,7 @@ class Save
 	{
 		globalSave = new FlxSave();
 		globalSave.bind('slot_Global', SAVEPATH);
-		globalSave.mergeDataFrom('Fiouth/Global', Application.current.meta.get('company'), true, false);
+		globalSave.mergeDataFrom('Fiouth/Global', Application.current.meta.get('company'));
 		globalData = globalSave.data;
 		globalData.testingShit ??= {};
 

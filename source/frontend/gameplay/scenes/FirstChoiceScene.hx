@@ -1,5 +1,6 @@
 package frontend.gameplay.scenes;
 
+import frontend.gameplay.scenes.firstchoice_yes.MeetTheArmy;
 import backend.MusicMan;
 import frontend.gameplay.scenes.firstchoice_no.KeypadScene;
 import flixel.util.FlxTimer;
@@ -138,7 +139,7 @@ class FirstChoiceScene extends PathState
 							FlxTimer.wait(3.65, () ->
 							{
 								dialog.visible = false;
-								FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new KeypadScene()));
+								FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new MeetTheArmy()));
 								FlxG.sound.music.fadeOut(3, 0, t -> FlxG.sound.music.stop());
 							});
 						case 1:

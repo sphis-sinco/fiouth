@@ -1,5 +1,6 @@
 package frontend.gameplay;
 
+import frontend.gameplay.paths.FirstChoicePath;
 import frontend.gameplay.eastereggs.FakeEnd;
 import frontend.gameplay.paths.StartPath;
 import flixel.FlxState;
@@ -18,6 +19,9 @@ class FindPath
 			case FAKE_END:
 				trace('CHEATING USER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 				return new FakeEnd();
+
+			case FIRST_CHOICE:
+				return new FirstChoicePath();
 
 			default:
 				trace('Unknown : going to start scene');

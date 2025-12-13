@@ -33,6 +33,6 @@ class GameplayStartingScene extends State
 
 	public function playDialogueSound()
 	{
-		FlxG.sound.play('assets/sounds/dialogue.wav');
+		FlxG.sound.play('dialogue'.soundsPath());
 	}
 }

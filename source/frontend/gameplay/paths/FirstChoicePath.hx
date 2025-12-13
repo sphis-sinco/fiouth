@@ -34,11 +34,8 @@ class FirstChoicePath extends PathState
 	{
 		super.create();
 
-		FlxG.sound.music.fadeOut(3, 0, t ->
-		{
-			FlxG.sound.playMusic('thereAreNoWrongOptions'.musicPath());
-			FlxG.sound.music.fadeIn(3, 0, 1);
-		});
+		FlxG.sound.playMusic('thereAreNoWrongOptions'.musicPath());
+		FlxG.sound.music.fadeIn(3, 0, 1);
 
 		dialog = new FlxText();
 

@@ -66,8 +66,9 @@ class StartPath extends PathState
 			FlxTimer.wait(3.65, () ->
 			{
 				dialog.visible = false;
-				FlxG.camera.flash(FlxColor.WHITE, 3);
-				FlxG.switchState(() -> new FirstChoicePath());
+				version.visible = false;
+				FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new FirstChoicePath()));
+				FlxG.sound.music.fadeOut(3, 0);
 			});
 		});
 	}

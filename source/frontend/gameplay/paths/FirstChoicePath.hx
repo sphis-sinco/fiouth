@@ -40,7 +40,7 @@ class FirstChoicePath extends PathState
 		super.create();
 
 		FlxG.sound.playMusic('thereAreNoWrongOptions'.musicPath());
-		FlxG.sound.music.fadeIn(3, 0, 1);
+		FlxG.sound.music.fadeIn((!pathWasAlreadySet) ? 3 : 1, 0, 1);
 
 		dialog = new FlxText();
 
@@ -79,7 +79,7 @@ class FirstChoicePath extends PathState
 
 		var blk = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		add(blk);
-		FlxTween.tween(blk, {alpha: 0}, 6);
+		FlxTween.tween(blk, {alpha: 0}, (!pathWasAlreadySet) ? 3 : 1 + 3);
 	}
 
 	override function update(elapsed:Float)

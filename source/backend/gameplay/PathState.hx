@@ -5,13 +5,28 @@ import backend.save.Save;
 
 class PathState extends State
 {
+	public var pathWasAlreadySet:Bool = false;
+
 	override public function new(path:GameplayPaths)
 	{
-        super();
+		super();
 
 		if (path == null)
 			throw new Pettiness('put in a gameplay path');
 
-		Save.data.gameplay.path = path;
+		if (Save.data.gameplay.path != path)
+		{
+			Save.data.gameplay.path = path;
+			newSetPath();
+		}
+		else
+		{
+			pathWasAlreadySet = true;
+			alreadySetPath();
+		}
 	}
+
+	public function newSetPath() {}
+
+	public function alreadySetPath() {}
 }

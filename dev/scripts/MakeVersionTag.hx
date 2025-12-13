@@ -1,3 +1,5 @@
+package dev.scripts;
+
 import sys.io.File;
 import haxe.xml.Access;
 

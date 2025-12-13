@@ -99,7 +99,7 @@ class KeypadScene extends PathState
 
 			if (FlxG.mouse.overlaps(keypad) && FlxG.mouse.justReleased)
 			{
-				FlxG.sound.play('keypad_${(hasKeycard) ? 'accepted' : 'denied'}');
+				FlxG.sound.play('keypad_${(hasKeycard) ? 'accepted' : 'denied'}'.soundsPath());
 				keypad.loadGraphic('objects/keypad-${(hasKeycard) ? 'accepted' : 'denied'}'.imagePath());
 
 				FlxTimer.wait(.5, () ->

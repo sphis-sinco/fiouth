@@ -39,6 +39,7 @@ class Directional extends Sprite
 	public function loadDirectional(directional:DirectionalDirection = LEFT)
 	{
 		loadGraphic('ui/directionals/$directional'.imagePath());
+		updateHitbox();
 	}
 
 	override function update(elapsed:Float)

@@ -1,12 +1,15 @@
 package backend.save;
 
+import flixel.util.FlxSave;
 import haxe.macro.Compiler;
 import lime.app.Application;
 
 class Save
 {
 	public static var data:SaveData;
+
 	public static var globalData:GlobalData;
+	public static var globalSave:FlxSave;
 
 	public static var currentSaveSlot(get, never):Int;
 
@@ -30,10 +33,8 @@ class Save
 
 		globalData.lastSlot = data.slot;
 
-		FlxG.save.bind('Fiouth/Global', Application.current.meta.get('company'));
-		FlxG.save.mergeData(globalData, true);
-		FlxG.save.flush();
-		globalData = FlxG.save.data;
+		globalSave.mergeData(globalData, true);
+		globalSave.flush();
 
 		trace('Saved');
 	}
@@ -42,8 +43,9 @@ class Save
 
 	public static function init()
 	{
-		FlxG.save.bind('Fiouth/Global', Application.current.meta.get('company'));
-		globalData = FlxG.save.data;
+		globalSave = new FlxSave();
+		globalSave.bind('Fiouth/Global', Application.current.meta.get('company'));
+		globalData = globalSave.data;
 		trace('Global : ' + data);
 
 		if (Compiler.getDefine('SAVE_SLOT') != null && Compiler.getDefine('SAVE_SLOT') != "1")

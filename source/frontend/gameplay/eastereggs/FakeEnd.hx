@@ -30,20 +30,12 @@ class FakeEnd extends PathState
 	override function create()
 	{
 		super.create();
-
 		dialog = new FlxText();
-
 		dialog.size = 32;
-
 		dialog.screenCenter();
-
 		add(dialog);
-
 		dialog.alpha = 0;
-
-		FlxTween.tween(dialog, {alpha: 1}, 1.0, {
-			ease: FlxEase.sineInOut
-		});
+		FlxTween.tween(dialog, {alpha: 1}, 1.0, {ease: FlxEase.sineInOut});
 
 		FlxG.sound.music.stop();
 
@@ -61,7 +53,6 @@ class FakeEnd extends PathState
 				FlxG.sound.music.fadeIn(3, 0, 1);
 			});
 		});
-
 		FlxTimer.wait(20, () ->
 		{
 			FlxG.sound.play('transportation'.soundsPath());
@@ -88,10 +79,7 @@ class FakeEnd extends PathState
 				playDialogueSound();
 				dialog.screenCenter();
 				TextTags.apply(dialog);
-
-				FlxTween.tween(dialog, {alpha: 1}, 1.0, {
-					ease: FlxEase.sineInOut
-				});
+				FlxTween.tween(dialog, {alpha: 1}, 1.0, {ease: FlxEase.sineInOut});
 			}
 		});
 	}

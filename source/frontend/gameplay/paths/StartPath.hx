@@ -24,23 +24,15 @@ class StartPath extends PathState
 	override function create()
 	{
 		super.create();
-
 		dialog = new FlxText();
-
 		dialog.size = 32;
-
 		dialog.screenCenter();
-
 		add(dialog);
-
 		dialog.alpha = 0;
 
-		FlxTween.tween(dialog, {alpha: 1}, 1.0, {
-			ease: FlxEase.sineInOut
-		});
+		FlxTween.tween(dialog, {alpha: 1}, 1.0, {ease: FlxEase.sineInOut});
 
 		setDialogueText('Welcome.');
-
 		MusicMan.playMusic('welcome', 1, null, () ->
 		{
 			FlxG.sound.music.fadeIn(3, 0, 1);
@@ -53,17 +45,12 @@ class StartPath extends PathState
 		Save.data.gameplay.hasBegun = true;
 
 		FlxTimer.wait(3, () -> setDialogueText('I\'m glad to finally get in touch'));
-
 		FlxTimer.wait(6, () -> setDialogueText('<cyan>We<cyan> have been watching you'));
 		FlxTimer.wait(7, () -> dialog.screenCenter());
-
 		FlxTimer.wait(9, () -> setDialogueText('It\'s time for you to join <blue>your<blue> <cyan>people<cyan> once more.'));
 		FlxTimer.wait(10, () -> dialog.screenCenter());
-
 		FlxTimer.wait(12, () -> setDialogueText('You will know what to do.'));
-
 		FlxTimer.wait(16, () -> setDialogueText('If not then lord have mercy upon your soul.'));
-
 		FlxTimer.wait(20, () ->
 		{
 			FlxG.sound.play('transportation'.soundsPath());
@@ -86,10 +73,7 @@ class StartPath extends PathState
 				playDialogueSound();
 				dialog.setPosition(FlxG.random.float(80, (FlxG.width - 80) - dialog.width), FlxG.random.float(80, (FlxG.height - 80) - dialog.height));
 				TextTags.apply(dialog);
-
-				FlxTween.tween(dialog, {alpha: 1}, 1.0, {
-					ease: FlxEase.sineInOut
-				});
+				FlxTween.tween(dialog, {alpha: 1}, 1.0, {ease: FlxEase.sineInOut});
 			}
 		});
 	}

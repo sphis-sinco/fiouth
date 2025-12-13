@@ -1,12 +1,17 @@
 package frontend.gameplay;
 
+import frontend.gameplay.scenes.firstchoice_no.SneakPastTheArmy;
+import frontend.gameplay.scenes.firstchoice_no.PreventConfirmation;
+import frontend.gameplay.paths.loyalty_path.LoyaltyPathIntro;
+import frontend.gameplay.scenes.firstchoice_yes.GiveConfirmation;
+import frontend.gameplay.endings.RememberanceEnding;
+import frontend.gameplay.paths.betrayer_path.BetrayerPathIntro;
 import frontend.gameplay.scenes.firstchoice_yes.MeetTheArmy;
 import frontend.gameplay.scenes.FirstChoiceScene;
 import frontend.gameplay.scenes.firstchoice_no.KeypadScene;
 import frontend.gameplay.eastereggs.FakeEnd;
 import frontend.gameplay.paths.StartPath;
 import flixel.FlxState;
-import backend.save.Save;
 import backend.gameplay.GameplayPaths;
 
 class FindPath
@@ -15,25 +20,22 @@ class FindPath
 	{
 		switch (path)
 		{
-			case START:
-				return new StartPath();
-
+			case START: return new StartPath();
+			case FIRST_CHOICE: return new FirstChoiceScene();
+			case MEET_THE_ARMY: return new MeetTheArmy();
+			case GIVE_CONFIRMATION: return new GiveConfirmation();
+			case KEYPAD_SCENE: return new KeypadScene();
+			case PREVENT_CONFIRMATION: return new PreventConfirmation();
+			case SNEAK_PAST_THE_ARMY: return new SneakPastTheArmy();
+			case BETRAYAL_PATH_INTRO: return new BetrayerPathIntro();
+			case ENDING_REMEMBERANCE: return new RememberanceEnding();
+			case LOYALTY_PATH_INTRO: return new LoyaltyPathIntro();
+			case ENDING_ONE_WHO_TRIED: return new RememberanceEnding();
 			case FAKE_END:
 				trace('CHEATING USER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 				return new FakeEnd();
-
-			case FIRST_CHOICE:
-				return new FirstChoiceScene();
-
-			case MEET_THE_ARMY:
-				return new MeetTheArmy();
-
-			case KEYPAD_SCENE:
-				return new KeypadScene();
-
-			default:
-				trace('Unknown : going to start scene');
-				return new StartPath();
 		}
+		trace('Unknown : going to start scene');
+		return new StartPath();
 	}
 }

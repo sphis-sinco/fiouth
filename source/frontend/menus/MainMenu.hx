@@ -15,10 +15,10 @@ class MainMenu extends State
 
 		title = new FlxText();
 		title.text = "Fiouth";
-		title.size = 32;
+		title.size = 64;
 
 		title.screenCenter();
-		title.y -= title.height * 4;
+		title.y -= title.height * 2;
 
 		add(title);
 

@@ -11,6 +11,8 @@ class InitState extends State
 
 		Save.init();
 
+		trace(version.text);
+
 		FlxG.switchState(() -> new MainMenu());
 	}
 

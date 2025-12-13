@@ -29,7 +29,7 @@ class FirstChoicePath extends PathState
 		'There are no wrong answers.',
 		'We will be forgiving if you wish to stay.',
 		'Remember what <cyan>they<cyan> did to <blue>them<blue>.',
-		'Don\'t let <cyan>them<cyan> keep doing it to others.',
+		'Don\'t let <cyan>them<cyan> keep doing it to <blue>others<blue>.',
 		'Remember that freedom is <cyan>everyone\'s<cyan> right',
 		'It\'s time, <blue>Oaps.<blue>',
 		'When <cyan>we\'re<cyan> done, there will be <blue>none<blue> left to rule.'

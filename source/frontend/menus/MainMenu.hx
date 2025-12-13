@@ -76,7 +76,7 @@ class MainMenu extends State
 				switch (selection) {
 					case 0:
 						FlxG.camera.fade(0x000000, 3);
-						FlxG.sound.music.fadeOut(3, 0, () -> FlxG.switchState(() -> new GameplayStartingScene()));
+						FlxG.sound.music.fadeOut(3, 0, t -> FlxG.switchState(() -> new GameplayStartingScene()));
 					#if debug
 					case 1: FlxG.switchState(() -> new SettingsMenu());
 					#end

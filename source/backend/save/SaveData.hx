@@ -1,6 +1,6 @@
 package backend.save;
 
-typedef RawSaveData = {
+typedef SaveData = {
     version:String,
     slot:Null<Int>
 }

@@ -5,7 +5,8 @@ import lime.app.Application;
 
 class Save
 {
-	public static var data:RawSaveData;
+	public static var data:SaveData;
+	public static var globalData:GlobalData;
 
 	public static var currentSaveSlot(get, never):Int;
 
@@ -14,7 +15,7 @@ class Save
 		return data?.slot ?? 0;
 	}
 
-	public static function getDefault():RawSaveData
+	public static function getDefault():SaveData
 	{
 		return {
 			version: Application.current.meta.get('version'),
@@ -27,6 +28,13 @@ class Save
 		FlxG.save.mergeData(data, true);
 		FlxG.save.flush();
 
+		globalData.lastSlot = data.slot;
+
+		FlxG.save.bind('Fiouth/Global', Application.current.meta.get('company'));
+		FlxG.save.mergeData(globalData, true);
+		FlxG.save.flush();
+		globalData = FlxG.save.data;
+
 		trace('Saved');
 	}
 
@@ -34,10 +42,14 @@ class Save
 
 	public static function init()
 	{
+		FlxG.save.bind('Fiouth/Global', Application.current.meta.get('company'));
+		globalData = FlxG.save.data;
+		trace('Global : ' + data);
+
 		if (Compiler.getDefine('SAVE_SLOT') != null && Compiler.getDefine('SAVE_SLOT') != "1")
 			loadFromSlot(Std.parseInt(Compiler.getDefine('SAVE_SLOT').split("=")[0]));
 		else
-			loadFromSlot(DEFAULT_SAVE);
+			loadFromSlot(globalData.lastSlot ?? DEFAULT_SAVE);
 	}
 
 	public static function loadFromSlot(slot:Int = 1)

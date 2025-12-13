@@ -30,7 +30,7 @@ class GameplayStartingScene extends State
 
 		playDialogueSound();
 
-		FlxG.sound.playMusic('welcome'.musicPath(), 0.5);
+		FlxG.sound.playMusic('welcome'.musicPath());
 	}
 
 	public function playDialogueSound()

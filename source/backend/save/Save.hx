@@ -25,7 +25,8 @@ class Save
 			slot: DEFAULT_SAVE,
 
 			gameplay: {
-				hasBegun: false
+				hasBegun: false,
+				path: START
 			}
 		}
 	}
@@ -95,10 +96,18 @@ class Save
 			globalData.lastVersion = data.version;
 			data.version = getDefault().version;
 		}
+
 		if (data.gameplay == null)
 		{
 			trace('Missing gameplay field');
 			data.gameplay = getDefault().gameplay;
+		}
+		else
+		{
+			if (data.gameplay.hasBegun == null)
+				data.gameplay.hasBegun = getDefault().gameplay.hasBegun;
+			if (data.gameplay.path == null)
+				data.gameplay.path = getDefault().gameplay.path;
 		}
 	}
 }

@@ -7,6 +7,8 @@ typedef SaveData =
 
 	?gameplay:
 		{
-			hasBegun:Bool
+			hasBegun:Bool,
+			path:GameplayPaths
 		}
 }
+

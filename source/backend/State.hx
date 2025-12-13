@@ -14,6 +14,10 @@ class State extends FlxState
 		super.create();
 
 		version = new FlxText(2, 2, 0, Application.current.meta.get('version'), 16);
+		#if DISPLAY_BUILD
+		version.text += 'b' + Application.current.meta.get('build');
+		#end
+		trace(version.text);
 		version.alpha = 0.25;
 		if (displayVersion)
 			add(version);

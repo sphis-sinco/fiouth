@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
   <diagram name="Page-1" id="I_wdf31FYOLvuHCwGwlp">
-    <mxGraphModel dx="814" dy="705" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" background="none" math="0" shadow="0" adaptiveColors="auto">
+    <mxGraphModel dx="989" dy="856" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" background="none" math="0" shadow="0" adaptiveColors="auto">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -72,9 +72,6 @@
         </mxCell>
         <mxCell id="e3vTq7i4cLqga6EJJJfF-14" value="&lt;div&gt;Betrayer&lt;/div&gt;Path : TO BE CONTINUED" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;sketch=1;curveFitting=1;jiggle=2;container=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="e3vTq7i4cLqga6EJJJfF-47">
           <mxGeometry x="200" y="35" width="120" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="e3vTq7i4cLqga6EJJJfF-43" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="e3vTq7i4cLqga6EJJJfF-47" source="e3vTq7i4cLqga6EJJJfF-17" target="e3vTq7i4cLqga6EJJJfF-14">
-          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e3vTq7i4cLqga6EJJJfF-17" value="&lt;div&gt;Rememberance&lt;/div&gt;Ending" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;sketch=1;curveFitting=1;jiggle=2;container=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="e3vTq7i4cLqga6EJJJfF-47">
           <mxGeometry x="360" y="40" width="120" height="40" as="geometry" />

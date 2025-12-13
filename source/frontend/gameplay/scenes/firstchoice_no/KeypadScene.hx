@@ -1,4 +1,4 @@
-package frontend.gameplay.scenes;
+package frontend.gameplay.scenes.firstchoice_no;
 
 import frontend.menus.MainMenu;
 import flixel.util.FlxColor;

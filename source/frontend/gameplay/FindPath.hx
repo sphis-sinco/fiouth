@@ -1,7 +1,8 @@
 package frontend.gameplay;
 
+import frontend.gameplay.scenes.firstchoice_yes.MeetTheArmy;
 import frontend.gameplay.scenes.FirstChoiceScene;
-import frontend.gameplay.scenes.KeypadScene;
+import frontend.gameplay.scenes.firstchoice_no.KeypadScene;
 import frontend.gameplay.eastereggs.FakeEnd;
 import frontend.gameplay.paths.StartPath;
 import flixel.FlxState;
@@ -14,7 +15,7 @@ class FindPath
 	{
 		switch (path)
 		{
-			case START, START_OLD:
+			case START:
 				return new StartPath();
 
 			case FAKE_END:
@@ -23,6 +24,10 @@ class FindPath
 
 			case FIRST_CHOICE:
 				return new FirstChoiceScene();
+
+			case MEET_THE_ARMY:
+				return new MeetTheArmy();
+
 			case KEYPAD_SCENE:
 				return new KeypadScene();
 

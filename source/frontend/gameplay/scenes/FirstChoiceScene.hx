@@ -1,7 +1,7 @@
 package frontend.gameplay.scenes;
 
 import backend.MusicMan;
-import frontend.gameplay.scenes.KeypadScene;
+import frontend.gameplay.scenes.firstchoice_no.KeypadScene;
 import flixel.util.FlxTimer;
 import backend.TextTags;
 import flixel.tweens.FlxEase;

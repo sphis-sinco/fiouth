@@ -2,12 +2,23 @@ package backend.gameplay;
 
 enum abstract GameplayPaths(String) from String to String
 {
-	var START = './';
-	var START_OLD = '.';
+	var START = 'START';
 
-	var FIRST_CHOICE = './first_choice/';
+	var FIRST_CHOICE = 'FIRST_CHOICE';
 
-	var KEYPAD_SCENE = './first_choice/no/keypad/';
+	var MEET_THE_ARMY = 'MEET_THE_ARMY';
+	var GIVE_CONFIRMATION = 'GIVE_CONFIRMATION';
 
-	var FAKE_END = 'end';
+	var KEYPAD_SCENE = 'KEYPAD_SCENE';
+	var SNEAK_PAST_THE_ARMY = 'SNEAK_PAST_THE_ARMY';
+	var PREVENT_CONFIRMATION = 'PREVENT_CONFIRMATION';
+
+	var BETRAYAL_PATH_INTRO = 'BETRAYAL_PATH_INTRO';
+
+	var LOYALTY_PATH_INTRO = 'LOYALTY_PATH_INTRO';
+
+	var ENDING_REMEMBERANCE = 'ENDING_REMEMBERANCE';
+	var ENDING_ONE_WHO_TRIED = 'ENDING_ONE_WHO_TRIED';
+
+	var FAKE_END = 'FAKE_END';
 }

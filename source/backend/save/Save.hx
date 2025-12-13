@@ -46,7 +46,7 @@ class Save
 		globalSave = new FlxSave();
 		globalSave.bind('Fiouth/Global', Application.current.meta.get('company'));
 		globalData = globalSave.data;
-		trace('Global : ' + data);
+		trace('Global : ' + globalData);
 
 		if (Compiler.getDefine('SAVE_SLOT') != null && Compiler.getDefine('SAVE_SLOT') != "1")
 			loadFromSlot(Std.parseInt(Compiler.getDefine('SAVE_SLOT').split("=")[0]));

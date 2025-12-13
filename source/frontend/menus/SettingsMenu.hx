@@ -21,7 +21,7 @@ class SettingsMenu extends State
 
 		version.y += wipText.height;
 
-		volumeText = new FlxText(16, 16);
+		volumeText = new FlxText(64, 64);
 		volumeText.size = 16;
 		add(volumeText);
 

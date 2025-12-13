@@ -1,8 +1,8 @@
-package;
+package frontend.menus;
 
 import backend.State;
 
-class PlayState extends State
+class MainMenu extends State
 {
 	override public function create()
 	{

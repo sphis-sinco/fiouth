@@ -23,6 +23,7 @@ class Save
 				trace('Empty Save');
 				data = getDefault();
 			default:
+				trace('Status : ' + FlxG.save.status);
 				data = FlxG.save.data;
 		}
 	}

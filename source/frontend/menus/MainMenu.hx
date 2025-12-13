@@ -69,7 +69,12 @@ class MainMenu extends State
 
 			if (FlxG.keys.anyJustReleased([ENTER]))
 			{
-				switch (selection) {}
+				switch (selection) {
+					case 0: FlxG.switchState(() -> new LevelSelectMenu());
+					#if debug
+					case 1: FlxG.switchState(() -> new SettingsMenu());
+					#end
+				}
 			}
 		}
 	}

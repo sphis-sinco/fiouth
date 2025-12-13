@@ -12,6 +12,8 @@ import frontend.objects.ui.Directional;
 class KeypadScene extends PathState
 {
 	public var keycard:Sprite;
+
+	public var confirmOrDenyKeypad:Sprite;
 	public var keypad:Sprite;
 
 	public var scene:Int = 1;
@@ -32,17 +34,24 @@ class KeypadScene extends PathState
 
 		keycard = new Sprite();
 		keycard.loadGraphic('objects/keycard'.imagePath());
+
 		keypad = new Sprite();
 		keypad.loadGraphic('objects/keypad'.imagePath());
+
+		confirmOrDenyKeypad = new Sprite();
+		confirmOrDenyKeypad.loadGraphic('objects/keypad-${(hasKeycard) ? 'accepted' : 'denied'}'.imagePath());
+		confirmOrDenyKeypad.resetScale();
 
 		keycard.resetScale();
 		keypad.resetScale();
 
 		add(keycard);
 		add(keypad);
+		add(confirmOrDenyKeypad);
 
 		keypad.screenCenter();
 		keycard.screenCenter();
+		confirmOrDenyKeypad.screenCenter();
 
 		left.alpha = 0;
 		right.alpha = 0;
@@ -82,6 +91,8 @@ class KeypadScene extends PathState
 	}
 
 	public var canSelect:Bool = true;
+	public var displayRegularKeypad:Bool = true;
+	public var displayConfirmDenyKeypad:Bool = false;
 
 	override function update(elapsed:Float)
 	{
@@ -91,32 +102,41 @@ class KeypadScene extends PathState
 		right.visible = scene < 2 && canSelect;
 
 		keycard.visible = hasKeycard && canSelect;
-		keypad.visible = false;
+		keypad.visible = (scene == 0) && displayRegularKeypad;
+		confirmOrDenyKeypad.visible = (scene == 0) && displayConfirmDenyKeypad;
 
 		if (scene == 0)
 		{
-			if (canSelect)
-				keypad.visible = true;
+			FlxG.watch.addQuick('canSelect', canSelect);
+			FlxG.watch.addQuick('FlxG.mouse.overlaps(keypad)', FlxG.mouse.overlaps(keypad));
+			FlxG.watch.addQuick('FlxG.mouse.justReleased', FlxG.mouse.justReleased);
 
-			if (FlxG.mouse.overlaps(keypad) && FlxG.mouse.justReleased)
+			if (canSelect && FlxG.mouse.overlaps(keypad) && FlxG.mouse.justReleased)
 			{
 				FlxG.sound.play('keypad_${(hasKeycard) ? 'accepted' : 'denied'}'.soundsPath());
-				keypad.loadGraphic('objects/keypad-${(hasKeycard) ? 'accepted' : 'denied'}'.imagePath());
+
+				displayRegularKeypad = false;
+				displayConfirmDenyKeypad = true;
+
+				confirmOrDenyKeypad.loadGraphic('objects/keypad-${(hasKeycard) ? 'accepted' : 'denied'}'.imagePath());
+				confirmOrDenyKeypad.resetScale();
 
 				FlxTimer.wait(.5, () ->
 				{
-					keypad.loadGraphic('objects/keypad'.imagePath());
+					displayRegularKeypad = true;
+					displayConfirmDenyKeypad = false;
 
 					if (hasKeycard)
 					{
+						keycard.visible = false;
+						canSelect = false;
 						hasKeycard = !hasKeycard;
+
 						FlxG.sound.play('transportation'.soundsPath());
 						FlxTimer.wait(3.65, () ->
 						{
-							canSelect = false;
-
+							displayRegularKeypad = false;
 							keypad.visible = false;
-							keycard.visible = false;
 
 							FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new MainMenu()));
 							FlxG.sound.music.fadeOut(3, 0);

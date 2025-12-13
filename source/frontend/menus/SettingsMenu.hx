@@ -7,23 +7,31 @@ import backend.State;
 
 class SettingsMenu extends State
 {
+	private static var _selection:Int = 0;
+
 	public var selection:Int = 0;
 
+	public var clearSaveText:FlxText;
 	public var volumeText:FlxText;
+	public var saveSlotText:FlxText;
 
 	override function create()
 	{
 		super.create();
 
-		var wipText:FlxText = new FlxText(2, version.y, 0, "[[Work in Progress]]", 16);
-		add(wipText);
-		wipText.alpha = version.alpha;
+		selection = _selection;
 
-		version.y += wipText.height;
+		clearSaveText = new FlxText(64, 64);
+		clearSaveText.size = 16;
+		add(clearSaveText);
 
-		volumeText = new FlxText(64, 64);
+		volumeText = new FlxText();
 		volumeText.size = 16;
 		add(volumeText);
+
+		saveSlotText = new FlxText();
+		saveSlotText.size = 16;
+		add(saveSlotText);
 
 		updateOptionTexts();
 	}
@@ -33,7 +41,10 @@ class SettingsMenu extends State
 		super.update(elapsed);
 
 		if (FlxG.keys.justReleased.ESCAPE)
+		{
+			_selection = 0;
 			FlxG.switchState(() -> new MainMenu());
+		}
 
 		if (FlxG.keys.anyJustReleased([UP, W, DOWN, S, ENTER, LEFT, A, RIGHT, D]))
 		{
@@ -44,8 +55,9 @@ class SettingsMenu extends State
 
 			if (selection < 0)
 				selection = 0;
-			if (selection > 0)
-				selection = 0;
+			if (selection > 2)
+				selection = 2;
+			_selection = selection;
 
 			if (FlxG.keys.anyJustReleased([ENTER]))
 				optionsEnter();
@@ -60,29 +72,65 @@ class SettingsMenu extends State
 
 	public function updateOptionTexts()
 	{
+		clearSaveText.text = 'Clear Save';
+		clearSaveText.color = (selection == 0) ? FlxColor.YELLOW : FlxColor.WHITE;
+
+		saveSlotText.text = 'Save Slot: ${Save.data.slot}';
+		saveSlotText.color = (selection == 1) ? FlxColor.YELLOW : FlxColor.WHITE;
+		saveSlotText.setPosition(clearSaveText.x, clearSaveText.y + clearSaveText.height);
+
+		if (selection == 1 && changedSaveSlot)
+		{
+			changedSaveSlot = false;
+			FlxG.resetState();
+		}
+
+		
 		volumeText.text = 'Volume: ${Save.data.settings.volume}%';
-		volumeText.color = (selection == 0) ? FlxColor.YELLOW : FlxColor.WHITE;
+		volumeText.color = (selection == 2) ? FlxColor.YELLOW : FlxColor.WHITE;
+
+		volumeText.setPosition(saveSlotText.x, saveSlotText.y + saveSlotText.height);
+
+		if (Save.data.settings.volume < 0)
+			Save.data.settings.volume = 100;
+		if (Save.data.settings.volume > 100)
+			Save.data.settings.volume = 0;
 
 		FlxG.sound.volume = Save.data.settings.volume / 100;
 	}
 
-	public function optionsEnter() {}
+	var changedSaveSlot:Bool = false;
+
+	public function optionsEnter()
+	{
+		if (selection == 0)
+		{
+			Save.data = Save.getDefault();
+			Save.save();
+
+			FlxG.resetState();
+		}
+	}
 
 	public function optionsLeft()
 	{
-		if (selection == 0)
+		if (selection == 2)
 			Save.data.settings.volume -= 10;
-
-		if (Save.data.settings.volume < 0)
-			Save.data.settings.volume = 100;
+		if (selection == 1)
+		{
+			changedSaveSlot = true;
+			Save.loadFromSlot(Save.data.slot - 1);
+		}
 	}
 
 	public function optionsRight()
 	{
-		if (selection == 0)
+		if (selection == 2)
 			Save.data.settings.volume += 10;
-
-		if (Save.data.settings.volume > 100)
-			Save.data.settings.volume = 0;
+		if (selection == 1)
+		{
+			changedSaveSlot = true;
+			Save.loadFromSlot(Save.data.slot + 1);
+		}
 	}
 }

@@ -96,10 +96,8 @@ class MainMenu extends State
 						FlxTween.tween(blk, {alpha: 1}, 3);
 
 						FlxG.sound.music.fadeOut(3, 0, t -> FlxG.switchState(() -> FindPath.sendToStateBasedOnGameplayPath(Save.data.gameplay.path)));
-					#if debug
 					case 1:
 						FlxG.switchState(() -> new SettingsMenu());
-					#end
 				}
 			}
 		}
@@ -109,7 +107,5 @@ class MainMenu extends State
 	{
 		playText.color = (selection == 0) ? FlxColor.YELLOW : FlxColor.WHITE;
 		optionsText.color = (selection == 1) ? FlxColor.YELLOW : FlxColor.WHITE;
-
-		optionsText.alpha = 0.5;
 	}
 }

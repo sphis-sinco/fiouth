@@ -62,6 +62,9 @@ class Save
 		var fakeendEasterEgg:Bool = false;
 		var usedBackupParser:Bool = false;
 
+		if (data != null)
+			globalData.lastSlot = data.slot;
+
 		FlxG.save.bind('Fiouth/Slot$slot', Application.current.meta.get('company'), (s, exception) ->
 		{
 			usedBackupParser = true;

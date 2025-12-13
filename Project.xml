@@ -90,6 +90,4 @@
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!--Place custom nodes like icons here-->
-
-	<define name="DISPLAY_BUILD" unless="DONT_DISPLAY_BUILD"/>
 </project>

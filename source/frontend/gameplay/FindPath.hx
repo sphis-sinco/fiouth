@@ -10,7 +10,8 @@ class FindPath
 	{
 		switch (path)
 		{
-			case START:
+			case START, START_OLD:
+				Save.data.gameplay.path = START;
 				return new GameplayStartingScene();
 
 			default:

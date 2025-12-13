@@ -57,7 +57,7 @@ class Save
 		{
 			lastValidSlot++;
 			saveObject.bind('slot$lastValidSlot', SAVEPATH);
-			if (saveObject.isEmpty() || lastValidSlot > globalData.maxSlot)
+			if ((saveObject.isEmpty() || saveObject.data.slot != lastValidSlot) || lastValidSlot > globalData.maxSlot)
 			{
 				continueCheckingSlots = false;
 				globalData.maxSlot = lastValidSlot - 1;
@@ -73,7 +73,7 @@ class Save
 			loadFromSlot(globalData.lastSlot ?? DEFAULT_SLOT);
 	}
 
-	public static var SAVEPATH(get,never):String;
+	public static var SAVEPATH(get, never):String;
 
 	static function get_SAVEPATH():String
 		return Application.current.meta.get('company') + '/fiouth';
@@ -173,6 +173,9 @@ class Save
 	public static function save()
 	{
 		globalData.lastSlot = data.slot;
+
+		if (data.slot > globalData.maxSlot)
+			globalData.maxSlot = data.slot;
 
 		globalSave.mergeData(globalData, true);
 		globalSave.flush();

@@ -118,7 +118,6 @@ class KeypadScene extends PathState
 							keypad.visible = false;
 							keycard.visible = false;
 
-							version.visible = false;
 							FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new MainMenu()));
 							FlxG.sound.music.fadeOut(3, 0);
 						});

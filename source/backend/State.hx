@@ -22,5 +22,14 @@ class State extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		members.sort((basic1, basic2) ->
+		{
+			if (basic1 == version)
+				return 1;
+			if (basic2 == version)
+				return -1;
+			return 0;
+		});
 	}
 }

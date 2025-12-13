@@ -1,5 +1,7 @@
 package frontend.gameplay;
 
+import flixel.util.FlxColor;
+import flixel.FlxSprite;
 import backend.TextTags;
 import backend.save.Save;
 import flixel.util.FlxTimer;
@@ -34,7 +36,10 @@ class GameplayStartingScene extends State
 
 		FlxG.sound.playMusic('welcome'.musicPath());
 		FlxG.sound.music.fadeIn(3, 0, 1);
-		FlxG.camera.flash(0x000000, 3, false);
+		
+		var blk = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		add(blk);
+		FlxTween.tween(blk, {alpha: 0}, 3);
 
 		Save.data.gameplay.hasBegun = true;
 

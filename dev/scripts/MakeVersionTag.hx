@@ -15,7 +15,7 @@ class MakeVersionTag
 
 		trace('runCmds: ' + runCmds);
 
-		var projXML:Access = new Access(Xml.parse(File.getContent('../../Project.xml')).firstElement());
+		var projXML:Access = new Access(Xml.parse(File.getContent('Project.xml')).firstElement());
 		var version:String = null;
 
 		if (projXML == null)

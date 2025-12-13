@@ -45,6 +45,7 @@ class FirstChoicePath extends PathState
 		dialog = new FlxText();
 
 		dialog.size = 32;
+		dialog.fieldWidth = Std.int('When we\'re done'.length * (dialog.size / 2));
 
 		dialog.screenCenter();
 
@@ -153,7 +154,7 @@ class FirstChoicePath extends PathState
 				playDialogueSound();
 				var randomPos:Void->Void = () ->
 				{
-					dialog.setPosition(FlxG.random.float(80, (FlxG.width - 80) - dialog.width), FlxG.random.float(80, (FlxG.height - 80) - dialog.height));
+					dialog.setPosition(FlxG.random.float(160, (FlxG.width - 160) - dialog.width), FlxG.random.float(160, (FlxG.height - 160) - dialog.height));
 				}
 
 				randomPos();

@@ -43,7 +43,7 @@ class CreateBaseDiaryFile
 			hour -= 12;
 		trace('aorp: ' + aorp);
 
-		var filename = '$month.$day.$year.${hour}${aorp}.md';
+		var filename = '${(month < 10) ? '0' : ''}$month.${(day < 10) ? '0' : ''}$day.$year.${(hour < 10) ? '0' : ''}${hour}${aorp}.md';
 
 		trace('filename: ' + filename);
 

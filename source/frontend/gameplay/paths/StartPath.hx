@@ -14,7 +14,8 @@ class StartPath extends PathState
 {
 	public var dialog:FlxText;
 
-	override public function new() {
+	override public function new()
+	{
 		super(START);
 	}
 
@@ -66,10 +67,7 @@ class StartPath extends PathState
 			{
 				dialog.visible = false;
 				FlxG.camera.flash(FlxColor.WHITE, 3);
-				FlxG.sound.music.fadeOut(3, 0, t ->
-				{
-					FlxG.sound.music.stop();
-				});
+				FlxG.switchState(() -> new FirstChoicePath());
 			});
 		});
 	}

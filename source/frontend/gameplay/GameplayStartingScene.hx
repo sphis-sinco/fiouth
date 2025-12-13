@@ -36,7 +36,7 @@ class GameplayStartingScene extends State
 
 		FlxG.sound.playMusic('welcome'.musicPath());
 		FlxG.sound.music.fadeIn(3, 0, 1);
-		
+
 		var blk = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		add(blk);
 		FlxTween.tween(blk, {alpha: 0}, 3);
@@ -54,6 +54,15 @@ class GameplayStartingScene extends State
 		FlxTimer.wait(12, () -> setDialogueText('You will know what to do.'));
 
 		FlxTimer.wait(16, () -> setDialogueText('If not then lord have mercy upon your soul.'));
+
+		FlxTimer.wait(20, () ->
+		{
+			FlxG.sound.play('transportation'.soundsPath());
+			FlxTimer.wait(20, () ->
+			{
+				FlxG.camera.flash();
+			});
+		});
 	}
 
 	public function setDialogueText(text:String)

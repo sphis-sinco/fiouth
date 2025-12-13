@@ -67,7 +67,7 @@ class KeypadScene extends PathState
 		left.justReleased = () ->
 		{
 			if (canSelect)
-			scene--;
+				scene--;
 			if (scene < 0)
 				scene = 0;
 		}
@@ -95,7 +95,8 @@ class KeypadScene extends PathState
 
 		if (scene == 0)
 		{
-			keypad.visible = true;
+			if (canSelect)
+				keypad.visible = true;
 
 			if (FlxG.mouse.overlaps(keypad) && FlxG.mouse.justReleased)
 			{

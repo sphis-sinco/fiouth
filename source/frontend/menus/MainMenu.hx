@@ -9,6 +9,7 @@ class MainMenu extends State
 	public var title:FlxText;
 
 	public var playText:FlxText;
+	public var optionsText:FlxText;
 
 	public var selection:Int = 0;
 
@@ -26,9 +27,26 @@ class MainMenu extends State
 		add(title);
 
 		playText = new FlxText();
+		
 		playText.size = 24;
-
+		playText.text = "Play";
+		
 		add(playText);
+
+		optionsText = new FlxText();
+		
+		optionsText.size = 24;
+		optionsText.text = "Options";
+
+		add(optionsText);
+
+		
+
+		playText.screenCenter();
+		playText.y += playText.height * 2;
+
+		optionsText.screenCenter(X);
+		optionsText.y = playText.y + playText.height * 2;
 
 		updateOptionTexts();
 	}
@@ -46,8 +64,8 @@ class MainMenu extends State
 
 			if (selection < 0)
 				selection = 0;
-			if (selection > 0)
-				selection = 0;
+			if (selection > 1)
+				selection = 1;
 
 			updateOptionTexts();
 		}
@@ -55,16 +73,9 @@ class MainMenu extends State
 
 	public function updateOptionTexts()
 	{
-		playText.text = "Play";
-		playText.color = FlxColor.WHITE;
+		playText.color = (selection == 0) ? FlxColor.YELLOW : FlxColor.WHITE;
+		optionsText.color = (selection == 1) ? FlxColor.YELLOW : FlxColor.WHITE;
 
-		if (selection == 0)
-		{
-			playText.text = "> " + playText.text;
-			playText.color = FlxColor.YELLOW;
-		}
-
-		playText.screenCenter();
-		playText.y += playText.height * 2;
+		optionsText.alpha = 0.5;
 	}
 }

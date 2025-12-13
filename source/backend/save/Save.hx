@@ -61,6 +61,7 @@ class Save
 			{
 				continueCheckingSlots = false;
 				globalData.maxSlot = lastValidSlot - 1;
+				trace('globalData.maxSlot: ' + globalData.maxSlot);
 			}
 		}
 

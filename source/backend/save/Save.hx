@@ -26,6 +26,9 @@ class Save
 				trace('Status : ' + FlxG.save.status);
 				data = FlxG.save.data;
 		}
+		
+        trace('Save : ' + data);
+        save();
 	}
 
 	public static function getDefault():RawSaveData
@@ -35,6 +38,14 @@ class Save
 			slot: 1
 		}
 	}
+
+    public static function save()
+    {
+        FlxG.save.mergeData(data, true);
+        FlxG.save.flush();
+
+        trace('Saved');
+    }
 
 	public static function init()
     {

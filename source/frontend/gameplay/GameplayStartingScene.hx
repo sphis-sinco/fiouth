@@ -1,5 +1,7 @@
 package frontend.gameplay;
 
+import backend.save.Save;
+import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.text.FlxText;
@@ -31,6 +33,10 @@ class GameplayStartingScene extends State
 		playDialogueSound();
 
 		FlxG.sound.playMusic('welcome'.musicPath());
+
+		FlxTimer.wait(1, () -> {
+			Save.data.gameplay.hasBegun = true;
+		});
 	}
 
 	public function playDialogueSound()

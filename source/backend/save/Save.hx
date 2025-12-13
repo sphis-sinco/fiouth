@@ -22,7 +22,11 @@ class Save
 	{
 		return {
 			version: Application.current.meta.get('version'),
-			slot: DEFAULT_SAVE
+			slot: DEFAULT_SAVE,
+
+			gameplay: {
+				hasBegun: false
+			}
 		}
 	}
 
@@ -90,6 +94,11 @@ class Save
 		{
 			globalData.lastVersion = data.version;
 			data.version = getDefault().version;
+		}
+		if (data.gameplay == null)
+		{
+			trace('Missing gameplay field');
+			data.gameplay = getDefault().gameplay;
 		}
 	}
 }

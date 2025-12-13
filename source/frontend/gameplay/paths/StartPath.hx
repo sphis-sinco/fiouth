@@ -14,6 +14,10 @@ class StartPath extends PathState
 {
 	public var dialog:FlxText;
 
+	override public function new() {
+		super(START);
+	}
+
 	override function create()
 	{
 		super.create();

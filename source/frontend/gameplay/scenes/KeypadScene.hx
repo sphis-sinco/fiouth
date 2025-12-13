@@ -54,6 +54,9 @@ class KeypadScene extends PathState
 		left.x = left.width * 2;
 		right.x = FlxG.width - (right.width * 2);
 
+		add(left);
+		add(right);
+
 		left.justReleased = () ->
 		{
 			scene--;

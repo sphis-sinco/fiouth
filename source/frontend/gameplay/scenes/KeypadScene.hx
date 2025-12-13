@@ -89,7 +89,7 @@ class KeypadScene extends PathState
 				scene = 2;
 		}
 
-		turnOnCursor();
+		enableCursor = true;
 	}
 
 	public var canSelect:Bool = true;
@@ -130,7 +130,7 @@ class KeypadScene extends PathState
 
 					if (hasKeycard)
 					{
-						turnOffCursor();
+						enableCursor = false;
 						keycard.visible = false;
 						canSelect = false;
 						hasKeycard = !hasKeycard;

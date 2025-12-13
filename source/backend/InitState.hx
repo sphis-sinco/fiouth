@@ -19,6 +19,18 @@ class InitState extends State
 		FlxG.sound.volumeUpKeys = [];
 		FlxG.sound.soundTrayEnabled = false;
 
+		// FlxG.debugger.toggleKeys = [];
+		FlxG.debugger.visibilityChanged.add(() -> {
+			if (!FlxG.debugger.visible)
+			{
+				if (Std.isOfType(FlxG.state, State))
+				{
+					var stateState:State = cast FlxG.state;
+					stateState.turnOffCursor();
+				}
+			}
+		});
+
 		FlxG.switchState(() -> new MainMenu());
 	}
 

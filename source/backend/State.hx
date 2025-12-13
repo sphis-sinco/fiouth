@@ -9,6 +9,24 @@ class State extends FlxState
 	public var displayVersion:Bool = true;
 	public var version:FlxText;
 
+	public var enableCursor(default, set):Bool = false;
+
+	function set_enableCursor(value:Bool):Bool
+	{
+		if (value)
+			turnOnCursor();
+		else
+			turnOffCursor();
+
+		return value;
+	}
+
+	override public function new()
+	{
+		super();
+		enableCursor = false;
+	}
+
 	override public function create()
 	{
 		super.create();
@@ -17,8 +35,6 @@ class State extends FlxState
 		version.alpha = 0.25;
 		if (displayVersion)
 			add(version);
-
-		turnOffCursor();
 	}
 
 	override public function update(elapsed:Float)

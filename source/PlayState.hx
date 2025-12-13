@@ -1,8 +1,8 @@
 package;
 
-import flixel.FlxState;
+import backend.State;
 
-class PlayState extends FlxState
+class PlayState extends State
 {
 	override public function create()
 	{

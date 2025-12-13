@@ -51,7 +51,7 @@ class Save
 		trace('Loaded Global Data: ' + globalData);
 		if (globalData.lastSlot < DEFAULT_SLOT)
 			globalData.lastSlot = DEFAULT_SLOT;
-		globalData.lastSlot = Std.int(FlxMath.bound(globalData.lastSlot, DEFAULT_SLOT, FlxMath.MAX_VALUE_INT));
+		globalData.lastSlot = Std.int(FlxMath.bound(globalData.lastSlot, DEFAULT_SLOT, globalData?.maxSlot ?? FlxMath.MAX_VALUE_INT));
 
 		if (Compiler.getDefine('SAVE_SLOT') != null && Compiler.getDefine('SAVE_SLOT') != "1")
 			loadFromSlot(Std.parseInt(Compiler.getDefine('SAVE_SLOT').split("=")[0]));
@@ -115,16 +115,8 @@ class Save
 
 	public static function performSaveChecks()
 	{
-		if (data.version == null)
-		{
-			trace('Missing version field');
-			data.version = getDefault().version;
-		}
-		else
-		{
-			globalData.lastVersion = data.version;
-			data.version = getDefault().version;
-		}
+		globalData.lastVersion = data?.version;
+		data.version = getDefault().version;
 
 		if (data.gameplay == null)
 		{
@@ -154,6 +146,9 @@ class Save
 	public static function save()
 	{
 		globalData.lastSlot = data.slot;
+
+		if (data.slot > globalData.maxSlot)
+			globalData.maxSlot = data.slot;
 
 		globalSave.mergeData(globalData, true);
 		globalSave.flush();

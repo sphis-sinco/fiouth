@@ -18,7 +18,7 @@ class State extends FlxState
 		if (displayVersion)
 			add(version);
 
-		FlxG.mouse.visible = false;
+		turnOffCursor();
 	}
 
 	override public function update(elapsed:Float)
@@ -33,5 +33,13 @@ class State extends FlxState
 				return -1;
 			return 0;
 		});
+
+		FlxG.mouse.visible = FlxG.mouse.enabled;
 	}
+
+	public function turnOffCursor()
+		FlxG.mouse.enabled = false;
+
+	public function turnOnCursor()
+		FlxG.mouse.enabled = true;
 }

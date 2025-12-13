@@ -12,9 +12,10 @@ class SettingsMenu extends State
 
 	public var selection:Int = 0;
 
-	public var clearSaveText:FlxText;
-	public var volumeText:FlxText;
-	public var saveSlotText:FlxText;
+	public var clearSaveText:FlxText = new FlxText(64, 64, 0, '', 32);
+	public var saveSlotText:FlxText = new FlxText(64, 64, 0, '', 32);
+
+	public var volumeText:FlxText = new FlxText(64, 64, 0, '', 32);
 
 	override function create()
 	{
@@ -22,17 +23,10 @@ class SettingsMenu extends State
 
 		selection = _selection;
 
-		clearSaveText = new FlxText(64, 64);
-		clearSaveText.size = 16;
 		add(clearSaveText);
-
-		volumeText = new FlxText();
-		volumeText.size = 16;
-		add(volumeText);
-
-		saveSlotText = new FlxText();
-		saveSlotText.size = 16;
 		add(saveSlotText);
+
+		add(volumeText);
 
 		updateOptionTexts();
 	}

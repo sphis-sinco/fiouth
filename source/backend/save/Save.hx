@@ -31,29 +31,6 @@ class Save
 		}
 	}
 
-	public static function save()
-	{
-		globalData.lastSlot = data.slot;
-
-		globalSave.mergeData(globalData, true);
-		globalSave.flush();
-
-		/*
-			trace('Save: ' + data);
-			trace('FlxG: ' + FlxG.save.data);
-			if (FlxG.save.data == null)
-			{
-				@:privateAccess
-				FlxG.save.data = getDefault();
-			}
-		 */
-		if (data != null && FlxG.save.data != null)
-			FlxG.save.mergeData(data, true);
-		FlxG.save.flush();
-
-		trace('Saved');
-	}
-
 	public static var DEFAULT_SAVE:Int = 1;
 
 	public static function init()
@@ -68,7 +45,7 @@ class Save
 		globalData = globalSave.data;
 		globalData.testingShit ??= {};
 		globalData.testingShit.path = 'end';
-		trace('Global : ' + globalData);
+		trace('Loaded Global Data: ' + globalData);
 
 		if (Compiler.getDefine('SAVE_SLOT') != null && Compiler.getDefine('SAVE_SLOT') != "1")
 			loadFromSlot(Std.parseInt(Compiler.getDefine('SAVE_SLOT').split("=")[0]));
@@ -103,6 +80,8 @@ class Save
 				data = FlxG.save.data;
 		}
 
+		trace('Loaded Save Data : ' + data);
+
 		if (data == null)
 			data = getDefault();
 
@@ -116,7 +95,6 @@ class Save
 		if (fakeendEasterEgg)
 			data.gameplay.path = FAKE_END;
 
-		trace('Save : ' + data);
 		save();
 	}
 
@@ -145,5 +123,21 @@ class Save
 			if (data.gameplay.path == null)
 				data.gameplay.path = getDefault().gameplay.path;
 		}
+	}
+
+	public static function save()
+	{
+		globalData.lastSlot = data.slot;
+
+		globalSave.mergeData(globalData, true);
+		globalSave.flush();
+
+		if (data != null && FlxG.save.data != null)
+			FlxG.save.mergeData(data, true);
+		FlxG.save.flush();
+
+		trace('Saved Global Data : ' + globalSave.data);
+		trace('Saved Save Data : ' + data);
+		trace('Saved');
 	}
 }

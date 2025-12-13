@@ -1,5 +1,6 @@
 package frontend.menus;
 
+import frontend.gameplay.GameplayStartingScene;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
 import backend.State;
@@ -70,7 +71,7 @@ class MainMenu extends State
 			if (FlxG.keys.anyJustReleased([ENTER]))
 			{
 				switch (selection) {
-					case 0: FlxG.switchState(() -> new LevelSelectMenu());
+					case 0: FlxG.switchState(() -> new GameplayStartingScene());
 					#if debug
 					case 1: FlxG.switchState(() -> new SettingsMenu());
 					#end

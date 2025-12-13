@@ -1,0 +1,1 @@
+haxe -m dev.scripts.MakeVersionTag --interp -D DONT_RUN_CMDS

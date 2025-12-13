@@ -2,5 +2,6 @@ package backend.save;
 
 typedef GlobalData =
 {
-	lastSlot:Null<Int>
+	lastSlot:Null<Int>,
+	lastVersion:String
 }

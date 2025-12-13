@@ -86,5 +86,10 @@ class Save
 			trace('Missing version field');
 			data.version = getDefault().version;
 		}
+		else
+		{
+			globalData.lastVersion = data.version;
+			data.version = getDefault().version;
+		}
 	}
 }

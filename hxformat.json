@@ -11,6 +11,17 @@
 		"doWhile": "next",
 		"tryBody": "next",
 		"tryCatch": "next",
-		"caseBody": "keep"
+		"caseBody": "keep",
+		"ifBody": "keep",
+		"elseBody": "keep",
+		"forBody": "keep",
+		"catchBody": "keep",
+		"whileBody": "keep",
+		"returnBody": "keep",
+		"returnBodySingleLine": "keep",
+		"doWhileBody": "keep",
+		"untypedBody": "keep",
+		"functionBody": "keep",
+		"anonFunctionBody": "keep"
 	}
 }

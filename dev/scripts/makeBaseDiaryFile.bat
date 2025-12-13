@@ -1,0 +1,1 @@
+haxe -m dev.scripts.CreateBaseDiaryFile --interp

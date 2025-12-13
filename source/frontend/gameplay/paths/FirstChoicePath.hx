@@ -130,26 +130,43 @@ class FirstChoicePath extends PathState
 							FlxG.sound.playMusic('butYouPickedTheWorstOption'.musicPath());
 
 							var line = 'Why did you do that?';
-							var allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890`~!@#$%^&*()-=_+[]\\{}|:";\',./<>?';
+							var allLetters = '1234567890`~!@#$%^&*()-=+[]\\{}|:";\',./<>?';
 
-							setDialogueText(line);
+							setDialogueTextNoFade(line);
 
-							FlxTimer.loop(.5, l ->
-							{
-								var developedLine = '';
-
-								while (developedLine.length != line.length)
+							/*
+								caused crashed cuz of lag
+								FlxTimer.wait(2, () -> FlxTimer.loop(.05, l ->
 								{
-									if (line.charAt(developedLine.length) == '')
-										developedLine += ' ';
-									else if (FlxG.random.bool((FlxG.save.data?.volume ?? 1) * 10))
-										developedLine += line.charAt(developedLine.length);
-									else
-										developedLine += allLetters.charAt(FlxG.random.int(0, allLetters.length - 1));
-								}
+									var developedLine = '';
 
-								setDialogueTextNoFade(developedLine);
-							}, Std.int(3 / .5) + 1);
+									while (developedLine.length != line.length)
+									{
+										if (line.charAt(developedLine.length) == '')
+											developedLine += ' ';
+										else if (FlxG.random.bool((FlxG.save.data?.volume ?? 1) * 10))
+											developedLine += '<white>' + line.charAt(developedLine.length) + '<white>';
+										else
+											developedLine += allLetters.charAt(FlxG.random.int(0, allLetters.length - 1));
+									}
+
+									setDialogueTextNoFade('<red>' + developedLine + '<red>');
+
+									if (l > 29)
+										setDialogueTextNoFade('');
+							}, 30));*/
+
+							FlxTimer.wait(2, () ->
+							{
+								FlxTimer.wait(.01, () -> setDialogueTextNoFade('YOui hva'));
+								FlxTimer.wait(.04, () -> setDialogueTextNoFade('YOU HAVE'));
+								FlxTimer.wait(.43, () -> setDialogueTextNoFade('FO9irgOTnen YUOR pL'));
+								FlxTimer.wait(.5, () -> setDialogueTextNoFade('FORGOTTEN YOUR PLACE'));
+								FlxTimer.wait(1, () -> setDialogueTextNoFade('DO NOT TOY WITH ME OAPS.'));
+								FlxTimer.wait(2, () -> setDialogueTextNoFade('YOU REMEMBER WHAT WE DID TO THEM.'));
+								FlxTimer.wait(4, () -> setDialogueTextNoFade('WOULD YOU LIKE TO REALLY SUFFER THE SAME FATE?'));
+								FlxTimer.wait(6, () -> setDialogueTextNoFade('OR MAYBE WE HAVENT HURT YOUR FAMILY ENOUGH'));
+							});
 
 							FlxG.sound.music.fadeIn(3, 0, 1, t -> {});
 						});

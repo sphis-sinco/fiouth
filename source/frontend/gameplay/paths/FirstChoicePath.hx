@@ -27,7 +27,12 @@ class FirstChoicePath extends PathState
 		'Pick the right choice for <blue>your<blue> <cyan>people<cyan>.',
 		'All decisions, are yours.',
 		'There are no wrong answers.',
-		'We will be forgiving if you wish to stay.'
+		'We will be forgiving if you wish to stay.',
+		'Remember what <cyan>they<cyan> did to <blue>them<blue>.',
+		'Don\'t let <cyan>them<cyan> keep doing it to others.',
+		'Remember that freedom is <cyan>everyone\'s<cyan> right',
+		'It\'s time, <blue>Oaps.<blue>',
+		'When <cyan>we\'re<cyan> done, there will be <blue>none<blue> left to rule.'
 	];
 
 	override function create()

@@ -25,60 +25,84 @@
 			"name": "",
 			"instruments": [
 				{
-					"type": "PWM",
-					"volume": -20,
-					"eqFilter": [
-						{
-							"type": "peak",
-							"cutoffHz": 594.6,
-							"linearGain": 11.3137
-						},
-						{
-							"type": "peak",
-							"cutoffHz": 1681.79,
-							"linearGain": 11.3137
-						}
-					],
+					"type": "FM",
+					"volume": 25,
+					"eqFilter": [],
 					"eqFilterType": false,
 					"eqSimpleCut": 10,
 					"eqSimplePeak": 0,
 					"envelopeSpeed": 12,
 					"discreteEnvelope": false,
-					"eqSubFilters0": [
-						{
-							"type": "peak",
-							"cutoffHz": 594.6,
-							"linearGain": 11.3137
-						},
-						{
-							"type": "peak",
-							"cutoffHz": 1681.79,
-							"linearGain": 11.3137
-						}
-					],
+					"preset": 588,
+					"eqSubFilters0": [],
 					"effects": [
 						"panning",
+						"vibrato",
 						"note filter",
+						"chorus",
 						"reverb"
 					],
+					"vibrato": "delayed",
+					"vibratoDepth": 0.3,
+					"vibratoDelay": 18.5,
+					"vibratoSpeed": 10,
+					"vibratoType": 0,
 					"noteFilterType": true,
-					"noteSimpleCut": 8,
-					"noteSimplePeak": 2,
-					"noteFilter": [],
+					"noteSimpleCut": 10,
+					"noteSimplePeak": 0,
+					"noteFilter": [
+						{
+							"type": "low-pass",
+							"cutoffHz": 19027.31,
+							"linearGain": 0.7071
+						}
+					],
+					"noteSubFilters1": [
+						{
+							"type": "low-pass",
+							"cutoffHz": 19027.31,
+							"linearGain": 0.7071
+						}
+					],
 					"pan": 0,
 					"panDelay": 10,
+					"chorus": 100,
 					"reverb": 0,
-					"fadeInSeconds": 0.1575,
-					"fadeOutTicks": 96,
-					"pulseWidth": 50,
+					"fadeInSeconds": 0.0125,
+					"fadeOutTicks": 72,
+					"algorithm": "1 2 3 4",
+					"feedbackType": "1⟲ 2⟲ 3⟲ 4⟲",
+					"feedbackAmplitude": 14,
+					"operators": [
+						{
+							"frequency": "1×",
+							"amplitude": 12,
+							"waveform": "sine",
+							"pulseWidth": 5
+						},
+						{
+							"frequency": "2×",
+							"amplitude": 14,
+							"waveform": "sine",
+							"pulseWidth": 5
+						},
+						{
+							"frequency": "3×",
+							"amplitude": 12,
+							"waveform": "sine",
+							"pulseWidth": 5
+						},
+						{
+							"frequency": "4×",
+							"amplitude": 14,
+							"waveform": "sine",
+							"pulseWidth": 5
+						}
+					],
 					"envelopes": [
 						{
 							"target": "noteFilterAllFreqs",
-							"envelope": "swell 1"
-						},
-						{
-							"target": "pulseWidth",
-							"envelope": "flare 3"
+							"envelope": "decay 1"
 						}
 					]
 				}
@@ -88,8 +112,8 @@
 					"notes": [
 						{
 							"pitches": [
-								27,
-								26
+								56,
+								55
 							],
 							"points": [
 								{
@@ -109,28 +133,8 @@
 						},
 						{
 							"pitches": [
-								27,
-								26
-							],
-							"points": [
-								{
-									"tick": 2,
-									"pitchBend": 0,
-									"volume": 100,
-									"forMod": false
-								},
-								{
-									"tick": 4,
-									"pitchBend": 0,
-									"volume": 100,
-									"forMod": false
-								}
-							]
-						},
-						{
-							"pitches": [
-								28,
-								27
+								57,
+								56
 							],
 							"points": [
 								{
@@ -149,28 +153,8 @@
 						},
 						{
 							"pitches": [
-								28,
-								27
-							],
-							"points": [
-								{
-									"tick": 6,
-									"pitchBend": 0,
-									"volume": 100,
-									"forMod": false
-								},
-								{
-									"tick": 8,
-									"pitchBend": 0,
-									"volume": 100,
-									"forMod": false
-								}
-							]
-						},
-						{
-							"pitches": [
-								27,
-								26
+								56,
+								55
 							],
 							"points": [
 								{
@@ -189,28 +173,8 @@
 						},
 						{
 							"pitches": [
-								27,
-								26
-							],
-							"points": [
-								{
-									"tick": 10,
-									"pitchBend": 0,
-									"volume": 100,
-									"forMod": false
-								},
-								{
-									"tick": 12,
-									"pitchBend": 0,
-									"volume": 100,
-									"forMod": false
-								}
-							]
-						},
-						{
-							"pitches": [
-								28,
-								27
+								57,
+								56
 							],
 							"points": [
 								{
@@ -229,28 +193,8 @@
 						},
 						{
 							"pitches": [
-								28,
-								27
-							],
-							"points": [
-								{
-									"tick": 14,
-									"pitchBend": 0,
-									"volume": 100,
-									"forMod": false
-								},
-								{
-									"tick": 16,
-									"pitchBend": 0,
-									"volume": 100,
-									"forMod": false
-								}
-							]
-						},
-						{
-							"pitches": [
-								27,
-								26
+								56,
+								55
 							],
 							"points": [
 								{
@@ -269,28 +213,8 @@
 						},
 						{
 							"pitches": [
-								26,
-								27
-							],
-							"points": [
-								{
-									"tick": 18,
-									"pitchBend": 0,
-									"volume": 100,
-									"forMod": false
-								},
-								{
-									"tick": 20,
-									"pitchBend": 0,
-									"volume": 100,
-									"forMod": false
-								}
-							]
-						},
-						{
-							"pitches": [
-								27,
-								28
+								56,
+								57
 							],
 							"points": [
 								{
@@ -309,28 +233,8 @@
 						},
 						{
 							"pitches": [
-								27,
-								28
-							],
-							"points": [
-								{
-									"tick": 22,
-									"pitchBend": 0,
-									"volume": 100,
-									"forMod": false
-								},
-								{
-									"tick": 24,
-									"pitchBend": 0,
-									"volume": 100,
-									"forMod": false
-								}
-							]
-						},
-						{
-							"pitches": [
-								27,
-								26
+								56,
+								55
 							],
 							"points": [
 								{
@@ -349,28 +253,8 @@
 						},
 						{
 							"pitches": [
-								27,
-								26
-							],
-							"points": [
-								{
-									"tick": 26,
-									"pitchBend": 0,
-									"volume": 100,
-									"forMod": false
-								},
-								{
-									"tick": 28,
-									"pitchBend": 0,
-									"volume": 100,
-									"forMod": false
-								}
-							]
-						},
-						{
-							"pitches": [
-								28,
-								27
+								57,
+								56
 							],
 							"points": [
 								{
@@ -381,26 +265,6 @@
 								},
 								{
 									"tick": 30,
-									"pitchBend": 0,
-									"volume": 100,
-									"forMod": false
-								}
-							]
-						},
-						{
-							"pitches": [
-								28,
-								27
-							],
-							"points": [
-								{
-									"tick": 30,
-									"pitchBend": 0,
-									"volume": 100,
-									"forMod": false
-								},
-								{
-									"tick": 32,
 									"pitchBend": 0,
 									"volume": 100,
 									"forMod": false

@@ -1,7 +1,7 @@
 package frontend.gameplay;
 
+import frontend.gameplay.scenes.FirstChoiceScene;
 import frontend.gameplay.scenes.KeypadScene;
-import frontend.gameplay.paths.FirstChoicePath;
 import frontend.gameplay.eastereggs.FakeEnd;
 import frontend.gameplay.paths.StartPath;
 import flixel.FlxState;
@@ -20,7 +20,7 @@ class FindPath
 				trace('CHEATING USER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 				return new FakeEnd();
 
-			case FIRST_CHOICE: return new FirstChoicePath();
+			case FIRST_CHOICE: return new FirstChoiceScene();
 			case KEYPAD_SCENE: return new KeypadScene();
 
 			default:

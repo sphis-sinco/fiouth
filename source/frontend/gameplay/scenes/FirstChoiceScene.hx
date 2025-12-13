@@ -1,4 +1,4 @@
-package frontend.gameplay.paths;
+package frontend.gameplay.scenes;
 
 import frontend.gameplay.scenes.KeypadScene;
 import flixel.util.FlxTimer;
@@ -10,7 +10,7 @@ import flixel.tweens.FlxTween;
 import flixel.FlxSprite;
 import backend.gameplay.PathState;
 
-class FirstChoicePath extends PathState
+class FirstChoiceScene extends PathState
 {
 	override public function new()
 	{

@@ -1,5 +1,6 @@
 package frontend.gameplay.paths;
 
+import frontend.gameplay.scenes.FirstChoiceScene;
 import backend.gameplay.PathState;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
@@ -67,7 +68,7 @@ class StartPath extends PathState
 			{
 				dialog.visible = false;
 				version.visible = false;
-				FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new FirstChoicePath()));
+				FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new FirstChoiceScene()));
 				FlxG.sound.music.fadeOut(3, 0);
 			});
 		});

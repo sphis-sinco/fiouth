@@ -1,16 +1,15 @@
 package frontend.gameplay.scenes;
 
+import backend.Sprite;
 import backend.gameplay.PathState;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import frontend.objects.ui.Directional;
-import flixel.FlxSprite;
-import backend.State;
 
 class KeypadScene extends PathState
 {
-	public var keycard:FlxSprite;
-	public var keypad:FlxSprite;
+	public var keycard:Sprite;
+	public var keypad:Sprite;
 
 	public var scene:Int = 1;
 
@@ -28,8 +27,10 @@ class KeypadScene extends PathState
 	{
 		super.create();
 
-		keycard = new FlxSprite().loadGraphic('objects/keycard'.imagePath());
-		keypad = new FlxSprite().loadGraphic('objects/keypad'.imagePath());
+		keycard = new Sprite();
+		keycard.loadGraphic('objects/keycard'.imagePath());
+		keypad = new Sprite();
+		keypad.loadGraphic('objects/keypad'.imagePath());
 
 		add(keycard);
 		add(keypad);

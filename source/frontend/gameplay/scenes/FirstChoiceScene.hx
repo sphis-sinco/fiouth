@@ -131,31 +131,8 @@ class FirstChoiceScene extends PathState
 							FlxG.sound.playMusic('butYouPickedTheWorstOption'.musicPath());
 
 							var line = 'Why did you do that?';
-							var allLetters = '1234567890`~!@#$%^&*()-=+[]\\{}|:";\',./<>?';
 
 							setDialogueTextNoFade(line);
-
-							/*
-								caused crashed cuz of lag
-								FlxTimer.wait(2, () -> FlxTimer.loop(.05, l ->
-								{
-									var developedLine = '';
-
-									while (developedLine.length != line.length)
-									{
-										if (line.charAt(developedLine.length) == '')
-											developedLine += ' ';
-										else if (FlxG.random.bool((FlxG.save.data?.volume ?? 1) * 10))
-											developedLine += '<white>' + line.charAt(developedLine.length) + '<white>';
-										else
-											developedLine += allLetters.charAt(FlxG.random.int(0, allLetters.length - 1));
-									}
-
-									setDialogueTextNoFade('<red>' + developedLine + '<red>');
-
-									if (l > 29)
-										setDialogueTextNoFade('');
-							}, 30));*/
 
 							FlxTimer.wait(2, () ->
 							{
@@ -167,7 +144,7 @@ class FirstChoiceScene extends PathState
 								FlxTimer.wait(2, () -> setDialogueTextNoFade('YOU REMEMBER WHAT WE DID TO THEM.'));
 								FlxTimer.wait(4, () -> setDialogueTextNoFade('WOULD YOU LIKE TO REALLY SUFFER THE SAME FATE?'));
 								FlxTimer.wait(6, () -> setDialogueTextNoFade('OR MAYBE WE HAVENT HURT YOUR FAMILY ENOUGH'));
-								FlxTimer.wait(8, () -> setDialogueTextNoFade('THEY AREN\'T SAVE OAPS.'));
+								FlxTimer.wait(8, () -> setDialogueTextNoFade('THEY AREN\'T SAFE OAPS.'));
 								FlxTimer.wait(10, () -> setDialogueTextNoFade('AND NOW.'));
 								FlxTimer.wait(10.01, () -> dialog.screenCenter());
 								FlxTimer.wait(13, () -> setDialogueTextNoFade('THEY\'RE DEAD.'));

@@ -1,5 +1,8 @@
 package frontend.gameplay.scenes;
 
+import frontend.menus.MainMenu;
+import flixel.util.FlxColor;
+import flixel.util.FlxTimer;
 import backend.Sprite;
 import backend.gameplay.PathState;
 import flixel.tweens.FlxEase;
@@ -41,14 +44,14 @@ class KeypadScene extends PathState
 		keypad.screenCenter();
 		keycard.screenCenter();
 
-		keycard.alpha = 0;
-		keypad.alpha = 0;
+		left.alpha = 0;
+		right.alpha = 0;
 
-		FlxTween.tween(keycard, {alpha: 1}, 3, {
+		FlxTween.tween(left, {alpha: 1}, 3, {
 			ease: FlxEase.sineInOut
 		});
 
-		FlxTween.tween(keypad, {alpha: 1}, 3, {
+		FlxTween.tween(right, {alpha: 1}, 3, {
 			ease: FlxEase.sineInOut
 		});
 
@@ -63,6 +66,7 @@ class KeypadScene extends PathState
 
 		left.justReleased = () ->
 		{
+			if (canSelect)
 			scene--;
 			if (scene < 0)
 				scene = 0;
@@ -70,24 +74,57 @@ class KeypadScene extends PathState
 
 		right.justReleased = () ->
 		{
-			scene++;
+			if (canSelect)
+				scene++;
 			if (scene > 2)
 				scene = 2;
 		}
 	}
 
+	public var canSelect:Bool = true;
+
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
 
-		left.visible = scene > 0;
-		right.visible = scene < 2;
+		left.visible = scene > 0 && canSelect;
+		right.visible = scene < 2 && canSelect;
 
-		keycard.visible = hasKeycard;
+		keycard.visible = hasKeycard && canSelect;
 		keypad.visible = false;
 
 		if (scene == 0)
+		{
 			keypad.visible = true;
+
+			if (FlxG.mouse.overlaps(keypad) && FlxG.mouse.justReleased)
+			{
+				FlxG.sound.play('keypad_${(hasKeycard) ? 'accepted' : 'denied'}');
+				keypad.loadGraphic('objects/keypad-${(hasKeycard) ? 'accepted' : 'denied'}'.imagePath());
+
+				FlxTimer.wait(.5, () ->
+				{
+					keypad.loadGraphic('objects/keypad'.imagePath());
+
+					if (hasKeycard)
+					{
+						hasKeycard = !hasKeycard;
+						FlxG.sound.play('transportation'.soundsPath());
+						FlxTimer.wait(3.65, () ->
+						{
+							canSelect = false;
+
+							keypad.visible = false;
+							keycard.visible = false;
+
+							version.visible = false;
+							FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new MainMenu()));
+							FlxG.sound.music.fadeOut(3, 0);
+						});
+					}
+				});
+			}
+		}
 		if (scene == 2)
 		{
 			if (!hasKeycard)

@@ -116,7 +116,10 @@ class SettingsMenu extends State
 		{
 			changedSaveSlot = true;
 			if (Save.data.slot - 1 < Save.DEFAULT_SLOT)
-				Save.loadFromSlot(Save.globalData.maxSlot);
+			{
+				if (FlxG.keys.pressed.SHIFT)
+					Save.loadFromSlot(Save.globalData.maxSlot);
+			}
 			else
 				Save.loadFromSlot(Save.data.slot - 1);
 		}
@@ -129,7 +132,10 @@ class SettingsMenu extends State
 		if (selection == 1)
 		{
 			changedSaveSlot = true;
+			if ((Save.data.slot + 1 > Save.globalData.maxSlot) && FlxG.keys.pressed.SHIFT)
 				Save.loadFromSlot(Save.data.slot + 1);
+			else
+				Save.loadFromSlot(Save.DEFAULT_SLOT);
 		}
 	}
 }

@@ -87,10 +87,10 @@ class Save
 
 		if (data != null)
 		{
-			globalData.lastSlot = data.slot;
-			if (data.slot > globalData.maxSlot)
-				globalData.maxSlot = data.slot;
-			if (slot == data.slot)
+			globalData.lastSlot = currentSaveSlot;
+			if (currentSaveSlot > globalData.maxSlot)
+				globalData.maxSlot = currentSaveSlot;
+			if (slot == currentSaveSlot)
 				return;
 		}
 
@@ -172,10 +172,10 @@ class Save
 
 	public static function save()
 	{
-		globalData.lastSlot = data.slot;
+		globalData.lastSlot = currentSaveSlot;
 
-		if (data.slot > globalData.maxSlot)
-			globalData.maxSlot = data.slot;
+		if (currentSaveSlot > globalData.maxSlot)
+			globalData.maxSlot = currentSaveSlot;
 
 		globalSave.mergeData(globalData, true);
 		globalSave.flush();
@@ -186,6 +186,6 @@ class Save
 
 		trace('Saved Global Data : ' + globalSave.data);
 		trace('Saved Save Data : ' + data);
-		trace('Saved');
+		trace('Saved Slot: ' + currentSaveSlot);
 	}
 }

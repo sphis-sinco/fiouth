@@ -76,7 +76,7 @@ class SettingsMenu extends State
 		clearSaveText.text = 'Clear Save';
 		clearSaveText.color = (selection == 0) ? FlxColor.YELLOW : FlxColor.WHITE;
 
-		saveSlotText.text = 'Save Slot: ${Save.data.slot}';
+		saveSlotText.text = 'Save Slot: ${Save.currentSaveSlot}';
 		saveSlotText.color = (selection == 1) ? FlxColor.YELLOW : FlxColor.WHITE;
 		saveSlotText.setPosition(clearSaveText.x, clearSaveText.y + clearSaveText.height);
 
@@ -115,13 +115,13 @@ class SettingsMenu extends State
 		if (selection == 1)
 		{
 			changedSaveSlot = true;
-			if (Save.data.slot - 1 < Save.DEFAULT_SLOT)
+			if (Save.currentSaveSlot - 1 < Save.DEFAULT_SLOT)
 			{
 				if (FlxG.keys.pressed.SHIFT)
 					Save.loadFromSlot(Save.globalData.maxSlot);
 			}
 			else
-				Save.loadFromSlot(Save.data.slot - 1);
+				Save.loadFromSlot(Save.currentSaveSlot - 1);
 		}
 	}
 
@@ -132,10 +132,10 @@ class SettingsMenu extends State
 		if (selection == 1)
 		{
 			changedSaveSlot = true;
-			if ((Save.data.slot + 1 > Save.globalData.maxSlot) && !FlxG.keys.pressed.SHIFT)
+			if ((Save.currentSaveSlot + 1 > Save.globalData.maxSlot) && !FlxG.keys.pressed.SHIFT)
 				Save.loadFromSlot(Save.DEFAULT_SLOT);
 			else
-				Save.loadFromSlot(Save.data.slot + 1);
+				Save.loadFromSlot(Save.currentSaveSlot + 1);
 		}
 	}
 }

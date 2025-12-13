@@ -20,6 +20,13 @@ class FakeEnd extends PathState
 		super(START);
 	}
 
+	var randomCheaterCheaterLines:Array<String> = [
+		'Cheater Cheater Meater Beater',
+		'Cheater Cheater Pussy Eatter',
+
+		'Cheater Cheater Pumpkin Eatter'
+	];
+
 	override function create()
 	{
 		super.create();
@@ -48,7 +55,7 @@ class FakeEnd extends PathState
 
 		FlxTimer.wait(3, () ->
 		{
-			setDialogueText('Cheater Cheater Meater Beater.');
+			setDialogueText(randomCheaterCheaterLines[FlxG.random.int(0, randomCheaterCheaterLines.length - 1)]);
 			FlxG.sound.playMusic('cheaterCheater'.musicPath());
 			FlxG.sound.music.fadeIn(3, 0, 1);
 		});
@@ -59,6 +66,7 @@ class FakeEnd extends PathState
 			FlxTimer.wait(3.65, () ->
 			{
 				dialog.visible = false;
+				version.visible = false;
 				FlxG.camera.flash(FlxColor.WHITE, 3);
 				FlxG.sound.music.fadeOut(3, 0, t ->
 				{
@@ -77,7 +85,7 @@ class FakeEnd extends PathState
 			{
 				dialog.text = text;
 				playDialogueSound();
-				dialog.setPosition(FlxG.random.float(80, (FlxG.width - 80) - dialog.width), FlxG.random.float(80, (FlxG.height - 80) - dialog.height));
+				dialog.screenCenter();
 				TextTags.apply(dialog);
 
 				FlxTween.tween(dialog, {alpha: 1}, 1.0, {

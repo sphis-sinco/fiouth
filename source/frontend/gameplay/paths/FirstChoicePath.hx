@@ -180,7 +180,7 @@ class FirstChoicePath extends PathState
 										dialog.visible = false;
 										version.visible = false;
 										FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new KeypadScene()));
-										FlxG.sound.music.fadeOut(3, 0);
+										FlxG.sound.music.fadeOut(3, 0, t -> FlxG.sound.music.stop());
 									});
 								});
 							});

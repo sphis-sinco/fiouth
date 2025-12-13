@@ -128,10 +128,30 @@ class FirstChoicePath extends PathState
 						FlxG.sound.music.fadeOut(3, 0, t ->
 						{
 							FlxG.sound.playMusic('butYouPickedTheWorstOption'.musicPath());
-							FlxG.sound.music.fadeIn(3, 0, 1, t ->
+
+							var line = 'Why did you do that?';
+							var allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890`~!@#$%^&*()-=_+[]\\{}|:";\',./<>?';
+
+							setDialogueText(line);
+
+							FlxTimer.loop(.5, l ->
 							{
-								setDialogueText('Why did you do that?');
-							});
+								var developedLine = '';
+
+								while (developedLine.length != line.length)
+								{
+									if (line.charAt(developedLine.length) == '')
+										developedLine += ' ';
+									else if (FlxG.random.bool((FlxG.save.data?.volume ?? 1) * 10))
+										developedLine += line.charAt(developedLine.length);
+									else
+										developedLine += allLetters.charAt(FlxG.random.int(0, allLetters.length - 1));
+								}
+
+								setDialogueTextNoFade(developedLine);
+							}, Std.int(3 / .5) + 1);
+
+							FlxG.sound.music.fadeIn(3, 0, 1, t -> {});
 						});
 				}
 			}
@@ -150,23 +170,28 @@ class FirstChoicePath extends PathState
 			ease: FlxEase.sineInOut,
 			onComplete: t ->
 			{
-				dialog.text = text;
-				playDialogueSound();
-				var randomPos:Void->Void = () ->
-				{
-					dialog.setPosition(FlxG.random.float(160, (FlxG.width - 160) - dialog.width), FlxG.random.float(160, (FlxG.height - 160) - dialog.height));
-				}
-
-				randomPos();
-				while (dialog.overlaps(yes) || dialog.overlaps(no))
-					randomPos();
-				TextTags.apply(dialog);
+				setDialogueTextNoFade(text);
 
 				FlxTween.tween(dialog, {alpha: 1}, 1.0, {
 					ease: FlxEase.sineInOut
 				});
 			}
 		});
+	}
+
+	public function setDialogueTextNoFade(text:String)
+	{
+		dialog.text = text;
+		playDialogueSound();
+		var randomPos:Void->Void = () ->
+		{
+			dialog.setPosition(FlxG.random.float(160, (FlxG.width - 160) - dialog.width), FlxG.random.float(160, (FlxG.height - 160) - dialog.height));
+		}
+
+		randomPos();
+		while (dialog.overlaps(yes) || dialog.overlaps(no))
+			randomPos();
+		TextTags.apply(dialog);
 	}
 
 	public function playDialogueSound()

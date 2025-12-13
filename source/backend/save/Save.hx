@@ -41,7 +41,7 @@ class Save
 	public static function init()
 	{
 		globalSave = new FlxSave();
-		globalSave.bind('slot_Global', Application.current.meta.get('company') + '/fiouth');
+		globalSave.bind('slot_Global', SAVEPATH);
 		globalSave.mergeDataFrom('Fiouth/Global', Application.current.meta.get('company'), true, false);
 		globalData = globalSave.data;
 		globalData.testingShit ??= {};
@@ -49,8 +49,21 @@ class Save
 		// globalData.testingShit.path = 'end';
 
 		trace('Loaded Global Data: ' + globalData);
-		if (globalData.lastSlot < DEFAULT_SLOT)
-			globalData.lastSlot = DEFAULT_SLOT;
+
+		var lastValidSlot:Int = 0;
+		var continueCheckingSlots = true;
+		var saveObject = new FlxSave();
+		while (continueCheckingSlots)
+		{
+			lastValidSlot++;
+			saveObject.bind('slot$lastValidSlot', SAVEPATH);
+			if (saveObject.isEmpty() || lastValidSlot > globalData.maxSlot)
+			{
+				continueCheckingSlots = false;
+				globalData.maxSlot = lastValidSlot - 1;
+			}
+		}
+
 		globalData.lastSlot = Std.int(FlxMath.bound(globalData.lastSlot, DEFAULT_SLOT, globalData?.maxSlot ?? FlxMath.MAX_VALUE_INT));
 
 		if (Compiler.getDefine('SAVE_SLOT') != null && Compiler.getDefine('SAVE_SLOT') != "1")
@@ -58,6 +71,11 @@ class Save
 		else
 			loadFromSlot(globalData.lastSlot ?? DEFAULT_SLOT);
 	}
+
+	public static var SAVEPATH(get,never):String;
+
+	static function get_SAVEPATH():String
+		return Application.current.meta.get('company') + '/fiouth';
 
 	public static function loadFromSlot(slot:Int = 1)
 	{
@@ -75,7 +93,7 @@ class Save
 				return;
 		}
 
-		FlxG.save.bind('slot$slot', Application.current.meta.get('company') + '/fiouth', (s, exception) ->
+		FlxG.save.bind('slot$slot', SAVEPATH, (s, exception) ->
 		{
 			usedBackupParser = true;
 

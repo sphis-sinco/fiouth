@@ -78,7 +78,7 @@ class SettingsMenu extends State
 
 		saveSlotText.text = 'Save Slot: ${Save.currentSaveSlot}';
 		saveSlotText.color = (selection == 1) ? FlxColor.YELLOW : FlxColor.WHITE;
-		saveSlotText.setPosition(clearSaveText.x, clearSaveText.y + clearSaveText.height);
+		saveSlotText.setPosition(clearSaveText.x + clearSaveText.width, clearSaveText.y);
 
 		if (selection == 1 && changedSaveSlot)
 		{

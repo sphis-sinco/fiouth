@@ -9,10 +9,18 @@ class SettingsMenu extends State
 	{
 		super.create();
 
-        var wipText:FlxText = new FlxText(2, version.y, 0, "[[Work in Progress]]", 16);
-        add(wipText);
-        wipText.alpha = version.alpha;
+		var wipText:FlxText = new FlxText(2, version.y, 0, "[[Work in Progress]]", 16);
+		add(wipText);
+		wipText.alpha = version.alpha;
 
 		version.y += wipText.height;
+	}
+
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
+
+		if (FlxG.keys.justReleased.ESCAPE)
+			FlxG.switchState(() -> new MainMenu());
 	}
 }

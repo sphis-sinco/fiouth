@@ -1,5 +1,8 @@
 package frontend.menus;
 
+import backend.save.Save;
+import flixel.tweens.FlxTween;
+import flixel.FlxSprite;
 import frontend.gameplay.GameplayStartingScene;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
@@ -31,6 +34,8 @@ class MainMenu extends State
 
 		playText.size = 24;
 		playText.text = "Play";
+		if (Save.data.gameplay.hasBegun)
+			playText.text = "Continue";
 
 		add(playText);
 
@@ -49,8 +54,11 @@ class MainMenu extends State
 
 		updateOptionTexts();
 
-		FlxG.sound.playMusic('hello'.musicPath());
-		FlxG.sound.music.fadeIn(3, 0, 1);
+		if (FlxG.sound.music == null)
+		{
+			FlxG.sound.playMusic('hello'.musicPath());
+			FlxG.sound.music.fadeIn(3, 0, 1);
+		}
 	}
 
 	override public function update(elapsed:Float)
@@ -73,12 +81,18 @@ class MainMenu extends State
 
 			if (FlxG.keys.anyJustReleased([ENTER]))
 			{
-				switch (selection) {
+				switch (selection)
+				{
 					case 0:
-						FlxG.camera.fade(0x000000, 3);
+						var blk = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+						add(blk);
+						blk.alpha = 0;
+						FlxTween.tween(blk, {alpha: 1}, 3);
+
 						FlxG.sound.music.fadeOut(3, 0, t -> FlxG.switchState(() -> new GameplayStartingScene()));
 					#if debug
-					case 1: FlxG.switchState(() -> new SettingsMenu());
+					case 1:
+						FlxG.switchState(() -> new SettingsMenu());
 					#end
 				}
 			}

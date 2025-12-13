@@ -34,14 +34,15 @@ class GameplayStartingScene extends State
 
 		FlxG.sound.playMusic('welcome'.musicPath());
 		FlxG.sound.music.fadeIn(3, 0, 1);
-		
+		FlxG.camera.flash(0x000000, 3, false);
+
 		Save.data.gameplay.hasBegun = true;
 
 		FlxTimer.wait(3, () -> setDialogueText('I\'m glad to finally get in touch'));
-		
+
 		FlxTimer.wait(6, () -> setDialogueText('<cyan>We<cyan> have been watching you'));
 		FlxTimer.wait(7, () -> dialog.screenCenter());
-		
+
 		FlxTimer.wait(9, () -> setDialogueText('It\'s time for you to join <blue>your<blue> <cyan>people<cyan> once more.'));
 		FlxTimer.wait(10, () -> dialog.screenCenter());
 

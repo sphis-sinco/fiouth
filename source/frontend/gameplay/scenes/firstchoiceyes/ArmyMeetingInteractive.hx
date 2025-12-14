@@ -37,7 +37,7 @@ class ArmyMeetingInteractive extends MeetTheArmy
 			i--;
 			new FlxTimer().start(3 - (i * 0.5), t ->
 			{
-				character.color = 0xCECECE;
+				character.color = 0xFFFFFF;
 
 				new FlxTimer().start((1 / FlxG.drawFramerate) * 1, t ->
 				{

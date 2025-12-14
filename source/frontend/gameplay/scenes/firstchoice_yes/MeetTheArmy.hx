@@ -45,5 +45,8 @@ class MeetTheArmy extends PathState
 		commander.color = 0xFFFFFF;
 		commander.resetScale();
 		commander.screenCenter();
+
+		bluespike.x -= bluespike.width * 2;
+		tistec.x += tistec.width * 2;
 	}
 }

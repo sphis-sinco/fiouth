@@ -86,6 +86,7 @@ class ArmyMeetingInteractive extends MeetTheArmy
 		if (FlxG.mouse.justReleased)
 		{
 			var offset = FlxPoint.get();
+			var zoom = 1.0;
 
 			if (selection > 0)
 				for (character in [bluespike, emalf, tistec])
@@ -94,12 +95,18 @@ class ArmyMeetingInteractive extends MeetTheArmy
 					{
 						if (character == bluespike)
 						{
-							offset.x -= 320;
-							offset.y -= 160;
+							offset.x -= 480;
+							offset.y += 160;
+
+							zoom += .5;
 						}
 					}
 				}
 
+			FlxTween.cancelTweensOf(FlxG.camera);
+			FlxTween.tween(FlxG.camera, {zoom: zoom}, .25, {
+				ease: FlxEase.sineInOut
+			});
 			camFollow.setPosition(FlxG.width / 2 + offset.x, FlxG.height / 2 + offset.y);
 		}
 	}

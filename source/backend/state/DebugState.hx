@@ -24,7 +24,7 @@ class DebugState extends State
 		{
 			resetWatermark();
 
-			watermark.text += "\n\nState: " + Type.getClassName(FlxG.state);
+			watermark.text += "\n\nState: " + Type.getClassName(Type.getClass(FlxG.state));
 			if (Std.isOfType(FlxG.state, PathState))
 			{
 				var pathState:PathState = cast FlxG.state;

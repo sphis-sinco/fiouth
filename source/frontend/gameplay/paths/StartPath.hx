@@ -22,6 +22,9 @@ class StartPath extends PathState
 		super(START);
 	}
 
+	override function get_finished():Bool
+		return true;
+
 	override function create()
 	{
 		super.create();

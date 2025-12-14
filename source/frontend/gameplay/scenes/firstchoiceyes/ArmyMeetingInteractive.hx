@@ -14,6 +14,9 @@ class ArmyMeetingInteractive extends MeetTheArmy
 	{
 		super(MEET_THE_ARMY_INTERACTIVE);
 	}
+	
+	override function get_finished():Bool
+		return false;
 
 	public var canInteract:Bool = false;
 

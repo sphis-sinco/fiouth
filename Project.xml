@@ -93,4 +93,7 @@
 
 	<define name="NO_PATH_IN_TITLE"  unless="debug"/>
 	<define name="PATH_IN_TITLE" unless="NO_PATH_IN_TITLE"/>
+
+	<define name="DISABLE_PETTINESS"  unless="debug"/>
+	<define name="ENABLE_PETTINESS" unless="DISABLE_PETTINESS"/>
 </project>

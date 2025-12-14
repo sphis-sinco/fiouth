@@ -1,5 +1,6 @@
 package frontend.debug;
 
+import backend.gameplay.PathState;
 import frontend.gameplay.FindPath;
 import flixel.util.FlxColor;
 import flixel.FlxObject;
@@ -38,7 +39,7 @@ class PathSelect extends State
 	{
 		super.create();
 
-		paths.sort(Sorts.alphabetically);
+		paths.sort(Sorts.pathsFinishState);
 
 		pathSelections = new FlxTypedGroup<FlxText>();
 		add(pathSelections);
@@ -48,7 +49,19 @@ class PathSelect extends State
 		{
 			var sel:FlxText = new FlxText();
 			sel.size = 16;
+
 			sel.text = path;
+
+			var pathClass:PathState = cast FindPath.sendToStateBasedOnGameplayPath(path);
+
+			if (pathClass.path == new PathState(null).path)
+				sel.text += ' (NULL)';
+			else
+			{
+				if (!pathClass.finished)
+					sel.text += ' (UNFINISHED)';
+			}
+			
 			sel.ID = i;
 			sel.alignment = CENTER;
 			sel.fieldWidth = FlxG.width;

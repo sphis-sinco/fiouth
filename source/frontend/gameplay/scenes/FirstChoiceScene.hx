@@ -20,6 +20,9 @@ class FirstChoiceScene extends PathState
 		super(FIRST_CHOICE);
 	}
 
+	override function get_finished():Bool
+		return true;
+
 	public var dialog:FlxText;
 
 	public var selection:Int = 0;

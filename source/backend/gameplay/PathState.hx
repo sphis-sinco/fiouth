@@ -8,22 +8,33 @@ class PathState extends State
 	public var path:GameplayPaths;
 	public var pathWasAlreadySet:Bool = false;
 
+	public var finished(get,never):Bool;
+
+	function get_finished():Bool
+		return false;
+
 	override public function new(path:GameplayPaths)
 	{
 		super();
 
 		if (path == null)
-			throw new Pettiness('put in a gameplay path');
-
-		if (Save.data.gameplay.path != path)
 		{
-			Save.data.gameplay.path = path;
-			newSetPath();
+			#if ENABLE_PETTINESS
+			throw new Pettiness('put in a gameplay path');
+			#end
 		}
 		else
 		{
-			pathWasAlreadySet = true;
-			alreadySetPath();
+			if (Save.data.gameplay.path != path)
+			{
+				Save.data.gameplay.path = path;
+				newSetPath();
+			}
+			else
+			{
+				pathWasAlreadySet = true;
+				alreadySetPath();
+			}
 		}
 
 		this.path = path;

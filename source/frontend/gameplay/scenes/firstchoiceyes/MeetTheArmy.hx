@@ -18,6 +18,9 @@ class MeetTheArmy extends PathState
 	{
 		super(path);
 	}
+	
+	override function get_finished():Bool
+		return true;
 
 	public var bluespike:Sprite = new Sprite();
 	public var commander:Sprite = new Sprite();

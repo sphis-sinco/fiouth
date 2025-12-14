@@ -24,6 +24,9 @@ class KeypadScene extends PathState
 		super(KEYPAD_SCENE);
 	}
 
+	override function get_finished():Bool
+		return true;
+
 	override function create()
 	{
 		super.create();
@@ -108,7 +111,7 @@ class KeypadScene extends PathState
 						{
 							displayRegularKeypad = false;
 							keypad.visible = false;
-							FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new MainMenu()));
+							FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new SneakPastTheArmy()));
 							FlxG.sound.music.fadeOut(3, 0);
 						});
 					}

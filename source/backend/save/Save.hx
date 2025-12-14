@@ -12,9 +12,9 @@ class Save
 	public static var globalData:GlobalData;
 	public static var globalSave:FlxSave;
 
-	public static var currentSaveSlot(get, never):Int;
+	public static var currentSaveSlot(get, never):Dynamic;
 
-	static function get_currentSaveSlot():Int
+	static function get_currentSaveSlot():Dynamic
 	{
 		return data?.slot ?? DEFAULT_SLOT - 1;
 	}
@@ -81,6 +81,14 @@ class Save
 	public static function loadFromIntSlot(slot:Int = 1)
 	{
 		slot = Std.int(FlxMath.bound(slot, DEFAULT_SLOT, FlxMath.MAX_VALUE_INT));
+
+		if (data != null)
+		{
+			globalData.lastSlot = currentSaveSlot;
+			if (currentSaveSlot > globalData.maxSlot)
+				globalData.maxSlot = currentSaveSlot;
+		}
+
 		loadFromIntSlot('slot$slot');
 	}
 
@@ -91,11 +99,10 @@ class Save
 
 		if (data != null)
 		{
-			globalData.lastSlot = currentSaveSlot;
-			if (currentSaveSlot > globalData.maxSlot)
-				globalData.maxSlot = currentSaveSlot;
 			if (slot == currentSaveSlot)
 				return;
+
+			globalData.lastDynamicSlot = data.slot;
 		}
 
 		FlxG.save.bind(slot, SAVEPATH, (s, exception) ->
@@ -176,11 +183,6 @@ class Save
 
 	public static function save()
 	{
-		globalData.lastSlot = currentSaveSlot;
-
-		if (currentSaveSlot > globalData.maxSlot)
-			globalData.maxSlot = currentSaveSlot;
-
 		globalSave.mergeData(globalData, true);
 		globalSave.flush();
 

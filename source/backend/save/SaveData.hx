@@ -5,7 +5,7 @@ import backend.gameplay.GameplayPaths;
 typedef SaveData =
 {
 	version:String,
-	slot:Null<Int>,
+	slot:Dynamic,
 
 	gameplay:
 	{

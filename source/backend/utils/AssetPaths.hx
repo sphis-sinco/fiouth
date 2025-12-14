@@ -14,20 +14,17 @@ class AssetPaths
 		if (!path.startsWith('assets/'))
 		{
 			finalPath += 'assets/';
-			finalPathNoLang += 'assets/';
-			if (Language.LANGUAGE != Language.DEFAULT_LANGUAGE)
-				finalPath += 'langs/${Language.LANGUAGE}/';
-
+			finalPath += 'langs/${Language.LANGUAGE}/';
 			finalPath += path;
+
+			finalPathNoLang += 'assets/';
 			finalPathNoLang += path;
 		}
 		else
 		{
 			var paths = path.split('/');
 			var pathsLang = path.split('/');
-
-			if (Language.LANGUAGE != Language.DEFAULT_LANGUAGE)
-				pathsLang.insert(1, 'langs/${Language.LANGUAGE}/');
+			pathsLang.insert(1, 'langs/${Language.LANGUAGE}/');
 
 			for (p in pathsLang)
 				finalPath += p;
@@ -40,7 +37,7 @@ class AssetPaths
 		trace('finalPathNoLang: ' + finalPathNoLang);
 		#end
 
-		if (!Assets.exists(finalPath) && Assets.exists(finalPathNoLang))
+		if (!exists(finalPath))
 				return finalPathNoLang;
 		return finalPath;
 	}
@@ -59,4 +56,13 @@ class AssetPaths
 
 	public static function dataPath(path:String):String
 		return assetsPath('data/$path');
+
+	public static function exists(path:String):Bool
+	{
+		#if sys
+		// return sys.FileSystem.exists(path);
+		#end
+
+		return Assets.exists(path) && Assets.getText(path) != null;
+	}
 }

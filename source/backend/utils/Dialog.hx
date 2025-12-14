@@ -9,7 +9,7 @@ class Dialog
 	{
 		var path = '$prefix$filename.txt'.dataPath();
 
-		if (!Assets.exists(path))
+		if (!path.exists())
 		{
 			trace('Non-existant path: ' + path);
 			return ['N / A'];

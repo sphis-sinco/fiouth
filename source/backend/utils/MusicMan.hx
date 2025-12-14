@@ -20,11 +20,11 @@ class MusicMan
 
 		var oneToPlay = '';
 
-		if (!Assets.exists(intro))
+		if (!intro.exists())
 			intro = null;
-		if (!Assets.exists(general))
+		if (!general.exists())
 			general = null;
-		if (!Assets.exists(loop))
+		if (!loop.exists())
 			loop = null;
 
 		if (intro == null && general == null && loop == null)

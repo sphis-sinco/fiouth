@@ -40,6 +40,6 @@ class MeetTheArmy extends PathState
 		commander.scale.y += 2;
 		commander.updateHitbox();
 
-		object.screenCenter();
+		commander.screenCenter();
 	}
 }

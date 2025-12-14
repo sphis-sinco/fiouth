@@ -1,5 +1,6 @@
 package frontend.gameplay.scenes.firstchoiceyes;
 
+import backend.utils.Dialog;
 import flixel.math.FlxPoint;
 import haxe.Timer;
 import flixel.FlxSprite;
@@ -121,7 +122,7 @@ class ArmyMeetingInteractive extends MeetTheArmy
 		var speed:Float = 1;
 		var offset:Float = 0;
 
-		setDialogueText("Yo", speed);
+		setDialogueText(Dialog.getLineFromPathFolder('temp', path), speed);
 
 		FlxTimer.wait((speed + offset) / 2 + .05, function()
 		{

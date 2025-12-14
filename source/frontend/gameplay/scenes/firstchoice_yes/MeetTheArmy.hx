@@ -1,5 +1,6 @@
 package frontend.gameplay.scenes.firstchoice_yes;
 
+import flixel.util.FlxColor;
 import backend.MusicMan;
 import backend.Sprite;
 import backend.gameplay.PathState;
@@ -19,6 +20,8 @@ class MeetTheArmy extends PathState
 	override function create()
 	{
 		super.create();
+
+		FlxG.camera.flash(FlxColor.BLACK, 3);
 
 		bluespike.loadGraphic('characters/portraits/army/bluespike'.imagePath());
 		commander.loadGraphic('characters/portraits/army/commander'.imagePath());
@@ -46,7 +49,7 @@ class MeetTheArmy extends PathState
 		commander.resetScale();
 		commander.screenCenter();
 
-		bluespike.x -= bluespike.width * 2;
-		tistec.x += tistec.width * 2;
+		bluespike.x -= bluespike.width * 1.5;
+		tistec.x += tistec.width * 1.5;
 	}
 }

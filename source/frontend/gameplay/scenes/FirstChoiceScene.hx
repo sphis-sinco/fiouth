@@ -130,10 +130,7 @@ class FirstChoiceScene extends PathState
 						case 0:
 							setDialogueText('You have done well.');
 
-							MusicMan.playMusic('toldYou', 1, null, null, sound ->
-							{
-								sound.fadeIn(3, 0, 1);
-							});
+							MusicMan.playMusic('toldYou-intro');
 
 							FlxG.sound.play('transportation'.soundsPath());
 							FlxTimer.wait(3.65, () ->

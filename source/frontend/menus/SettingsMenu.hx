@@ -1,10 +1,13 @@
 package frontend.menus;
 
+import backend.utils.Dialog;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 import backend.save.Save;
 import flixel.text.FlxText;
 import backend.state.State;
+
+using StringTools;
 
 class SettingsMenu extends State
 {
@@ -75,10 +78,10 @@ class SettingsMenu extends State
 
 	public function updateOptionTexts()
 	{
-		clearSaveText.text = 'Clear Save';
+		clearSaveText.text = Dialog.getLine('settings/clearsave');
 		clearSaveText.color = (selection == 0) ? FlxColor.YELLOW : FlxColor.WHITE;
 
-		saveSlotText.text = 'Save Slot: ${Save.currentSaveSlot}';
+		saveSlotText.text = Dialog.getLine('settings/saveslot').replace('<value>', Save.currentSaveSlot);
 		saveSlotText.color = (selection == 1) ? FlxColor.YELLOW : FlxColor.WHITE;
 		saveSlotText.setPosition(clearSaveText.x, clearSaveText.y + clearSaveText.height);
 
@@ -91,7 +94,7 @@ class SettingsMenu extends State
 		Save.data.settings.volume = Std.int(FlxMath.bound(Save.data.settings.volume, 0, 100));
 		FlxG.sound.volume = Save.data.settings.volume / 100;
 
-		volumeText.text = 'Volume: ${Save.data.settings.volume}%';
+		volumeText.text = Dialog.getLine('settings/volume').replace('<value>', '' + Save.data.settings.volume);
 		volumeText.color = (selection == 2) ? FlxColor.YELLOW : FlxColor.WHITE;
 
 		volumeText.setPosition(saveSlotText.x, saveSlotText.y + saveSlotText.height);

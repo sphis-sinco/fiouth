@@ -24,11 +24,13 @@ class StartPath extends PathState
 	override function get_finished():Bool
 		return true;
 
-	var lines:Array<String> = Dialog.getLines('START');
+	var lines:Array<String>;
 
 	override function create()
 	{
 		super.create();
+
+		lines = Dialog.getLines(path);
 
 		setDialogueText('Welcome.');
 		MusicMan.playMusic('welcome', 1, null, () ->

@@ -1,5 +1,6 @@
 package frontend.gameplay.scenes;
 
+import backend.utils.Dialog;
 import flixel.sound.FlxSound;
 import frontend.gameplay.scenes.firstchoiceyes.MeetTheArmy;
 import backend.utils.MusicMan;
@@ -28,21 +29,13 @@ class FirstChoiceScene extends PathState
 	public var yes:FlxText;
 	public var no:FlxText;
 
-	public var dialogs:Array<String> = [
-		'Pick the right choice for <orange>your<orange> <cyan>people<cyan>.',
-		'All decisions, are yours.',
-		'There are no wrong answers.',
-		'We will be forgiving if you wish to stay.',
-		'Remember what <cyan>they<cyan> did to <orange>them<orange>.',
-		'Don\'t let <cyan>them<cyan> keep doing it to <orange>others<orange>.',
-		'Remember that freedom is <cyan>everyone\'s<cyan> right',
-		'It\'s time, <orange>Oaps.<orange>',
-		'When <cyan>we\'re<cyan> done, there will be <orange>none<orange> left to rule.'
-	];
+	public var dialogs:Array<String>;
 
 	override function create()
 	{
 		super.create();
+
+		dialogs = Dialog.getLinesFromPathFolder('pre_decision', path);
 
 		MusicMan.playMusic('thereAreNoWrongOptions', 1, null, () ->
 		{
@@ -121,7 +114,7 @@ class FirstChoiceScene extends PathState
 					switch (selection)
 					{
 						case 0:
-							setDialogueText('You have done well.');
+							setDialogueText(Dialog.getLine('decision_yes'));
 
 							MusicMan.playMusic('toldYou-intro');
 
@@ -133,33 +126,28 @@ class FirstChoiceScene extends PathState
 								FlxG.sound.music?.fadeOut(3, 0, t -> FlxG.sound.music?.stop());
 							});
 						case 1:
-							setDialogueText('...');
+							var decision_no:Array<String> = Dialog.getLinesFromPathFolder('decision_no', path);
+							var crashout_times:Array<String> = Dialog.getLinesFromPathFolder('crashout_times', path);
+
+							setDialogueText(decision_no[0]);
 
 							MusicMan.playMusic('butYouPickedTheWorstOption', 1, null, () ->
 							{
 								FlxG.sound.music?.fadeIn(3, 0, 1);
 							});
 
-							var line = 'Why did you do that?';
-
-							setDialogueTextNoFade(line);
-
 							FlxTimer.wait(2, () ->
 							{
-								FlxTimer.wait(.01, () -> setDialogueTextNoFade('YOui hva'));
-								FlxTimer.wait(.04, () -> setDialogueTextNoFade('YOU HAVE'));
-								FlxTimer.wait(.43, () -> setDialogueTextNoFade('FO9irgOTnen YUOR pL'));
-								FlxTimer.wait(.5, () -> setDialogueTextNoFade('FORGOTTEN YOUR PLACE'));
-								FlxTimer.wait(1, () -> setDialogueTextNoFade('DO NOT TOY WITH ME OAPS.'));
-								FlxTimer.wait(2, () -> setDialogueTextNoFade('YOU REMEMBER WHAT WE DID TO THEM.'));
-								FlxTimer.wait(4, () -> setDialogueTextNoFade('WOULD YOU LIKE TO REALLY SUFFER THE SAME FATE?'));
-								FlxTimer.wait(6, () -> setDialogueTextNoFade('OR MAYBE WE HAVENT HURT YOUR FAMILY ENOUGH'));
-								FlxTimer.wait(8, () -> setDialogueTextNoFade('THEY AREN\'T SAFE OAPS.'));
-								FlxTimer.wait(10, () -> setDialogueTextNoFade('AND NOW.'));
-								FlxTimer.wait(10.01, () -> dialog.screenCenter());
-								FlxTimer.wait(13, () -> setDialogueTextNoFade('THEY\'RE DEAD.'));
-								FlxTimer.wait(13.01, () -> dialog.screenCenter());
-								FlxTimer.wait(13, () ->
+								decision_no.remove(decision_no[0]);
+
+								var i = 0;
+								for (line in decision_no)
+								{
+									FlxTimer.wait(Std.parseFloat(crashout_times[i]), () -> setDialogueTextNoFade(line));
+									i++;
+								}
+
+								FlxTimer.wait(Std.parseFloat(crashout_times[crashout_times.length - 1]), () ->
 								{
 									FlxG.sound.play('transportation'.soundsPath());
 									FlxTimer.wait(3.65, () ->

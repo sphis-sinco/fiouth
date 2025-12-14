@@ -39,6 +39,8 @@ class PathSelect extends DebugState
 	{
 		super.create();
 
+		FlxG.sound.music.stop();
+
 		paths.sort(Sorts.pathsFinishState);
 
 		pathSelections = new FlxTypedGroup<FlxText>();

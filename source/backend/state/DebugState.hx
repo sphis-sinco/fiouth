@@ -1,5 +1,6 @@
 package backend.state;
 
+import backend.save.Save;
 import backend.gameplay.PathState;
 
 class DebugState extends State
@@ -31,6 +32,8 @@ class DebugState extends State
 
 				watermark.text += "\n * Path: " + pathState.path;
 			}
+
+			watermark.text += "\n\nSave slot: " + Save.currentSaveSlot;
 		}
 	}
 }

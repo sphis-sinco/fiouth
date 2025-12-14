@@ -35,8 +35,8 @@ class AssetPaths
 				finalPathNoLang += p;
 		}
 
-		trace(finalPath);
-		trace(finalPathNoLang);
+		// trace(finalPath);
+		// trace(finalPathNoLang);
 
 		if (!Assets.exists(finalPath))
 			if (Assets.exists(finalPathNoLang))

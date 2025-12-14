@@ -1,5 +1,6 @@
 package backend;
 
+import backend.state.State;
 import backend.gameplay.PathState;
 import haxe.macro.Compiler;
 import lime.app.Application;

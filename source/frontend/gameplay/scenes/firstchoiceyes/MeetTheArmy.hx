@@ -70,7 +70,25 @@ class MeetTheArmy extends PathState
 
 		add(dialog);
 
+		startSequence();
+	}
+
+	public function startSequence()
+	{
 		setDialogueText('You have done well.', 1, 'cyan');
+
+		FlxTimer.wait(1, _ -> setDialogueText('You knew what to do.', 1, 'cyan'));
+		FlxTimer.wait(3, _ -> setDialogueText('And I\'m glad.', 1, 'cyan'));
+		FlxTimer.wait(5, _ -> setDialogueText('Since you\'ll be with us.', 1, 'cyan'));
+		FlxTimer.wait(7, _ -> setDialogueText('You might as well get to know us.', 1, 'cyan'));
+		FlxTimer.wait(9, _ -> setDialogueText('I\'ll leave you four be.', 1, 'cyan'));
+		FlxTimer.wait(11, _ -> setDialogueText('', 1, 'cyan'));
+		FlxTimer.wait(11, _ ->
+		{
+			FlxTween.tween(commander, {x: -comand.width * 2}, 2, {
+				ease: FlxEase.sineInOut
+			});
+		});
 	}
 
 	public function setDialogueText(text:String, ?speed:Float = 1, ?formatTag:String)

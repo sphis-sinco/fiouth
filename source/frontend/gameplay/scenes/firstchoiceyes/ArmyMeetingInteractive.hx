@@ -14,7 +14,7 @@ class ArmyMeetingInteractive extends MeetTheArmy
 	{
 		super(MEET_THE_ARMY_INTERACTIVE);
 	}
-	
+
 	override function get_finished():Bool
 		return false;
 
@@ -37,7 +37,7 @@ class ArmyMeetingInteractive extends MeetTheArmy
 			i--;
 			new FlxTimer().start(3 - (i * 0.5), t ->
 			{
-				character.color = 0xFFFFFF;
+				character.color = 0xCECECE;
 
 				new FlxTimer().start((1 / FlxG.drawFramerate) * 1, t ->
 				{
@@ -65,7 +65,11 @@ class ArmyMeetingInteractive extends MeetTheArmy
 	{
 		super.update(elapsed);
 
-		if (canInteract)
-			FlxG.switchState(() -> new MainMenu());
+		for (character in [bluespike, emalf, tistec])
+		{
+			character.color = 0xCECECE;
+			if (canInteract && FlxG.mouse.overlaps(character))
+				character.color = 0xFFFFFF;
+		}
 	}
 }

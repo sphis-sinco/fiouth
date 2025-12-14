@@ -1,5 +1,8 @@
 package frontend.gameplay.scenes.firstchoiceyes;
 
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import backend.TextTags;
 import flixel.util.FlxTimer;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
@@ -77,7 +80,7 @@ class MeetTheArmy extends PathState
 			ease: FlxEase.sineInOut,
 			onComplete: t ->
 			{
-				setDialogueTextNoFade((formatTag != null) ? '<$formatTag>' : '' + text + (formatTag != null) ? '<$formatTag>' : '');
+				setDialogueTextNoFade(((formatTag != null) ? '<$formatTag>' : '') + text + ((formatTag != null) ? '<$formatTag>' : ''));
 
 				FlxTween.tween(dialog, {alpha: 1}, speed / 2, {
 					ease: FlxEase.sineInOut

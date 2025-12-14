@@ -190,8 +190,8 @@ class Save
 			FlxG.save.mergeData(data, true);
 		FlxG.save.flush();
 
-		FlxG.log.info('Saved Global Data : ' + globalSave.data);
-		FlxG.log.info('Saved Save Data : ' + data);
+		FlxG.log.add('Saved Global Data : ' + globalSave.data);
+		FlxG.log.add('Saved Save Data : ' + data);
 		trace('Saved Slot: ' + currentSaveSlot);
 	}
 }

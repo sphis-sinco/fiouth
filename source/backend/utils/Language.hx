@@ -7,7 +7,7 @@ class Language
 	public static var DEFAULT_LANGUAGE(get, never):String;
 
 	static function get_DEFAULT_LANGUAGE():String
-		return LANGUAGES[0] ?? 'en-us';
+		return LANGUAGES[0] ?? 'en_us';
 
 	public static var LANGUAGE:String = DEFAULT_LANGUAGE;
     
@@ -27,7 +27,7 @@ class Language
 		}
 
 		if (langs.length < 1)
-			langs.push('en-us');
+			langs.push('en_us');
 
 		// trace(langs);
 		return langs;

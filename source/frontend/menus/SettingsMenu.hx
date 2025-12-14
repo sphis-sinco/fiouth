@@ -108,35 +108,16 @@ class SettingsMenu extends State
 		{
 			Language.LANGUAGE = Save.data.settings.language;
 			text.setPosition(volumeText.x, volumeText.y + volumeText.height);
-
-			if (Assets.exists('menus/settings/language-${Language.LANGUAGE}.txt'.dataPath()))
-				text.text = Dialog.getLineFromPrefixPath('settings/language-${Language.LANGUAGE}', 'menus/');
-		}, [
-			{
-				condition: Assets.exists('menus/settings/language-${Save.data.settings.language}.txt'.dataPath()),
-				true_suffix: '-${Save.data.settings.language}'
-			}
-		]);
+		});
 	}
 
-	public function setSettingInfo(settingText:FlxText, setting:String, selectionID:Int, ?value:Dynamic, ?additionalStuff:FlxText->Void,
-			?fileSuffixes:Array<Dynamic>)
+	public function setSettingInfo(settingText:FlxText, setting:String, selectionID:Int, ?value:Dynamic, ?additionalStuff:FlxText->Void)
 	{
-		var suffixes:String = '';
-
-		for (suffixes in fileSuffixes ?? [])
-		{
-			if (suffixes?.condition)
-				suffixes += suffixes?.true_suffix ?? '';
-			else
-				suffixes += suffixes?.false_suffix ?? '';
-		}
-
-		settingText.text = Dialog.getLineFromPrefixPath('settings/$setting$suffixes', 'menus/');
-		settingText.color = (selection == selectionID) ? FlxColor.YELLOW : FlxColor.WHITE;
-
 		if (additionalStuff != null)
 			additionalStuff(settingText);
+
+		settingText.text = Dialog.getLineFromPrefixPath('settings/$setting', 'menus/');
+		settingText.color = (selection == selectionID) ? FlxColor.YELLOW : FlxColor.WHITE;
 
 		settingText.text = settingText.text.replace('<$1>', Std.string(value));
 	}

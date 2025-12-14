@@ -35,8 +35,10 @@ class AssetPaths
 				finalPathNoLang += p;
 		}
 
-		FlxG.log.add(finalPath);
-		FlxG.log.add(finalPathNoLang);
+		#if debug
+		trace('finalPath: ' + finalPath);
+		trace('finalPathNoLang: ' + finalPathNoLang);
+		#end
 
 		if (!Assets.exists(finalPath) && Assets.exists(finalPathNoLang))
 				return finalPathNoLang;

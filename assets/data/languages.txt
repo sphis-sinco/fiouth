@@ -1,2 +1,2 @@
-en-us
+en_us
 bob

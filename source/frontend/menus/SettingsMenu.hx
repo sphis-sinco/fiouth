@@ -78,10 +78,10 @@ class SettingsMenu extends State
 
 	public function updateOptionTexts()
 	{
-		clearSaveText.text = Dialog.getLine('menus/settings/clearsave');
+		clearSaveText.text = Dialog.getLineFromPrefixPath('settings/clearsave', 'menus/');
 		clearSaveText.color = (selection == 0) ? FlxColor.YELLOW : FlxColor.WHITE;
 
-		saveSlotText.text = Dialog.getLine('menus/settings/saveslot').replace('<value>', Save.currentSaveSlot);
+		saveSlotText.text = Dialog.getLineFromPrefixPath('settings/saveslot', 'menus/').replace('<value>', Save.currentSaveSlot);
 		saveSlotText.color = (selection == 1) ? FlxColor.YELLOW : FlxColor.WHITE;
 		saveSlotText.setPosition(clearSaveText.x, clearSaveText.y + clearSaveText.height);
 
@@ -94,7 +94,7 @@ class SettingsMenu extends State
 		Save.data.settings.volume = Std.int(FlxMath.bound(Save.data.settings.volume, 0, 100));
 		FlxG.sound.volume = Save.data.settings.volume / 100;
 
-		volumeText.text = Dialog.getLine('menus/settings/volume').replace('<value>', '' + Save.data.settings.volume);
+		volumeText.text = Dialog.getLineFromPrefixPath('settings/volume', 'menus/').replace('<value>', '' + Save.data.settings.volume);
 		volumeText.color = (selection == 2) ? FlxColor.YELLOW : FlxColor.WHITE;
 
 		volumeText.setPosition(saveSlotText.x, saveSlotText.y + saveSlotText.height);

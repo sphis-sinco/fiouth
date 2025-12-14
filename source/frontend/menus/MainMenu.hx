@@ -34,7 +34,7 @@ class MainMenu extends State
 			FlxG.switchState(() -> new PathSelect());
 
 		title = new FlxText();
-		title.text = Dialog.getLine('menus/mainmenu/title');
+		title.text = Dialog.getLineFromPrefixPath('mainmenu/title', 'menus/');
 		title.size = 128;
 
 		title.screenCenter();
@@ -45,9 +45,9 @@ class MainMenu extends State
 		playText = new FlxText();
 
 		playText.size = 24;
-		playText.text = Dialog.getLine('menus/mainmenu/play');
+		playText.text = Dialog.getLineFromPrefixPath('mainmenu/play', 'menus/');
 		if (Save.data.gameplay.hasBegun)
-			playText.text = Dialog.getLine('menus/mainmenu/continue');
+			playText.text = Dialog.getLineFromPrefixPath('mainmenu/continue', 'menus/');
 
 		#if debug playText.text += " [" + Save.data.gameplay.path + "]"; #end
 
@@ -56,7 +56,7 @@ class MainMenu extends State
 		optionsText = new FlxText();
 
 		optionsText.size = 24;
-		optionsText.text = Dialog.getLine('menus/mainmenu/options');
+		optionsText.text = Dialog.getLineFromPrefixPath('mainmenu/options', 'menus/');
 
 		add(optionsText);
 

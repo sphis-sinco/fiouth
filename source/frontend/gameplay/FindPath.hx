@@ -37,7 +37,7 @@ class FindPath
 
 			default:
 				trace('Unknown : going to start scene');
-				return new StartPath;
+				return new StartPath();
 		}
 	}
 

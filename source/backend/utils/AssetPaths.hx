@@ -1,16 +1,47 @@
 package backend.utils;
 
+import lime.utils.Assets;
+
 using StringTools;
 
 class AssetPaths
 {
 	public static function assetsPath(path:String):String
 	{
-		if (!path.startsWith('assets/'))
-			path = 'assets/$path';
+		var finalPath:String = '';
+		var finalPathNoLang:String = '';
 
-		// trace(path);
-		return path;
+		if (!path.startsWith('assets/'))
+		{
+			finalPath += 'assets/';
+			finalPathNoLang += 'assets/';
+			if (Language.LANGUAGE != Language.DEFAULT_LANGUAGE)
+				finalPath += 'langs/${Language.LANGUAGE}/';
+
+			finalPath += path;
+			finalPathNoLang += path;
+		}
+		else
+		{
+			var paths = path.split('/');
+			var pathsLang = path.split('/');
+
+			if (Language.LANGUAGE != Language.DEFAULT_LANGUAGE)
+				pathsLang.insert(1, 'langs/${Language.LANGUAGE}/');
+
+			for (p in pathsLang)
+				finalPath += p;
+			for (p in paths)
+				finalPathNoLang += p;
+		}
+
+		trace(finalPath);
+		trace(finalPathNoLang);
+
+		if (!Assets.exists(finalPath))
+			if (Assets.exists(finalPathNoLang))
+				return finalPathNoLang;
+		return finalPath;
 	}
 
 	public static function soundPath(path:String):String

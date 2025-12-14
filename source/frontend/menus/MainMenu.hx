@@ -71,7 +71,7 @@ class MainMenu extends State
 		{
 			MusicMan.playMusic('hello', 1, null, () ->
 			{
-				FlxG.sound.music.fadeIn(3, 0, 1);
+				FlxG.sound.music?.fadeIn(3, 0, 1);
 			});
 
 			var blk = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
@@ -108,9 +108,9 @@ class MainMenu extends State
 						blk.alpha = 0;
 						FlxTween.tween(blk, {alpha: 1}, 3);
 
-						FlxG.sound.music.fadeOut(3, 0, t ->
+						FlxG.sound.music?.fadeOut(3, 0, t ->
 						{
-							FlxG.sound.music.stop();
+							FlxG.sound.music?.stop();
 							FlxG.switchState(() -> FindPath.sendToStateBasedOnGameplayPath(Save.data.gameplay.path));
 						});
 					case 1:

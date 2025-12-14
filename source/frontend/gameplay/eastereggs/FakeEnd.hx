@@ -38,7 +38,7 @@ class FakeEnd extends PathState
 		dialog.alpha = 0;
 		FlxTween.tween(dialog, {alpha: 1}, 1.0, {ease: FlxEase.sineInOut});
 
-		FlxG.sound.music.stop();
+		FlxG.sound.music?.stop();
 
 		var blk = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		add(blk);
@@ -51,7 +51,7 @@ class FakeEnd extends PathState
 			setDialogueText(randomCheaterCheaterLines[FlxG.random.int(0, randomCheaterCheaterLines.length - 1)]);
 			MusicMan.playMusic('cheaterCheater', 1, null, () ->
 			{
-				FlxG.sound.music.fadeIn(3, 0, 1);
+				FlxG.sound.music?.fadeIn(3, 0, 1);
 			});
 		});
 		FlxTimer.wait(20, () ->
@@ -61,9 +61,9 @@ class FakeEnd extends PathState
 			{
 				dialog.visible = false;
 				FlxG.camera.flash(FlxColor.WHITE, 3);
-				FlxG.sound.music.fadeOut(3, 0, t ->
+				FlxG.sound.music?.fadeOut(3, 0, t ->
 				{
-					FlxG.sound.music.stop();
+					FlxG.sound.music?.stop();
 					FlxG.switchState(() -> new MainMenu());
 				});
 			});

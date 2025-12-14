@@ -76,7 +76,7 @@ class MeetTheArmy extends PathState
 		if (!FlxG.sound.music?.playing)
 			MusicMan.playMusic('FormalGreeting', 1, null, () ->
 			{
-				FlxG.sound.music.fadeIn(3, 0, 1);
+				FlxG.sound.music?.fadeIn(3, 0, 1);
 			});
 
 		camFollow = new FlxObject(FlxG.width / 2, FlxG.height / 2);

@@ -39,7 +39,7 @@ class StartPath extends PathState
 		setDialogueText('Welcome.');
 		MusicMan.playMusic('welcome', 1, null, () ->
 		{
-			FlxG.sound.music.fadeIn(3, 0, 1);
+			FlxG.sound.music?.fadeIn(3, 0, 1);
 		});
 
 		var blk = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
@@ -62,7 +62,7 @@ class StartPath extends PathState
 			{
 				dialog.visible = false;
 				FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new FirstChoiceScene()));
-				FlxG.sound.music.fadeOut(3, 0);
+				FlxG.sound.music?.fadeOut(3, 0);
 			});
 		});
 	}

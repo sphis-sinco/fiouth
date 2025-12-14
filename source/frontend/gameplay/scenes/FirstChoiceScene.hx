@@ -48,7 +48,7 @@ class FirstChoiceScene extends PathState
 
 		MusicMan.playMusic('thereAreNoWrongOptions', 1, null, () ->
 		{
-			FlxG.sound.music.fadeIn((!pathWasAlreadySet) ? 3 : 1, 0, 1);
+			FlxG.sound.music?.fadeIn((!pathWasAlreadySet) ? 3 : 1, 0, 1);
 		});
 
 		dialog = new FlxText();
@@ -127,7 +127,7 @@ class FirstChoiceScene extends PathState
 				FlxTween.tween(yes, {alpha: 0}, 6);
 				FlxTween.tween(no, {alpha: 0}, 6);
 
-				FlxG.sound.music.fadeOut(3, 0, t ->
+				FlxG.sound.music?.fadeOut(3, 0, t ->
 				{
 					switch (selection)
 					{
@@ -141,14 +141,14 @@ class FirstChoiceScene extends PathState
 							{
 								dialog.visible = false;
 								FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new MeetTheArmy()));
-								FlxG.sound.music.fadeOut(3, 0, t -> FlxG.sound.music.stop());
+								FlxG.sound.music?.fadeOut(3, 0, t -> FlxG.sound.music?.stop());
 							});
 						case 1:
 							setDialogueText('...');
 
 							MusicMan.playMusic('butYouPickedTheWorstOption', 1, null, () ->
 							{
-								FlxG.sound.music.fadeIn(3, 0, 1);
+								FlxG.sound.music?.fadeIn(3, 0, 1);
 							});
 
 							var line = 'Why did you do that?';
@@ -177,7 +177,7 @@ class FirstChoiceScene extends PathState
 									{
 										dialog.visible = false;
 										FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new KeypadScene()));
-										FlxG.sound.music.fadeOut(3, 0, t -> FlxG.sound.music.stop());
+										FlxG.sound.music?.fadeOut(3, 0, t -> FlxG.sound.music?.stop());
 									});
 								});
 							});

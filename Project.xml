@@ -96,4 +96,7 @@
 
 	<define name="DISABLE_PETTINESS"  unless="debug"/>
 	<define name="ENABLE_PETTINESS" unless="DISABLE_PETTINESS"/>
+	
+	<define name="DISABLE_SEMIQUAVER"/>
+	<define name="ENABLE_SEMIQUAVER" unless="DISABLE_SEMIQUAVER"/>
 </project>

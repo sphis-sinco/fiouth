@@ -9,6 +9,10 @@ class MusicMan
 	public static function playMusic(track:String, ?volume:Float = 1, ?group:FlxSoundGroup, ?onMusicPlay:Void->Void,
 			?onIntroPlay:FlxSound->Void) @:privateAccess
 	{
+		#if ENABLE_SEMIQUAVER
+		return;
+		#end
+
 		var intro = (track + '-intro').musicPath();
 		var loop = (track + '-loop').musicPath();
 

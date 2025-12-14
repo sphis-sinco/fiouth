@@ -90,4 +90,7 @@
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!--Place custom nodes like icons here-->
+
+	<define name="NO_PATH_IN_TITLE"  unless="debug"/>
+	<define name="PATH_IN_TITLE" unless="NO_PATH_IN_TITLE"/>
 </project>

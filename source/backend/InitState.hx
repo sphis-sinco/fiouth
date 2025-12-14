@@ -41,17 +41,18 @@ class InitState extends State
 			startingState = Compiler.getDefine('STARTING_STATE').split("=")[0];
 		startingState = startingState.toLowerCase();
 
-		FlxG.signals.preStateCreate.add(_state ->
-		{
-			Application.current.window.title = 'Fiouth';
-
-			if (Std.isOfType(_state, PathState))
+		if (Compiler.getDefine('PATH_IN_TITLE') == "1")
+			FlxG.signals.preStateCreate.add(_state ->
 			{
-				var pathState:PathState = cast _state;
+				Application.current.window.title = 'Fiouth';
 
-				Application.current.window.title = 'Fiouth | ${pathState.path}';
-			}
-		});
+				if (Std.isOfType(_state, PathState))
+				{
+					var pathState:PathState = cast _state;
+
+					Application.current.window.title = 'Fiouth | ${pathState.path}';
+				}
+			});
 
 		switch (startingState.toLowerCase())
 		{

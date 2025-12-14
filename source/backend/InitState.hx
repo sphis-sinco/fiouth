@@ -10,7 +10,7 @@ import frontend.debug.PathSelect;
 
 class InitState extends State
 {
-	public static var startingState:String;
+	public static var startingState:String = '';
 
 	override public function create()
 	{

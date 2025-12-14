@@ -1,5 +1,6 @@
 package frontend.menus;
 
+import lime.utils.Assets;
 import backend.utils.Language;
 import backend.utils.Dialog;
 import flixel.math.FlxMath;
@@ -83,31 +84,61 @@ class SettingsMenu extends State
 
 	public function updateOptionTexts()
 	{
-		clearSaveText.text = Dialog.getLineFromPrefixPath('settings/clearsave', 'menus/');
-		clearSaveText.color = (selection == 0) ? FlxColor.YELLOW : FlxColor.WHITE;
+		setSettingInfo(clearSaveText, 'clearsave', 0);
 
-		saveSlotText.text = Dialog.getLineFromPrefixPath('settings/saveslot', 'menus/').replace('<$1>', Save.currentSaveSlot);
-		saveSlotText.color = (selection == 1) ? FlxColor.YELLOW : FlxColor.WHITE;
-		saveSlotText.setPosition(clearSaveText.x, clearSaveText.y + clearSaveText.height);
-
-		if (selection == 1 && changedSaveSlot)
+		setSettingInfo(saveSlotText, 'saveslot', 1, Save.currentSaveSlot, text ->
 		{
-			changedSaveSlot = false;
-			FlxG.resetState();
+			text.setPosition(clearSaveText.x, clearSaveText.y + clearSaveText.height);
+
+			if (selection == 1 && changedSaveSlot)
+			{
+				changedSaveSlot = false;
+				FlxG.resetState();
+			}
+		});
+
+		setSettingInfo(volumeText, 'volume', 2, Save.data.settings.volume, text ->
+		{
+			Save.data.settings.volume = Std.int(FlxMath.bound(Save.data.settings.volume, 0, 100));
+			FlxG.sound.volume = Save.data.settings.volume / 100;
+			text.setPosition(saveSlotText.x, saveSlotText.y + saveSlotText.height);
+		});
+
+		setSettingInfo(languageText, 'language', 3, Save.data.settings.language, text ->
+		{
+			Language.LANGUAGE = Save.data.settings.language;
+			text.setPosition(volumeText.x, volumeText.y + volumeText.height);
+
+			if (Assets.exists('menus/settings/language-${Language.LANGUAGE}.txt'.dataPath()))
+				text.text = Dialog.getLineFromPrefixPath('settings/language-${Language.LANGUAGE}', 'menus/');
+		}, [
+			{
+				condition: Assets.exists('menus/settings/language-${Save.data.settings.language}.txt'.dataPath()),
+				true_suffix: '-${Save.data.settings.language}'
+			}
+		]);
+	}
+
+	public function setSettingInfo(settingText:FlxText, setting:String, selectionID:Int, ?value:Dynamic, ?additionalStuff:FlxText->Void,
+			?fileSuffixes:Array<Dynamic>)
+	{
+		var suffixes:String = '';
+
+		for (suffixes in fileSuffixes ?? [])
+		{
+			if (suffixes?.condition)
+				suffixes += suffixes?.true_suffix ?? '';
+			else
+				suffixes += suffixes?.false_suffix ?? '';
 		}
 
-		Save.data.settings.volume = Std.int(FlxMath.bound(Save.data.settings.volume, 0, 100));
-		FlxG.sound.volume = Save.data.settings.volume / 100;
+		settingText.text = Dialog.getLineFromPrefixPath('settings/$setting$suffixes', 'menus/');
+		settingText.color = (selection == selectionID) ? FlxColor.YELLOW : FlxColor.WHITE;
 
-		volumeText.text = Dialog.getLineFromPrefixPath('settings/volume', 'menus/').replace('<$1>', '' + Save.data.settings.volume);
-		volumeText.color = (selection == 2) ? FlxColor.YELLOW : FlxColor.WHITE;
+		if (additionalStuff != null)
+			additionalStuff(settingText);
 
-		volumeText.setPosition(saveSlotText.x, saveSlotText.y + saveSlotText.height);
-
-		languageText.text = Dialog.getLineFromPrefixPath('settings/language', 'menus/').replace('<$1>', '' + Save.data.settings.language);
-		languageText.color = (selection == 3) ? FlxColor.YELLOW : FlxColor.WHITE;
-
-		languageText.setPosition(volumeText.x, volumeText.y + volumeText.height);
+		settingText.text = settingText.text.replace('<$1>', Std.string(value));
 	}
 
 	var changedSaveSlot:Bool = false;
@@ -139,7 +170,7 @@ class SettingsMenu extends State
 				Save.loadFromIntSlot(Std.int(Save.currentSaveSlot) - 1);
 		}
 		if (selection == 3)
-			if (Language.LANGUAGES.indexOf(Save.data.settings.language) - 1 > 0)
+			if (!(Language.LANGUAGES.indexOf(Save.data.settings.language) - 1 < 0))
 				Save.data.settings.language = Language.LANGUAGES[Language.LANGUAGES.indexOf(Save.data.settings.language) - 1];
 	}
 

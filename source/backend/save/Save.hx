@@ -183,6 +183,8 @@ class Save
 			if (data.settings.language == null || !Language.LANGUAGES.contains(data.settings.language))
 				data.settings.language = getDefault().settings.language;
 		}
+
+		Language.LANGUAGE = data.settings.language;
 	}
 
 	public static function save()

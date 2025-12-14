@@ -35,11 +35,10 @@ class AssetPaths
 				finalPathNoLang += p;
 		}
 
-		// trace(finalPath);
-		// trace(finalPathNoLang);
+		FlxG.log.add(finalPath);
+		FlxG.log.add(finalPathNoLang);
 
-		if (!Assets.exists(finalPath))
-			if (Assets.exists(finalPathNoLang))
+		if (!Assets.exists(finalPath) && Assets.exists(finalPathNoLang))
 				return finalPathNoLang;
 		return finalPath;
 	}

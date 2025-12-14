@@ -36,8 +36,10 @@ class FindPath
 			case FAKE_END:
 				trace('CHEATING USER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 				return new FakeEnd();
+
+			default:
+				trace('Unknown : going to start scene');
+				return new StartPath();
 		}
-		trace('Unknown : going to start scene');
-		return new StartPath();
 	}
 }

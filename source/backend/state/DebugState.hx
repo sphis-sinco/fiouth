@@ -5,6 +5,13 @@ import backend.gameplay.PathState;
 
 class DebugState extends State
 {
+	override public function new()
+	{
+		super();
+
+		watermark.size = 8;
+	}
+
 	override function resetWatermark()
 	{
 		super.resetWatermark();

@@ -18,8 +18,8 @@ class Sorts
 
 	public static function pathsFinishState(a:GameplayPaths, b:GameplayPaths):Int
 	{
-		var aClass:PathState = cast FindPath.sendToStateBasedOnGameplayPath(a);
-		var bClass:PathState = cast FindPath.sendToStateBasedOnGameplayPath(b);
+		var aClass:PathState = cast FindPath.getStateBasedOnGameplayPath(a);
+		var bClass:PathState = cast FindPath.getStateBasedOnGameplayPath(b);
 
 		if (bClass.finished)
 			return 1;

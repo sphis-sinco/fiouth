@@ -52,7 +52,7 @@ class PathSelect extends State
 
 			sel.text = path;
 
-			var pathClass:PathState = cast FindPath.sendToStateBasedOnGameplayPath(path);
+			var pathClass:PathState = cast FindPath.getStateBasedOnGameplayPath(path);
 
 			if (pathClass.path == new PathState(null).path)
 				sel.text += ' (NULL)';

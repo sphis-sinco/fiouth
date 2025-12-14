@@ -17,7 +17,7 @@ import backend.gameplay.GameplayPaths;
 
 class FindPath
 {
-	public static function sendToStateBasedOnGameplayPath(path:GameplayPaths):FlxState
+	public static function getStateBasedOnGameplayPath(path:GameplayPaths):FlxState
 	{
 		switch (path)
 		{
@@ -33,13 +33,24 @@ class FindPath
 			case ENDING_REMEMBERANCE: return new RememberanceEnding();
 			case LOYALTY_PATH_INTRO: return new LoyaltyPathIntro();
 			case ENDING_ONE_WHO_TRIED: return new RememberanceEnding();
-			case FAKE_END:
-				trace('CHEATING USER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-				return new FakeEnd();
+			case FAKE_END: return new FakeEnd();
 
 			default:
 				trace('Unknown : going to start scene');
-				return new StartPath();
+				return new StartPath;
+		}
+	}
+
+	public static function sendToStateBasedOnGameplayPath(path:GameplayPaths):FlxState
+	{
+		switch (path)
+		{
+			case FAKE_END:
+				trace('CHEATING USER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+				return getStateBasedOnGameplayPath(path);
+
+			default:
+				return getStateBasedOnGameplayPath(path);
 		}
 	}
 }

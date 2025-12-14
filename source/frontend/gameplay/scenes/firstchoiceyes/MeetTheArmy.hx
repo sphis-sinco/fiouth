@@ -53,7 +53,10 @@ class MeetTheArmy extends PathState
 			add(object);
 		}
 
-		MusicMan.playMusic('FormalGreeting');
+		MusicMan.playMusic('FormalGreeting', 0.75, null, () ->
+		{
+			FlxG.sound.music.fadeIn(3, 0, 0.75);
+		});
 
 		commander.color = 0xFFFFFF;
 		commander.resetScale();
@@ -75,16 +78,14 @@ class MeetTheArmy extends PathState
 
 	public function startSequence()
 	{
-		setDialogueText('You have done well.', 1, 'cyan');
-
-		FlxTimer.wait(1, () -> setDialogueText('You knew what to do.', 1, 'cyan'));
-		FlxTimer.wait(3, () -> setDialogueText('And I\'m glad.', 1, 'cyan'));
-		FlxTimer.wait(5, () -> setDialogueText('Since you\'ll be with us.', 1, 'cyan'));
-		FlxTimer.wait(7, () -> setDialogueText('You might as well get to know us.', 1, 'cyan'));
-		FlxTimer.wait(9, () -> setDialogueText('I\'ll leave you four be.', 1, 'cyan'));
-		FlxTimer.wait(11, () -> setDialogueText('', 1, 'cyan'));
-		FlxTimer.wait(11, function()
+		FlxTimer.wait(0, () -> setDialogueText('You knew what to do.', 1, 'cyan'));
+		FlxTimer.wait(4, () -> setDialogueText('And I\'m glad.', 1, 'cyan'));
+		FlxTimer.wait(7, () -> setDialogueText('Since you\'ll be with us.', 1, 'cyan'));
+		FlxTimer.wait(10, () -> setDialogueText('You might as well get to know us.', 1, 'cyan'));
+		FlxTimer.wait(13, () -> setDialogueText('I\'ll leave you four be.', 1, 'cyan'));
+		FlxTimer.wait(16, function()
 		{
+			setDialogueText('', 1, 'cyan');
 			FlxTween.tween(commander, {x: -commander.width * 2}, 2, {
 				ease: FlxEase.sineInOut
 			});
@@ -119,6 +120,6 @@ class MeetTheArmy extends PathState
 
 	public function playDialogueSound()
 	{
-		FlxG.sound.play('dialogue'.soundsPath());
+		FlxG.sound.play('dialogue'.soundsPath(), 1);
 	}
 }

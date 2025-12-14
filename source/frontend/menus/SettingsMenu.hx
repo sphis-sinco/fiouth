@@ -17,6 +17,8 @@ class SettingsMenu extends State
 
 	public var selection:Int = 0;
 
+	public var skipSelections:Array<Int> = [];
+
 	public var clearSaveText:FlxText = new FlxText(64, 64, 0, '', 32);
 	public var saveSlotText:FlxText = new FlxText(64, 64, 0, '', 32);
 
@@ -57,7 +59,7 @@ class SettingsMenu extends State
 			if (FlxG.keys.anyJustReleased([DOWN, S]))
 				selection++;
 
-			if (selection == 1)
+			if (skipSelections.contains(selection))
 			{
 				if (FlxG.keys.anyJustReleased([UP, W]))
 					selection--;

@@ -28,9 +28,14 @@ class MeetTheArmy extends PathState
 	public var emalf:Sprite = new Sprite();
 	public var tistec:Sprite = new Sprite();
 
-	public var dialog:FlxText;
-
 	public var camFollow:FlxObject;
+
+	override function setDialogueTextNoFade(text:String)
+	{
+		super.setDialogueTextNoFade(text);
+
+		dialog.y = 32;
+	}
 
 	override function create()
 	{
@@ -64,14 +69,6 @@ class MeetTheArmy extends PathState
 
 		bluespike.x -= bluespike.width * 1.5;
 		tistec.x += tistec.width * 1.5;
-
-		dialog = new FlxText();
-
-		dialog.size = 32;
-		dialog.screenCenter();
-		dialog.y = 32;
-
-		add(dialog);
 
 		if (!FlxG.sound.music?.playing)
 			MusicMan.playMusic('FormalGreeting', 1, null, () ->
@@ -109,35 +106,4 @@ class MeetTheArmy extends PathState
 			});
 		});
 	}
-
-	public function setDialogueText(text:String, ?speed:Float = 1, ?formatTag:String)
-	{
-		FlxTween.cancelTweensOf(dialog);
-		FlxTween.tween(dialog, {alpha: 0}, speed / 2, {
-			ease: FlxEase.sineInOut,
-			onComplete: t ->
-			{
-				setDialogueTextNoFade(((formatTag != null) ? '<$formatTag>' : '') + text + ((formatTag != null) ? '<$formatTag>' : ''));
-
-				FlxTween.tween(dialog, {alpha: 1}, speed / 2, {
-					ease: FlxEase.sineInOut
-				});
-			}
-		});
-	}
-
-	public function setDialogueTextNoFade(text:String)
-	{
-		dialog.text = text;
-
-		playDialogueSound();
-		TextTags.apply(dialog);
-
-		dialog.screenCenter(X);
-	}
-
-	var dialogue:FlxSound = new FlxSound().loadStream('dialogue'.soundsPath());
-
-	public function playDialogueSound()
-		dialogue.play(true);
 }

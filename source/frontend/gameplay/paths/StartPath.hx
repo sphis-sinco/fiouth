@@ -15,8 +15,6 @@ import flixel.text.FlxText;
 
 class StartPath extends PathState
 {
-	public var dialog:FlxText;
-
 	override public function new()
 	{
 		super(START);
@@ -28,13 +26,6 @@ class StartPath extends PathState
 	override function create()
 	{
 		super.create();
-		dialog = new FlxText();
-		dialog.size = 32;
-		dialog.screenCenter();
-		add(dialog);
-		dialog.alpha = 0;
-
-		FlxTween.tween(dialog, {alpha: 1}, 1.0, {ease: FlxEase.sineInOut});
 
 		setDialogueText('Welcome.');
 		MusicMan.playMusic('welcome', 1, null, () ->
@@ -67,23 +58,10 @@ class StartPath extends PathState
 		});
 	}
 
-	public function setDialogueText(text:String)
+	override function setDialogueTextNoFade(text:String)
 	{
-		FlxTween.tween(dialog, {alpha: 0}, 1.0, {
-			ease: FlxEase.sineInOut,
-			onComplete: t ->
-			{
-				dialog.text = text;
-				playDialogueSound();
-				dialog.setPosition(FlxG.random.float(80, (FlxG.width - 80) - dialog.width), FlxG.random.float(80, (FlxG.height - 80) - dialog.height));
-				TextTags.apply(dialog);
-				FlxTween.tween(dialog, {alpha: 1}, 1.0, {ease: FlxEase.sineInOut});
-			}
-		});
+		super.setDialogueTextNoFade(text);
+
+		dialog.setPosition(FlxG.random.float(80, (FlxG.width - 80) - dialog.width), FlxG.random.float(80, (FlxG.height - 80) - dialog.height));
 	}
-
-	var dialogue:FlxSound = new FlxSound().loadStream('dialogue'.soundsPath());
-
-	public function playDialogueSound()
-		dialogue.play(true);
 }

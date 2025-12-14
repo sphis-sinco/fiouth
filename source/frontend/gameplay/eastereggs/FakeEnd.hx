@@ -15,8 +15,6 @@ import backend.gameplay.PathState;
 
 class FakeEnd extends PathState
 {
-	public var dialog:FlxText;
-
 	override public function new()
 	{
 		super(START);
@@ -31,12 +29,6 @@ class FakeEnd extends PathState
 	override function create()
 	{
 		super.create();
-		dialog = new FlxText();
-		dialog.size = 32;
-		dialog.screenCenter();
-		add(dialog);
-		dialog.alpha = 0;
-		FlxTween.tween(dialog, {alpha: 1}, 1.0, {ease: FlxEase.sineInOut});
 
 		FlxG.sound.music?.stop();
 
@@ -70,23 +62,10 @@ class FakeEnd extends PathState
 		});
 	}
 
-	public function setDialogueText(text:String)
+	override function setDialogueTextNoFade(text:String)
 	{
-		FlxTween.tween(dialog, {alpha: 0}, 1.0, {
-			ease: FlxEase.sineInOut,
-			onComplete: t ->
-			{
-				dialog.text = text;
-				playDialogueSound();
-				dialog.screenCenter();
-				TextTags.apply(dialog);
-				FlxTween.tween(dialog, {alpha: 1}, 1.0, {ease: FlxEase.sineInOut});
-			}
-		});
+		super.setDialogueTextNoFade(text);
+
+		dialog.screenCenter();
 	}
-
-	var dialogue:FlxSound = new FlxSound().loadStream('dialogue'.soundsPath());
-
-	public function playDialogueSound()
-		dialogue.play(true);
 }

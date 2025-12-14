@@ -1,23 +1,58 @@
 package backend.gameplay;
 
+#if !debug
 import backend.state.State;
-import backend.state.DebugState;
+#else
+import backend.state.DebugState as State;
+#end
 import backend.errors.Pettiness;
 import backend.save.Save;
 
-#if !debug
 class PathState extends State
-#else
-class PathState extends DebugState
-#end
 {
 	public var path:GameplayPaths;
 	public var pathWasAlreadySet:Bool = false;
 	public var finished(get, never):Bool;
+
 	function get_finished():Bool
 		return false;
-	override
-	public function new(path:GameplayPaths)
+
+	public var dialog:FlxText;
+
+	public function setDialogueText(text:String, ?speed:Float = 1, ?formatTag:String)
+	{
+		FlxTween.cancelTweensOf(dialog);
+		FlxTween.tween(dialog, {alpha: 0}, speed / 2, {
+			ease: FlxEase.sineInOut,
+			onComplete: t ->
+			{
+				setDialogueTextNoFade(((formatTag != null) ? '<$formatTag>' : '') + text + ((formatTag != null) ? '<$formatTag>' : ''));
+
+				FlxTween.tween(dialog, {alpha: 1}, speed / 2, {
+					ease: FlxEase.sineInOut
+				});
+			}
+		});
+	}
+
+	public function setDialogueTextNoFade(text:String)
+	{
+		dialog.text = text;
+
+		playDialogueSound();
+		TextTags.apply(dialog);
+
+		dialog.screenCenter(X);
+	}
+
+	var dialogue:FlxSound = new FlxSound().loadStream('dialogue'.soundsPath());
+
+	public function playDialogueSound()
+	{
+		dialogue.play(true);
+	}
+
+	override public function new(path:GameplayPaths)
 	{
 		super();
 
@@ -43,6 +78,19 @@ class PathState extends DebugState
 
 		this.path = path;
 	}
+
+	override function create()
+	{
+		super.create();
+
+		dialog = new FlxText();
+		dialog.size = 32;
+		dialog.screenCenter();
+		add(dialog);
+		dialog.alpha = 0;
+	}
+
 	public function newSetPath() {}
+
 	public function alreadySetPath() {}
 }

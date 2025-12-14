@@ -23,8 +23,6 @@ class FirstChoiceScene extends PathState
 	override function get_finished():Bool
 		return true;
 
-	public var dialog:FlxText;
-
 	public var selection:Int = 0;
 
 	public var yes:FlxText;
@@ -51,16 +49,7 @@ class FirstChoiceScene extends PathState
 			FlxG.sound.music?.fadeIn((!pathWasAlreadySet) ? 3 : 1, 0, 1);
 		});
 
-		dialog = new FlxText();
-
-		dialog.size = 32;
 		dialog.fieldWidth = Std.int('When we\'re done'.length * (dialog.size / 2));
-
-		dialog.screenCenter();
-
-		add(dialog);
-
-		dialog.alpha = 0;
 		randomDialog();
 
 		yes = new FlxText();
@@ -192,26 +181,9 @@ class FirstChoiceScene extends PathState
 		setDialogueText(dialogs[FlxG.random.int(0, dialogs.length - 1)]);
 	}
 
-	public function setDialogueText(text:String)
+	override function setDialogueTextNoFade(text:String)
 	{
-		FlxTween.cancelTweensOf(dialog);
-		FlxTween.tween(dialog, {alpha: 0}, 1.0, {
-			ease: FlxEase.sineInOut,
-			onComplete: t ->
-			{
-				setDialogueTextNoFade(text);
-
-				FlxTween.tween(dialog, {alpha: 1}, 1.0, {
-					ease: FlxEase.sineInOut
-				});
-			}
-		});
-	}
-
-	public function setDialogueTextNoFade(text:String)
-	{
-		dialog.text = text;
-		playDialogueSound();
+		super.setDialogueTextNoFade(text);
 		var randomPos:Void->Void = () ->
 		{
 			dialog.setPosition(FlxG.random.float(160, (FlxG.width - 160) - dialog.width), FlxG.random.float(160, (FlxG.height - 160) - dialog.height));
@@ -220,11 +192,5 @@ class FirstChoiceScene extends PathState
 		randomPos();
 		while (dialog.overlaps(yes) || dialog.overlaps(no))
 			randomPos();
-		TextTags.apply(dialog);
 	}
-
-	var dialogue:FlxSound = new FlxSound().loadStream('dialogue'.soundsPath());
-
-	public function playDialogueSound()
-		dialogue.play(true);
 }

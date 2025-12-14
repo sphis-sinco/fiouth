@@ -2,10 +2,10 @@ package frontend.gameplay.scenes;
 
 import flixel.sound.FlxSound;
 import frontend.gameplay.scenes.firstchoiceyes.MeetTheArmy;
-import backend.MusicMan;
+import backend.utils.MusicMan;
 import frontend.gameplay.scenes.firstchoiceno.KeypadScene;
 import flixel.util.FlxTimer;
-import backend.TextTags;
+import backend.utils.TextTags;
 import flixel.tweens.FlxEase;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;

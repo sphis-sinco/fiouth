@@ -1,4 +1,4 @@
-package backend;
+package backend.utils;
 
 import lime.utils.Assets;
 import flixel.sound.FlxSoundGroup;

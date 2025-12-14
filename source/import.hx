@@ -1,3 +1,3 @@
 import flixel.FlxG;
 
-using backend.AssetPaths;
+using backend.utils.AssetPaths;

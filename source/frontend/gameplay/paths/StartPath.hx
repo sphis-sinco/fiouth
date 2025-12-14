@@ -1,12 +1,12 @@
 package frontend.gameplay.paths;
 
 import flixel.sound.FlxSound;
-import backend.MusicMan;
+import backend.utils.MusicMan;
 import frontend.gameplay.scenes.FirstChoiceScene;
 import backend.gameplay.PathState;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
-import backend.TextTags;
+import backend.utils.TextTags;
 import backend.save.Save;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;

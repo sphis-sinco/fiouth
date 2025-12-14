@@ -4,11 +4,11 @@ import backend.gameplay.GameplayPaths;
 import flixel.sound.FlxSound;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-import backend.TextTags;
+import backend.utils.TextTags;
 import flixel.util.FlxTimer;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
-import backend.MusicMan;
+import backend.utils.MusicMan;
 import backend.Sprite;
 import backend.gameplay.PathState;
 

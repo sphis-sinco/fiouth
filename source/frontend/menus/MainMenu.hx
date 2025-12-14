@@ -1,6 +1,6 @@
 package frontend.menus;
 
-import backend.MusicMan;
+import backend.utils.MusicMan;
 import frontend.gameplay.FindPath;
 import backend.save.Save;
 import flixel.tweens.FlxTween;

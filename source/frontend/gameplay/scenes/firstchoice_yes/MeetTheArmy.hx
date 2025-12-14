@@ -29,6 +29,12 @@ class MeetTheArmy extends PathState
 		{
 			object.resetScale();
 
+			object.scale.x -= 3;
+			object.scale.y -= 3;
+			object.updateHitbox();
+
+			object.color = 0x4E4E4E;
+
 			object.screenCenter();
 
 			add(object);
@@ -36,10 +42,8 @@ class MeetTheArmy extends PathState
 
 		MusicMan.playMusic('FormalGreeting');
 
-		commander.scale.x += 2;
-		commander.scale.y += 2;
-		commander.updateHitbox();
-
+		commander.color = 0xFFFFFF;
+		commander.resetScale();
 		commander.screenCenter();
 	}
 }

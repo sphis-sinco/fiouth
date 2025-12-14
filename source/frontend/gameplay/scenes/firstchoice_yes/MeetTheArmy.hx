@@ -1,5 +1,6 @@
 package frontend.gameplay.scenes.firstchoice_yes;
 
+import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import backend.MusicMan;
 import backend.Sprite;
@@ -16,6 +17,8 @@ class MeetTheArmy extends PathState
 	public var commander:Sprite = new Sprite();
 	public var emalf:Sprite = new Sprite();
 	public var tistec:Sprite = new Sprite();
+
+	public var dialog:FlxText;
 
 	override function create()
 	{
@@ -54,5 +57,46 @@ class MeetTheArmy extends PathState
 
 		bluespike.x -= bluespike.width * 1.5;
 		tistec.x += tistec.width * 1.5;
+
+		dialog = new FlxText();
+
+		dialog.size = 32;
+		dialog.screenCenter();
+		dialog.y = 32;
+
+		add(dialog);
+
+		setDialogueText('You have done well.', 1, 'cyan');
+	}
+
+	public function setDialogueText(text:String, ?speed:Float = 1, ?formatTag:String)
+	{
+		FlxTween.cancelTweensOf(dialog);
+		FlxTween.tween(dialog, {alpha: 0}, speed / 2, {
+			ease: FlxEase.sineInOut,
+			onComplete: t ->
+			{
+				setDialogueTextNoFade((formatTag != null) ? '<$formatTag>' : '' + text + (formatTag != null) ? '<$formatTag>' : '');
+
+				FlxTween.tween(dialog, {alpha: 1}, speed / 2, {
+					ease: FlxEase.sineInOut
+				});
+			}
+		});
+	}
+
+	public function setDialogueTextNoFade(text:String)
+	{
+		dialog.text = text;
+
+		playDialogueSound();
+		TextTags.apply(dialog);
+
+		dialog.screenCenter(X);
+	}
+
+	public function playDialogueSound()
+	{
+		FlxG.sound.play('dialogue'.soundsPath());
 	}
 }

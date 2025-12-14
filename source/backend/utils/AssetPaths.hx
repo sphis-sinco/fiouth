@@ -35,7 +35,7 @@ class AssetPaths
 				finalPathNoLang += p;
 		}
 
-		#if debug
+		#if gimmePaths
 		trace('finalPath: ' + finalPath);
 		trace('finalPathNoLang: ' + finalPathNoLang);
 		#end

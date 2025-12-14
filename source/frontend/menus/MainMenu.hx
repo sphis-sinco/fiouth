@@ -1,5 +1,6 @@
 package frontend.menus;
 
+import backend.utils.Dialog;
 import frontend.debug.PathSelect;
 import backend.InitState;
 import backend.utils.MusicMan;
@@ -33,7 +34,7 @@ class MainMenu extends State
 			FlxG.switchState(() -> new PathSelect());
 
 		title = new FlxText();
-		title.text = "Fiouth";
+		title.text = Dialog.getLine('mainmenu/title');
 		title.size = 128;
 
 		title.screenCenter();
@@ -44,9 +45,9 @@ class MainMenu extends State
 		playText = new FlxText();
 
 		playText.size = 24;
-		playText.text = "Play";
+		playText.text = Dialog.getLine('mainmenu/play');
 		if (Save.data.gameplay.hasBegun)
-			playText.text = "Continue";
+			playText.text = Dialog.getLine('mainmenu/continue');
 
 		#if debug playText.text += " [" + Save.data.gameplay.path + "]"; #end
 
@@ -55,7 +56,7 @@ class MainMenu extends State
 		optionsText = new FlxText();
 
 		optionsText.size = 24;
-		optionsText.text = "Options";
+		optionsText.text = Dialog.getLine('mainmenu/options');
 
 		add(optionsText);
 

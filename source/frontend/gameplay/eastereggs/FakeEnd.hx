@@ -1,5 +1,6 @@
 package frontend.gameplay.eastereggs;
 
+import flixel.sound.FlxSound;
 import backend.MusicMan;
 import frontend.menus.MainMenu;
 import flixel.util.FlxColor;
@@ -84,8 +85,8 @@ class FakeEnd extends PathState
 		});
 	}
 
+	var dialogue:FlxSound = new FlxSound().loadStream('dialogue'.soundsPath());
+
 	public function playDialogueSound()
-	{
-		FlxG.sound.play('dialogue'.soundsPath());
-	}
+		dialogue.play(true);
 }

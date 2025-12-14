@@ -4,6 +4,8 @@ import backend.gameplay.PathState;
 
 class DebugState extends State
 {
+	public var debugToggle:Bool = false;
+
 	override function resetWatermark()
 	{
 		super.resetWatermark();
@@ -15,7 +17,10 @@ class DebugState extends State
 	{
 		super.update(elapsed);
 
-		if (FlxG.keys.pressed.F3)
+		if (FlxG.keys.justReleased.F3)
+			debugToggle = !debugToggle;
+
+		if (debugToggle)
 		{
 			resetWatermark();
 

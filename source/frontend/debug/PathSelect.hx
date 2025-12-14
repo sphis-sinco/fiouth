@@ -39,7 +39,7 @@ class PathSelect extends DebugState
 	{
 		super.create();
 
-		FlxG.sound.music.stop();
+		FlxG.sound.music?.stop();
 
 		paths.sort(Sorts.pathsFinishState);
 

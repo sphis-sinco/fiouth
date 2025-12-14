@@ -1,6 +1,5 @@
 package frontend.gameplay.scenes;
 
-import flixel.sound.FlxSound;
 import frontend.gameplay.scenes.firstchoiceyes.MeetTheArmy;
 import backend.MusicMan;
 import frontend.gameplay.scenes.firstchoiceno.KeypadScene;
@@ -220,8 +219,8 @@ class FirstChoiceScene extends PathState
 		TextTags.apply(dialog);
 	}
 
-	var dialogue:FlxSound = new FlxSound().loadStream('dialogue'.soundsPath());
-
 	public function playDialogueSound()
-		dialogue.play(true);
+	{
+		FlxG.sound.play('dialogue'.soundsPath());
+	}
 }

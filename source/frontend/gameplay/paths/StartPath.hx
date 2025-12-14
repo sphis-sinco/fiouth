@@ -1,6 +1,5 @@
 package frontend.gameplay.paths;
 
-import flixel.sound.FlxSound;
 import backend.MusicMan;
 import frontend.gameplay.scenes.FirstChoiceScene;
 import backend.gameplay.PathState;
@@ -79,8 +78,8 @@ class StartPath extends PathState
 		});
 	}
 
-	var dialogue:FlxSound = new FlxSound().loadStream('dialogue'.soundsPath());
-
 	public function playDialogueSound()
-		dialogue.play(true);
+	{
+		FlxG.sound.play('dialogue'.soundsPath());
+	}
 }

@@ -1,6 +1,5 @@
 package frontend.gameplay.scenes.firstchoiceyes;
 
-import flixel.sound.FlxSound;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import backend.TextTags;
@@ -119,8 +118,8 @@ class MeetTheArmy extends PathState
 		dialog.screenCenter(X);
 	}
 
-	var dialogue:FlxSound = new FlxSound().loadStream('dialogue'.soundsPath());
-
 	public function playDialogueSound()
-		dialogue.play(true);
+	{
+		FlxG.sound.play('dialogue'.soundsPath(), 1);
+	}
 }

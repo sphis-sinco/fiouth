@@ -99,9 +99,9 @@ class SettingsMenu extends State
 			}
 		});
 
+		Save.data.settings.volume = Std.int(FlxMath.bound(Save.data.settings.volume, 0, 100));
 		setSettingInfo(volumeText, 'volume', 2, Save.data.settings.volume, text ->
 		{
-			Save.data.settings.volume = Std.int(FlxMath.bound(Save.data.settings.volume, 0, 100));
 			FlxG.sound.volume = Save.data.settings.volume / 100;
 			text.setPosition(saveSlotText.x, saveSlotText.y + saveSlotText.height);
 		});

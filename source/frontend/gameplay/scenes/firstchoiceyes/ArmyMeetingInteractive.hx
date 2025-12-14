@@ -1,5 +1,6 @@
 package frontend.gameplay.scenes.firstchoiceyes;
 
+import flixel.math.FlxPoint;
 import haxe.Timer;
 import flixel.FlxSprite;
 import flixel.util.FlxTimer;
@@ -80,6 +81,26 @@ class ArmyMeetingInteractive extends MeetTheArmy
 				character.color = 0xFFFFFF;
 				selection = character.ID;
 			}
+		}
+
+		if (FlxG.mouse.justReleased)
+		{
+			var offset = FlxPoint.get();
+
+			if (selection > 0)
+				for (character in [bluespike, emalf, tistec])
+				{
+					if (selection == character.ID)
+					{
+						if (character == bluespike)
+						{
+							offset.x -= 320;
+							offset.y -= 160;
+						}
+					}
+				}
+
+			camFollow.setPosition(FlxG.width / 2 + offset.x, FlxG.height / 2 + offset.y);
 		}
 	}
 

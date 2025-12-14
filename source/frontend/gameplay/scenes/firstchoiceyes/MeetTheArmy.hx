@@ -82,7 +82,7 @@ class MeetTheArmy extends PathState
 		camFollow = new FlxObject(FlxG.width / 2, FlxG.height / 2);
 		add(camFollow);
 
-		FlxG.camera.follow(camFollow);
+		FlxG.camera.follow(camFollow, LOCKON, .1);
 
 		startSequence();
 	}

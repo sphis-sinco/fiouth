@@ -6,6 +6,7 @@ import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
 import backend.Sprite;
 import flixel.tweens.FlxTween;
+import frontend.menus.MainMenu;
 
 class ArmyMeetingInteractive extends MeetTheArmy
 {
@@ -55,5 +56,13 @@ class ArmyMeetingInteractive extends MeetTheArmy
 			canInteract = true;
 			enableCursor = true;
 		});
+	}
+
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
+
+		if (canInteract)
+			FlxG.switchState(() -> new MainMenu());
 	}
 }

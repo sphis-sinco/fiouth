@@ -2,6 +2,7 @@ package backend.utils;
 
 import lime.utils.Assets;
 
+using StringTools;
 class Language
 {
 	public static var DEFAULT_LANGUAGE(get, never):String;
@@ -29,7 +30,12 @@ class Language
 		if (langs.length < 1)
 			langs.push('en_us');
 
+		var finalLangs:Array<String> = [];
+
+		for (lang in langs)
+			finalLangs.push(lang.trim());
+
 		// trace(langs);
-		return langs;
+		return finalLangs;
 	}
 }

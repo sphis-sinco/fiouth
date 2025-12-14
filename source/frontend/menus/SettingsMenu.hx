@@ -104,9 +104,9 @@ class SettingsMenu extends State
 			text.setPosition(saveSlotText.x, saveSlotText.y + saveSlotText.height);
 		});
 
-		setSettingInfo(languageText, 'language', 3, Save.data.settings.language, text ->
+		Language.LANGUAGE = Save.data.settings.language;
+		setSettingInfo(languageText, 'language', 3, '${Assets.getText('language.txt'.dataPath())} (${Save.data.settings.language})', text ->
 		{
-			Language.LANGUAGE = Save.data.settings.language;
 			text.setPosition(volumeText.x, volumeText.y + volumeText.height);
 		});
 	}

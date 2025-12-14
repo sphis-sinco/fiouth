@@ -1,5 +1,6 @@
 package frontend.gameplay.paths;
 
+import backend.utils.Dialog;
 import flixel.sound.FlxSound;
 import backend.utils.MusicMan;
 import frontend.gameplay.scenes.FirstChoiceScene;
@@ -23,6 +24,8 @@ class StartPath extends PathState
 	override function get_finished():Bool
 		return true;
 
+	var lines:Array<String> = Dialog.getLines('START');
+
 	override function create()
 	{
 		super.create();
@@ -39,14 +42,17 @@ class StartPath extends PathState
 
 		Save.data.gameplay.hasBegun = true;
 
-		FlxTimer.wait(3, () -> setDialogueText('I\'m glad to finally get in touch'));
-		FlxTimer.wait(6, () -> setDialogueText('<cyan>We<cyan> have been watching you'));
-		FlxTimer.wait(7, () -> dialog.screenCenter());
-		FlxTimer.wait(9, () -> setDialogueText('It\'s time for you to join <orange>your<orange> <cyan>people<cyan> once more.'));
-		FlxTimer.wait(10, () -> dialog.screenCenter());
-		FlxTimer.wait(12, () -> setDialogueText('You will know what to do.'));
-		FlxTimer.wait(16, () -> setDialogueText('If not then lord have mercy upon your soul.'));
-		FlxTimer.wait(20, () ->
+		var time = 0;
+
+		// 3, 6, 9, 12, 15, 18, 21
+		for (line in lines)
+		{
+			FlxTimer.wait(time, () -> setDialogueText(line));
+
+			time += 3;
+		}
+
+		FlxTimer.wait(time, () ->
 		{
 			FlxG.sound.play('transportation'.soundsPath());
 			FlxTimer.wait(3.65, () ->

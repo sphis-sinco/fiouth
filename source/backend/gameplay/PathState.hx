@@ -1,5 +1,10 @@
 package backend.gameplay;
 
+import flixel.text.FlxText;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import backend.utils.TextTags;
+import flixel.sound.FlxSound;
 #if !debug
 import backend.state.State;
 #else
@@ -45,11 +50,9 @@ class PathState extends State
 		dialog.screenCenter(X);
 	}
 
-	var dialogue:FlxSound = new FlxSound().loadStream('dialogue'.soundsPath());
-
 	public function playDialogueSound()
 	{
-		dialogue.play(true);
+		new FlxSound().loadStream('dialogue'.soundsPath()).play(true);
 	}
 
 	override public function new(path:GameplayPaths)

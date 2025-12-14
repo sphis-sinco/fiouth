@@ -39,6 +39,7 @@ class InitState extends State
 		switch (startingState.toLowerCase())
 		{
 			case 'path-select':
+				Save.loadFromSlot('slot_pathSelect');
 				FlxG.switchState(() -> new MainMenu());
 
 			default:

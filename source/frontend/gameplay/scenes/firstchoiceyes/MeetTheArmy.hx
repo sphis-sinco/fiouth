@@ -83,7 +83,7 @@ class MeetTheArmy extends PathState
 		FlxTimer.wait(7, _ -> setDialogueText('You might as well get to know us.', 1, 'cyan'));
 		FlxTimer.wait(9, _ -> setDialogueText('I\'ll leave you four be.', 1, 'cyan'));
 		FlxTimer.wait(11, _ -> setDialogueText('', 1, 'cyan'));
-		FlxTimer.wait(11, _ ->
+		FlxTimer.wait(11, function()
 		{
 			FlxTween.tween(commander, {x: -comand.width * 2}, 2, {
 				ease: FlxEase.sineInOut

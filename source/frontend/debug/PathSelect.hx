@@ -8,10 +8,10 @@ import flixel.text.FlxText;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import backend.utils.Sorts;
 import backend.gameplay.GameplayPaths;
-import backend.State;
+import backend.state.DebugState;
 import frontend.menus.SettingsMenu;
 
-class PathSelect extends State
+class PathSelect extends DebugState
 {
 	public var paths:Array<GameplayPaths> = [
 		START,

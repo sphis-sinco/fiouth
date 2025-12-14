@@ -4,7 +4,7 @@ import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 import backend.save.Save;
 import flixel.text.FlxText;
-import backend.State;
+import backend.state.State;
 
 class SettingsMenu extends State
 {

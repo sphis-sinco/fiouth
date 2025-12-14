@@ -1,4 +1,4 @@
-package backend;
+package backend.state;
 
 import lime.app.Application;
 import flixel.text.FlxText;
@@ -6,8 +6,8 @@ import flixel.FlxState;
 
 class State extends FlxState
 {
-	public var displayVersion:Bool = true;
-	public var version:FlxText;
+	public var displayWatermark:Bool = true;
+	public var watermark:FlxText;
 
 	public var enableCursor(default, set):Bool = false;
 
@@ -31,11 +31,18 @@ class State extends FlxState
 	{
 		super.create();
 
-		version = new FlxText(2, 2, 0, Application.current.meta.get('version'), 16);
-		version.alpha = 0.25;
-		version.scrollFactor.set();
-		if (displayVersion)
-			add(version);
+		watermark = new FlxText(2, 2, 0, '', 16);
+		watermark.alpha = 0.25;
+		watermark.scrollFactor.set();
+		if (displayWatermark)
+			add(watermark);
+
+		resetWatermark();
+	}
+
+	public function resetWatermark()
+	{
+		watermark.text = Application.current.meta.get('version');
 	}
 
 	override public function update(elapsed:Float)
@@ -44,9 +51,9 @@ class State extends FlxState
 
 		members.sort((basic1, basic2) ->
 		{
-			if (basic1 == version)
+			if (basic1 == watermark)
 				return 1;
-			if (basic2 == version)
+			if (basic2 == watermark)
 				return -1;
 			return 0;
 		});

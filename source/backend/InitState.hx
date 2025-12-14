@@ -14,7 +14,7 @@ class InitState extends State
 	override public function create()
 	{
 		super.create();
-		trace(version.text);
+		trace(watermark.text);
 
 		Save.init();
 		Application.current.onExit.add(l -> Save.save());

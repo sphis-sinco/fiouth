@@ -9,7 +9,7 @@ import flixel.tweens.FlxTween;
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
-import backend.State;
+import backend.state.State;
 
 class MainMenu extends State
 {

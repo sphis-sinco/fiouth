@@ -1,5 +1,6 @@
 package backend;
 
+import backend.gameplay.PathState;
 import haxe.macro.Compiler;
 import lime.app.Application;
 import backend.save.Save;
@@ -39,6 +40,18 @@ class InitState extends State
 		if (Compiler.getDefine('STARTING_STATE') != null && Compiler.getDefine('STARTING_STATE') != "1")
 			startingState = Compiler.getDefine('STARTING_STATE').split("=")[0];
 		startingState = startingState.toLowerCase();
+
+		FlxG.signals.preStateCreate.add(_state ->
+		{
+			Application.current.window.title = 'Fiouth';
+
+			if (Std.isOfType(_state, PathState))
+			{
+				var pathState:PathState = cast _state;
+
+				Application.current.window.title = 'Fiouth | ${pathState.path}';
+			}
+		});
 
 		switch (startingState.toLowerCase())
 		{

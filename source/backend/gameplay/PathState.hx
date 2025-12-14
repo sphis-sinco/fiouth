@@ -5,6 +5,7 @@ import backend.save.Save;
 
 class PathState extends State
 {
+	public var path:GameplayPaths;
 	public var pathWasAlreadySet:Bool = false;
 
 	override public function new(path:GameplayPaths)
@@ -24,6 +25,8 @@ class PathState extends State
 			pathWasAlreadySet = true;
 			alreadySetPath();
 		}
+
+		this.path = path;
 	}
 
 	public function newSetPath() {}

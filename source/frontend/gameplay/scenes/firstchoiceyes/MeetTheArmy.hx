@@ -1,5 +1,6 @@
 package frontend.gameplay.scenes.firstchoiceyes;
 
+import backend.gameplay.GameplayPaths;
 import flixel.sound.FlxSound;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -13,9 +14,9 @@ import backend.gameplay.PathState;
 
 class MeetTheArmy extends PathState
 {
-	override public function new()
+	override public function new(path:GameplayPaths = MEET_THE_ARMY)
 	{
-		super(MEET_THE_ARMY);
+		super(path);
 	}
 
 	public var bluespike:Sprite = new Sprite();
@@ -28,9 +29,6 @@ class MeetTheArmy extends PathState
 	override function create()
 	{
 		super.create();
-
-		FlxG.sound.play('pod_open'.soundsPath(), 0.25);
-		FlxG.camera.flash(FlxColor.BLACK, 3);
 
 		bluespike.loadGraphic('characters/portraits/army/bluespike'.imagePath());
 		commander.loadGraphic('characters/portraits/army/commander'.imagePath());
@@ -54,11 +52,6 @@ class MeetTheArmy extends PathState
 			add(object);
 		}
 
-		MusicMan.playMusic('FormalGreeting', 0.75, null, () ->
-		{
-			FlxG.sound.music.fadeIn(3, 0, 0.75);
-		});
-
 		commander.color = 0xFFFFFF;
 		commander.resetScale();
 		commander.screenCenter();
@@ -79,6 +72,14 @@ class MeetTheArmy extends PathState
 
 	public function startSequence()
 	{
+		MusicMan.playMusic('FormalGreeting', 0.75, null, () ->
+		{
+			FlxG.sound.music.fadeIn(3, 0, 0.75);
+		});
+
+		FlxG.sound.play('pod_open'.soundsPath(), 0.25);
+		FlxG.camera.flash(FlxColor.BLACK, 3);
+
 		FlxTimer.wait(0, () -> setDialogueText('You knew what to do.', 1, 'cyan'));
 		FlxTimer.wait(4, () -> setDialogueText('And I\'m glad.', 1, 'cyan'));
 		FlxTimer.wait(7, () -> setDialogueText('Since you\'ll be with us.', 1, 'cyan'));
@@ -88,7 +89,11 @@ class MeetTheArmy extends PathState
 		{
 			setDialogueText('', 1, 'cyan');
 			FlxTween.tween(commander, {x: -commander.width * 2}, 2, {
-				ease: FlxEase.sineInOut
+				ease: FlxEase.sineInOut,
+				onComplete: t ->
+				{
+					FlxG.switchState(() -> new ArmyMeetingInteractive());
+				}
 			});
 		});
 	}

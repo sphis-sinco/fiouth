@@ -20,10 +20,10 @@ class DebugState extends State
 		if (FlxG.keys.justReleased.F3)
 			debugToggle = !debugToggle;
 
+		resetWatermark();
+
 		if (debugToggle)
 		{
-			resetWatermark();
-
 			watermark.text += "\n\nState: " + Type.getClassName(Type.getClass(FlxG.state));
 			if (Std.isOfType(FlxG.state, PathState))
 			{

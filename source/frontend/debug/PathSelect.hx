@@ -1,12 +1,14 @@
 package frontend.debug;
 
+import flixel.text.FlxText;
+import flixel.group.FlxGroup.FlxTypedGroup;
 import backend.utils.Sorts;
 import backend.gameplay.GameplayPaths;
 import backend.State;
 
 class PathSelect extends State
 {
-	public var paths:Array<GameplayPaths>[
+	public var paths:Array<GameplayPaths> = [
 		START,
 		FIRST_CHOICE,
 		MEET_THE_ARMY,
@@ -19,13 +21,17 @@ class PathSelect extends State
 		LOYALTY_PATH_INTRO,
 		ENDING_REMEMBERANCE,
 		ENDING_ONE_WHO_TRIED,
-		FAKE_END;
+		FAKE_END
 	];
+
+	public var pathSelections:FlxTypedGroup<FlxText>;
 
 	override function create()
 	{
 		super.create();
 
-        paths.sort(Sorts.alphabetically);
+		paths.sort(Sorts.alphabetically);
+
+		pathSelections = new FlxTypedGroup<FlxText>();
 	}
 }

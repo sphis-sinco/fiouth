@@ -48,6 +48,14 @@ class SettingsMenu extends State
 			if (FlxG.keys.anyJustReleased([DOWN, S]))
 				selection++;
 
+			if (selection == 1)
+			{
+				if (FlxG.keys.anyJustReleased([UP, W]))
+					selection--;
+				if (FlxG.keys.anyJustReleased([DOWN, S]))
+					selection++;
+			}
+
 			if (selection < 0)
 				selection = 0;
 			if (selection > 2)
@@ -106,7 +114,7 @@ class SettingsMenu extends State
 	{
 		if (selection == 2)
 			Save.data.settings.volume -= 10;
-		if (selection == 1)
+		if (selection == 1 && Std.isOfType(Save.currentSaveSlot, Int))
 		{
 			changedSaveSlot = true;
 			if (Save.currentSaveSlot - 1 < Save.DEFAULT_SLOT)
@@ -115,7 +123,7 @@ class SettingsMenu extends State
 					Save.loadFromIntSlot(Save.globalData.maxSlot);
 			}
 			else
-				Save.loadFromIntSlot(Save.currentSaveSlot - 1);
+				Save.loadFromIntSlot(Std.int(Save.currentSaveSlot) - 1);
 		}
 	}
 
@@ -123,13 +131,13 @@ class SettingsMenu extends State
 	{
 		if (selection == 2)
 			Save.data.settings.volume += 10;
-		if (selection == 1)
+		if (selection == 1 && Std.isOfType(Save.currentSaveSlot, Int))
 		{
 			changedSaveSlot = true;
 			if ((Save.currentSaveSlot + 1 > Save.globalData.maxSlot) && !FlxG.keys.pressed.SHIFT)
 				Save.loadFromIntSlot(Save.DEFAULT_SLOT);
 			else
-				Save.loadFromIntSlot(Save.currentSaveSlot + 1);
+				Save.loadFromIntSlot(Std.int(Save.currentSaveSlot) + 1);
 		}
 	}
 }

@@ -16,14 +16,14 @@ class Save
 
 	static function get_currentSaveSlot():Dynamic
 	{
-		return data?.slot ?? DEFAULT_SLOT - 1;
+		return data?.slot ?? DEFAULT_SLOT;
 	}
 
 	public static function getDefault():SaveData
 	{
 		return {
 			version: Application.current.meta.get('version'),
-			slot: data?.slot ?? DEFAULT_SLOT,
+			slot: currentSaveSlot,
 
 			gameplay: {
 				hasBegun: false,
@@ -36,7 +36,7 @@ class Save
 		}
 	}
 
-	public static var DEFAULT_SLOT:Int = 1;
+	public static var DEFAULT_SLOT:Dynamic = 1;
 
 	public static function init()
 	{
@@ -89,10 +89,10 @@ class Save
 				globalData.maxSlot = currentSaveSlot;
 		}
 
-		loadFromIntSlot('slot$slot');
+		loadFromSlot('slot$slot');
 	}
 
-	public static function loadFromSlot(slot:Dynamic = 1)
+	public static function loadFromSlot(slot:Dynamic)
 	{
 		var fakeendEasterEgg:Bool = false;
 		var usedBackupParser:Bool = false;

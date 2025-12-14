@@ -1,8 +1,10 @@
 package backend;
 
+import haxe.macro.Compiler;
 import lime.app.Application;
 import backend.save.Save;
 import frontend.menus.MainMenu;
+import frontend.debug.PathSelect;
 
 class InitState extends State
 {
@@ -40,7 +42,7 @@ class InitState extends State
 		{
 			case 'path-select':
 				Save.loadFromSlot('slot_pathSelect');
-				FlxG.switchState(() -> new MainMenu());
+				FlxG.switchState(() -> new PathSelect());
 
 			default:
 				FlxG.switchState(() -> new MainMenu());

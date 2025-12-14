@@ -67,16 +67,16 @@ class MeetTheArmy extends PathState
 
 		add(dialog);
 
+		if (FlxG.sound.music == null)
+			MusicMan.playMusic('FormalGreeting', 0.75, null, () ->
+			{
+				FlxG.sound.music.fadeIn(3, 0, 0.75);
+			});
 		startSequence();
 	}
 
 	public function startSequence()
 	{
-		MusicMan.playMusic('FormalGreeting', 0.75, null, () ->
-		{
-			FlxG.sound.music.fadeIn(3, 0, 0.75);
-		});
-
 		FlxG.sound.play('pod_open'.soundsPath(), 0.25);
 		FlxG.camera.flash(FlxColor.BLACK, 3);
 

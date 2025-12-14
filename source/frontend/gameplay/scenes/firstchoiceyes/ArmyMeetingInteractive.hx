@@ -1,5 +1,7 @@
 package frontend.gameplay.scenes.firstchoiceyes;
 
+import haxe.Timer;
+import flixel.FlxSprite;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
 import backend.Sprite;
@@ -24,14 +26,27 @@ class ArmyMeetingInteractive extends MeetTheArmy
 		remove(commander);
 		commander.destroy();
 
-		var i = 0;
+		var i = 3;
 
 		for (character in [bluespike, emalf, tistec])
 		{
-			i++;
+			i--;
 			new FlxTimer().start(3 - (i * 0.5), t ->
 			{
 				character.color = 0xFFFFFF;
+
+				new FlxTimer().start((1 / FlxG.drawFramerate) * 1, t ->
+				{
+					character.scale.y += .2;
+					character.updateHitbox();
+					character.y = FlxG.height - character.height;
+				});
+				new FlxTimer().start((1 / FlxG.drawFramerate) * 4, t ->
+				{
+					character.scale.y += ((Sprite.DEFAULT_SCALE - 3) - character.scale.y) * (1 / Std.int(FlxG.drawFramerate / 10));
+					character.updateHitbox();
+					character.y = FlxG.height - character.height;
+				}, Std.int(FlxG.drawFramerate / 5));
 			});
 		}
 

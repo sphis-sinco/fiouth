@@ -83,11 +83,14 @@ class ArmyMeetingInteractive extends MeetTheArmy
 			}
 		}
 
-		if (FlxG.mouse.justReleased)
+		if (FlxG.mouse.justReleased && canInteract)
 		{
 			var offset = FlxPoint.get();
 
 			if (selection > 0)
+			{
+				canInteract = false;
+
 				for (character in [bluespike, emalf, tistec])
 				{
 					if (selection == character.ID)
@@ -96,9 +99,12 @@ class ArmyMeetingInteractive extends MeetTheArmy
 							offset.x -= 480;
 						if (character == tistec)
 							offset.x += 480;
+
+						characterDialogue(character);
 					}
 				}
-				
+			}
+
 			camFollow.setPosition(FlxG.width / 2 + offset.x, FlxG.height / 2 + offset.y);
 		}
 	}
@@ -108,5 +114,24 @@ class ArmyMeetingInteractive extends MeetTheArmy
 		super.debugWatermarks();
 
 		watermark.text += "\n\nSelected Character: " + ['none', 'bluespike', 'emalf', 'tistec'][selection];
+	}
+
+	public function characterDialogue(character:Sprite)
+	{
+		var speed:Float = 1;
+		var offset:Float = 0;
+
+		setDialogueText("Yo", speed);
+
+		FlxTimer.wait((speed + offset) / 2 + .05, function()
+		{
+			dialog.x = character.getGraphicMidpoint().x;
+		});
+
+		FlxTimer.wait((speed + offset) * 2, function()
+		{
+			setDialogueText("", .01);
+			canInteract = true;
+		});
 	}
 }

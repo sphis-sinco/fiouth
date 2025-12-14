@@ -5,8 +5,6 @@ import backend.gameplay.PathState;
 
 class DebugState extends State
 {
-	public var debugToggle:Bool = false;
-
 	override function resetWatermark()
 	{
 		super.resetWatermark();
@@ -20,20 +18,18 @@ class DebugState extends State
 
 		if (FlxG.keys.justReleased.F3)
 			debugToggle = !debugToggle;
+	}
 
-		resetWatermark();
-
-		if (debugToggle)
+	override public function debugWatermarks()
+	{
+		watermark.text += "\n\nState: " + Type.getClassName(Type.getClass(FlxG.state));
+		if (Std.isOfType(FlxG.state, PathState))
 		{
-			watermark.text += "\n\nState: " + Type.getClassName(Type.getClass(FlxG.state));
-			if (Std.isOfType(FlxG.state, PathState))
-			{
-				var pathState:PathState = cast FlxG.state;
+			var pathState:PathState = cast FlxG.state;
 
-				watermark.text += "\n * Path: " + pathState.path;
-			}
-
-			watermark.text += "\n\nSave slot: " + Save.currentSaveSlot;
+			watermark.text += "\n * Path: " + pathState.path;
 		}
+
+		watermark.text += "\n\nSave slot: " + Save.currentSaveSlot;
 	}
 }

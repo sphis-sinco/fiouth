@@ -41,9 +41,9 @@ class State extends FlxState
 	}
 
 	public function resetWatermark()
-	{
 		watermark.text = Application.current.meta.get('version');
-	}
+
+	public function debugWatermarks() {}
 
 	override public function update(elapsed:Float)
 	{
@@ -59,7 +59,14 @@ class State extends FlxState
 		});
 
 		FlxG.mouse.visible = FlxG.mouse.enabled;
+
+		resetWatermark();
+
+		if (debugToggle)
+			debugWatermarks();
 	}
+	
+	public var debugToggle:Bool = false;
 
 	public function turnOffCursor()
 		FlxG.mouse.enabled = false;

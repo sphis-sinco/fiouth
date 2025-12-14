@@ -23,7 +23,13 @@ class ArmyMeetingInteractive extends MeetTheArmy
 	override function create()
 	{
 		super.create();
+
+		bluespike.ID = 1;
+		emalf.ID = 2;
+		tistec.ID = 3;
 	}
+
+	public var selection:Int = 0;
 
 	override function startSequence()
 	{
@@ -65,11 +71,22 @@ class ArmyMeetingInteractive extends MeetTheArmy
 	{
 		super.update(elapsed);
 
+		selection = 0;
 		for (character in [bluespike, emalf, tistec])
 		{
 			character.color = 0xCECECE;
 			if (canInteract && FlxG.mouse.overlaps(character))
+			{
 				character.color = 0xFFFFFF;
+				selection = character.ID;
+			}
 		}
+	}
+
+	override function debugWatermarks()
+	{
+		super.debugWatermarks();
+
+		watermark.text += "\n\nSelected Character: " + ['none', 'bluespike', 'emalf', 'tistec'][selection];
 	}
 }

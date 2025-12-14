@@ -1,5 +1,6 @@
 package frontend.gameplay.scenes.firstchoiceyes;
 
+import flixel.FlxObject;
 import backend.gameplay.GameplayPaths;
 import flixel.sound.FlxSound;
 import flixel.tweens.FlxEase;
@@ -18,7 +19,7 @@ class MeetTheArmy extends PathState
 	{
 		super(path);
 	}
-	
+
 	override function get_finished():Bool
 		return true;
 
@@ -28,6 +29,8 @@ class MeetTheArmy extends PathState
 	public var tistec:Sprite = new Sprite();
 
 	public var dialog:FlxText;
+
+	public var camFollow:FlxObject;
 
 	override function create()
 	{
@@ -75,6 +78,12 @@ class MeetTheArmy extends PathState
 			{
 				FlxG.sound.music.fadeIn(3, 0, 1);
 			});
+
+		camFollow = new FlxObject(FlxG.width / 2, FlxG.height / 2);
+		add(camFollow);
+
+		FlxG.camera.follow(camFollow);
+
 		startSequence();
 	}
 

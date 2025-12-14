@@ -1,20 +1,23 @@
 package backend.gameplay;
 
 import backend.state.State;
+import backend.state.DebugState;
 import backend.errors.Pettiness;
 import backend.save.Save;
 
+#if !debug
 class PathState extends State
+#else
+class PathState extends DebugState
+#end
 {
 	public var path:GameplayPaths;
 	public var pathWasAlreadySet:Bool = false;
-
-	public var finished(get,never):Bool;
-
+	public var finished(get, never):Bool;
 	function get_finished():Bool
 		return false;
-
-	override public function new(path:GameplayPaths)
+	override
+	public function new(path:GameplayPaths)
 	{
 		super();
 
@@ -40,8 +43,6 @@ class PathState extends State
 
 		this.path = path;
 	}
-
 	public function newSetPath() {}
-
 	public function alreadySetPath() {}
 }

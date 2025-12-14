@@ -84,10 +84,6 @@ class MeetTheArmy extends PathState
 
 		FlxG.camera.follow(camFollow, LOCKON, .1);
 
-		FlxTween.tween(FlxG.camera, {zoom: 1.0}, .25, {
-			ease: FlxEase.sineInOut
-		});
-
 		startSequence();
 	}
 

@@ -1,5 +1,6 @@
 package backend.save;
 
+import backend.utils.Language;
 import flixel.math.FlxMath;
 import flixel.util.FlxSave;
 import haxe.macro.Compiler;
@@ -31,7 +32,8 @@ class Save
 			},
 
 			settings: {
-				volume: 100
+				volume: 100,
+				language: Language.DEFAULT_LANGUAGE
 			}
 		}
 	}
@@ -178,6 +180,8 @@ class Save
 		{
 			if (data.settings.volume == null)
 				data.settings.volume = getDefault().settings.volume;
+			if (data.settings.language == null || !Language.LANGUAGES.contains(data.settings.language))
+				data.settings.language = getDefault().settings.language;
 		}
 	}
 

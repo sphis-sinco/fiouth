@@ -1,1 +1,1 @@
-Save Slot: <value>
+Save Slot: <$1>

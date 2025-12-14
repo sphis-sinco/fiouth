@@ -14,6 +14,7 @@ typedef SaveData =
 
 	settings:
 	{
-		volume:Null<Int>
+		volume:Null<Int>,
+		language:String
 	}
 }

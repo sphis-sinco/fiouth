@@ -1,5 +1,6 @@
 package frontend.menus;
 
+import backend.utils.Language;
 import backend.utils.Dialog;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
@@ -20,6 +21,8 @@ class SettingsMenu extends State
 
 	public var volumeText:FlxText = new FlxText(64, 64, 0, '', 32);
 
+	public var languageText:FlxText = new FlxText(64, 64, 0, '', 32);
+
 	override function create()
 	{
 		super.create();
@@ -30,6 +33,8 @@ class SettingsMenu extends State
 		add(saveSlotText);
 
 		add(volumeText);
+
+		add(languageText);
 
 		updateOptionTexts();
 	}
@@ -61,8 +66,8 @@ class SettingsMenu extends State
 
 			if (selection < 0)
 				selection = 0;
-			if (selection > 2)
-				selection = 2;
+			if (selection > 3)
+				selection = 3;
 			_selection = selection;
 
 			if (FlxG.keys.anyJustReleased([ENTER]))
@@ -81,7 +86,7 @@ class SettingsMenu extends State
 		clearSaveText.text = Dialog.getLineFromPrefixPath('settings/clearsave', 'menus/');
 		clearSaveText.color = (selection == 0) ? FlxColor.YELLOW : FlxColor.WHITE;
 
-		saveSlotText.text = Dialog.getLineFromPrefixPath('settings/saveslot', 'menus/').replace('<value>', Save.currentSaveSlot);
+		saveSlotText.text = Dialog.getLineFromPrefixPath('settings/saveslot', 'menus/').replace('<$1>', Save.currentSaveSlot);
 		saveSlotText.color = (selection == 1) ? FlxColor.YELLOW : FlxColor.WHITE;
 		saveSlotText.setPosition(clearSaveText.x, clearSaveText.y + clearSaveText.height);
 
@@ -94,10 +99,15 @@ class SettingsMenu extends State
 		Save.data.settings.volume = Std.int(FlxMath.bound(Save.data.settings.volume, 0, 100));
 		FlxG.sound.volume = Save.data.settings.volume / 100;
 
-		volumeText.text = Dialog.getLineFromPrefixPath('settings/volume', 'menus/').replace('<value>', '' + Save.data.settings.volume);
+		volumeText.text = Dialog.getLineFromPrefixPath('settings/volume', 'menus/').replace('<$1>', '' + Save.data.settings.volume);
 		volumeText.color = (selection == 2) ? FlxColor.YELLOW : FlxColor.WHITE;
 
 		volumeText.setPosition(saveSlotText.x, saveSlotText.y + saveSlotText.height);
+
+		languageText.text = Dialog.getLineFromPrefixPath('settings/language', 'menus/').replace('<$1>', '' + Save.data.settings.language);
+		languageText.color = (selection == 3) ? FlxColor.YELLOW : FlxColor.WHITE;
+
+		languageText.setPosition(volumeText.x, volumeText.y + volumeText.height);
 	}
 
 	var changedSaveSlot:Bool = false;
@@ -128,6 +138,9 @@ class SettingsMenu extends State
 			else
 				Save.loadFromIntSlot(Std.int(Save.currentSaveSlot) - 1);
 		}
+		if (selection == 3)
+			if (Language.LANGUAGES.indexOf(Save.data.settings.language) - 1 > 0)
+				Save.data.settings.language = Language.LANGUAGES[Language.LANGUAGES.indexOf(Save.data.settings.language) - 1];
 	}
 
 	public function optionsRight()
@@ -142,5 +155,8 @@ class SettingsMenu extends State
 			else
 				Save.loadFromIntSlot(Std.int(Save.currentSaveSlot) + 1);
 		}
+		if (selection == 3)
+			if (Language.LANGUAGES.indexOf(Save.data.settings.language) + 1 < Language.LANGUAGES.length)
+				Save.data.settings.language = Language.LANGUAGES[Language.LANGUAGES.indexOf(Save.data.settings.language) + 1];
 	}
 }

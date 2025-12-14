@@ -56,14 +56,18 @@ class PathSelect extends DebugState
 
 			var pathClass:PathState = cast FindPath.getStateBasedOnGameplayPath(path);
 
+			#if DISABLE_PETTINESS
 			if (pathClass.path == new PathState(null).path)
 				sel.text += ' (NULL)';
 			else
+			#else
+			if (true)
+			#end
 			{
 				if (!pathClass.finished)
 					sel.text += ' (UNFINISHED)';
 			}
-			
+
 			sel.ID = i;
 			sel.alignment = CENTER;
 			sel.fieldWidth = FlxG.width;

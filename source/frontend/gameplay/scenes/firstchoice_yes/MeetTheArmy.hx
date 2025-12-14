@@ -41,6 +41,8 @@ class MeetTheArmy extends PathState
 
 			object.screenCenter();
 
+			object.y = FlxG.height - object.height;
+
 			add(object);
 		}
 

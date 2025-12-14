@@ -57,7 +57,7 @@ class MainMenu extends State
 
 		updateOptionTexts();
 
-		if (FlxG.sound.music == null)
+		if (!FlxG.sound.music?.playing)
 		{
 			MusicMan.playMusic('hello', 1, null, () ->
 			{

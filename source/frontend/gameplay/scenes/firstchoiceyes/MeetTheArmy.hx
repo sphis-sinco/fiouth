@@ -67,7 +67,7 @@ class MeetTheArmy extends PathState
 
 		add(dialog);
 
-		if (FlxG.sound.music == null)
+		if (!FlxG.sound.music?.playing)
 			MusicMan.playMusic('FormalGreeting', 1, null, () ->
 			{
 				FlxG.sound.music.fadeIn(3, 0, 1);

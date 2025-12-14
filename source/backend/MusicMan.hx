@@ -43,7 +43,7 @@ class MusicMan
 		if (intro != null)
 		{
 			trace('playing (intro) : ' + intro);
-			var sound = FlxG.sound.play(intro, volume, false, group, false, playTracks);
+			var sound = FlxG.sound.play(intro, volume, false, group, true, playTracks);
 
 			if (onIntroPlay != null)
 				onIntroPlay(sound);

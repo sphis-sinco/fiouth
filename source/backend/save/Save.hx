@@ -68,9 +68,9 @@ class Save
 		globalData.lastSlot = Std.int(FlxMath.bound(globalData.lastSlot, DEFAULT_SLOT, globalData?.maxSlot ?? FlxMath.MAX_VALUE_INT));
 
 		if (Compiler.getDefine('SAVE_SLOT') != null && Compiler.getDefine('SAVE_SLOT') != "1")
-			loadFromSlot(Std.parseInt(Compiler.getDefine('SAVE_SLOT').split("=")[0]));
+			loadFromIntSlot(Std.parseInt(Compiler.getDefine('SAVE_SLOT').split("=")[0]));
 		else
-			loadFromSlot(globalData.lastSlot ?? DEFAULT_SLOT);
+			loadFromIntSlot(globalData.lastSlot ?? DEFAULT_SLOT);
 	}
 
 	public static var SAVEPATH(get, never):String;
@@ -78,12 +78,16 @@ class Save
 	static function get_SAVEPATH():String
 		return Application.current.meta.get('company') + '/fiouth';
 
-	public static function loadFromSlot(slot:Int = 1)
+	public static function loadFromIntSlot(slot:Int = 1)
+	{
+		slot = Std.int(FlxMath.bound(slot, DEFAULT_SLOT, FlxMath.MAX_VALUE_INT));
+		loadFromIntSlot('slot$slot');
+	}
+
+	public static function loadFromSlot(slot:Dynamic = 1)
 	{
 		var fakeendEasterEgg:Bool = false;
 		var usedBackupParser:Bool = false;
-
-		slot = Std.int(FlxMath.bound(slot, DEFAULT_SLOT, FlxMath.MAX_VALUE_INT));
 
 		if (data != null)
 		{
@@ -94,7 +98,7 @@ class Save
 				return;
 		}
 
-		FlxG.save.bind('slot$slot', SAVEPATH, (s, exception) ->
+		FlxG.save.bind(slot, SAVEPATH, (s, exception) ->
 		{
 			usedBackupParser = true;
 

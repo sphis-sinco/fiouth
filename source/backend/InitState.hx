@@ -32,7 +32,18 @@ class InitState extends State
 			}
 		});
 
-		FlxG.switchState(() -> new MainMenu());
+		var startingState:String = '';
+		if (Compiler.getDefine('STARTING_STATE') != null && Compiler.getDefine('STARTING_STATE') != "1")
+			startingState = Compiler.getDefine('STARTING_STATE').split("=")[0];
+
+		switch (startingState.toLowerCase())
+		{
+			case 'path-select':
+				FlxG.switchState(() -> new MainMenu());
+
+			default:
+				FlxG.switchState(() -> new MainMenu());
+		}
 	}
 
 	override public function update(elapsed:Float)

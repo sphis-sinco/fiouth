@@ -89,7 +89,7 @@ class Save
 				globalData.maxSlot = currentSaveSlot;
 		}
 
-		loadFromSlot('slot$slot');
+		loadFromSlot(slot);
 	}
 
 	public static function loadFromSlot(slot:Dynamic)
@@ -105,7 +105,7 @@ class Save
 			globalData.lastDynamicSlot = data.slot;
 		}
 
-		FlxG.save.bind(slot, SAVEPATH, (s, exception) ->
+		FlxG.save.bind('slot_$slot', SAVEPATH, (s, exception) ->
 		{
 			usedBackupParser = true;
 

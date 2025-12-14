@@ -8,6 +8,8 @@ import frontend.debug.PathSelect;
 
 class InitState extends State
 {
+	public static var startingState:String;
+
 	override public function create()
 	{
 		super.create();
@@ -34,9 +36,9 @@ class InitState extends State
 			}
 		});
 
-		var startingState:String = '';
 		if (Compiler.getDefine('STARTING_STATE') != null && Compiler.getDefine('STARTING_STATE') != "1")
 			startingState = Compiler.getDefine('STARTING_STATE').split("=")[0];
+		startingState = startingState.toLowerCase();
 
 		switch (startingState.toLowerCase())
 		{

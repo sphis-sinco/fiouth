@@ -1,5 +1,7 @@
 package frontend.menus;
 
+import frontend.debug.PathSelect;
+import backend.InitState;
 import backend.utils.MusicMan;
 import frontend.gameplay.FindPath;
 import backend.save.Save;
@@ -18,9 +20,17 @@ class MainMenu extends State
 
 	public var selection:Int = 0;
 
+	override public function new()
+	{
+		super();
+	}
+
 	override public function create()
 	{
 		super.create();
+
+		if (InitState.startingState == 'path-select')
+			FlxG.switchState(() -> new PathSelect());
 
 		title = new FlxText();
 		title.text = "Fiouth";

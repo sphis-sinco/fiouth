@@ -8,6 +8,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import backend.utils.Sorts;
 import backend.gameplay.GameplayPaths;
 import backend.State;
+import frontend.menus.SettingsMenu;
 
 class PathSelect extends State
 {
@@ -66,6 +67,9 @@ class PathSelect extends State
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		if (FlxG.keys.justReleased.ESCAPE)
+			FlxG.switchState(() -> new SettingsMenu());
 
 		if (FlxG.keys.anyJustReleased([UP, W, DOWN, S, ENTER]))
 		{

@@ -1,14 +1,14 @@
 package frontend.gameplay;
 
-import frontend.gameplay.scenes.firstchoice_no.SneakPastTheArmy;
-import frontend.gameplay.scenes.firstchoice_no.PreventConfirmation;
+import frontend.gameplay.scenes.firstchoiceno.SneakPastTheArmy;
+import frontend.gameplay.scenes.firstchoiceno.PreventConfirmation;
 import frontend.gameplay.paths.loyalty_path.LoyaltyPathIntro;
-import frontend.gameplay.scenes.firstchoice_yes.GiveConfirmation;
+import frontend.gameplay.scenes.firstchoiceyes.GiveConfirmation;
 import frontend.gameplay.endings.RememberanceEnding;
 import frontend.gameplay.paths.betrayer_path.BetrayerPathIntro;
-import frontend.gameplay.scenes.firstchoice_yes.MeetTheArmy;
+import frontend.gameplay.scenes.firstchoiceyes.MeetTheArmy;
 import frontend.gameplay.scenes.FirstChoiceScene;
-import frontend.gameplay.scenes.firstchoice_no.KeypadScene;
+import frontend.gameplay.scenes.firstchoiceno.KeypadScene;
 import frontend.gameplay.eastereggs.FakeEnd;
 import frontend.gameplay.paths.StartPath;
 import flixel.FlxState;

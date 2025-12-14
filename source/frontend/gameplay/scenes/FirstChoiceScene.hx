@@ -1,8 +1,8 @@
 package frontend.gameplay.scenes;
 
-import frontend.gameplay.scenes.firstchoice_yes.MeetTheArmy;
+import frontend.gameplay.scenes.firstchoiceyes.MeetTheArmy;
 import backend.MusicMan;
-import frontend.gameplay.scenes.firstchoice_no.KeypadScene;
+import frontend.gameplay.scenes.firstchoiceno.KeypadScene;
 import flixel.util.FlxTimer;
 import backend.TextTags;
 import flixel.tweens.FlxEase;

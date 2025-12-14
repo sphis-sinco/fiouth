@@ -1,4 +1,4 @@
-package frontend.gameplay.scenes.firstchoice_yes;
+package frontend.gameplay.scenes.firstchoiceyes;
 
 import backend.gameplay.PathState;
 

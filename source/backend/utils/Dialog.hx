@@ -7,7 +7,12 @@ class Dialog
 {
 	public static function getLines(filename:String):Array<String>
 	{
-		return Assets.getText('dialogs/$filename.txt'.dataPath()).split('\n');
+		var path = 'dialogs/$filename.txt'.dataPath();
+
+		if (!Assets.exists(path))
+			return ['N / A'];
+
+		return Assets.getText(path).split('\n');
 	}
 
 	public static function getLinesFromPathFolder(filename:String, path:GameplayPaths):Array<String>
@@ -17,7 +22,7 @@ class Dialog
 
 	public static function getLine(filename:String):String
 	{
-		return Assets.getText('dialogs/$filename.txt'.dataPath());
+		return getLines(filename)[0];
 	}
 
 	public static function getLineFromPathFolder(filename:String, path:GameplayPaths):String

@@ -10,7 +10,10 @@ class Dialog
 		var path = 'dialogs/$filename.txt'.dataPath();
 
 		if (!Assets.exists(path))
+		{
+			trace('Non-existant path: ' + path);
 			return ['N / A'];
+		}
 
 		return Assets.getText(path).split('\n');
 	}

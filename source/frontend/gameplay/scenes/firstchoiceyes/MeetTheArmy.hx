@@ -29,7 +29,7 @@ class MeetTheArmy extends PathState
 	{
 		super.create();
 
-		// FlxG.sound.play('pod_open'.soundsPath());
+		FlxG.sound.play('pod_open'.soundsPath(), 0.25);
 		FlxG.camera.flash(FlxColor.BLACK, 3);
 
 		bluespike.loadGraphic('characters/portraits/army/bluespike'.imagePath());

@@ -1,6 +1,9 @@
 package dev.scripts;
 
+import sys.FileSystem;
 import sys.io.File;
+
+using StringTools;
 
 class HexCodeCreator
 {
@@ -24,6 +27,11 @@ class HexCodeCreator
 
 		var listOfHexCodes:String = '';
 
+		if (FileSystem.exists('listOfHexCodes.txt'))
+		{
+            trace('existing list');
+			listOfHexCodes = File.getContent('listOfHexCodes.txt');
+		}
 		var startTime:Float = Date.now().getTime();
 
 		while (generatedHex() != '0xFFFFFFFF')
@@ -77,12 +85,16 @@ class HexCodeCreator
 			else
 				l8 = letters[letters.indexOf(l8) + 1];
 
-			trace(generatedHex());
-			listOfHexCodes += 'new FlxTextFormatMarkerPair(new FlxTextFormat(' + generatedHex() + '), "<' + generatedHex() + '>"),' + '\n';
+			var createdLine = 'new FlxTextFormatMarkerPair(new FlxTextFormat(' + generatedHex() + '), "<' + generatedHex() + '>"),' + '\n';
+			if (!listOfHexCodes.contains(createdLine))
+			{
+				Sys.println(generatedHex());
+				listOfHexCodes += createdLine;
+				File.saveContent('listOfHexCodes.txt', listOfHexCodes);
+			}
 		}
 		// listOfHexCodes.push(generatedHex());
 
 		trace('Time Taken: ' + (((Date.now().getTime() - startTime) / 1000) / 60) + 'm');
-		File.saveContent('listOfHexCodes.txt', listOfHexCodes);
 	}
 }

@@ -4,3 +4,5 @@ dump/
 .haxelib/
 *.drawio.bkp
 *.drawio.dtmp
+
+listOfHexCodes.txt

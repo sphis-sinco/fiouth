@@ -122,14 +122,27 @@ class ArmyMeetingInteractive extends MeetTheArmy
 		var speed:Float = 1;
 		var offset:Float = 0;
 
-		setDialogueText(Dialog.getLineFromPathFolder('temp', path), speed);
+		var dialogs = Dialog.getLinesFromPathFolder('temp', path);
 
-		FlxTimer.wait((speed + offset) / 2 + .05, function()
+		if (character == bluespike)
+			dialogs = Dialog.getLinesFromPathFolder('bluespike', path);
+
+		trace(dialogs);
+		var i = 0;
+		for (line in dialogs)
 		{
-			dialog.x = character.getGraphicMidpoint().x;
-		});
+			FlxTimer.wait(i * 2, () ->
+			{
+				setDialogueText(line, speed);
 
-		FlxTimer.wait((speed + offset) * 2, function()
+				FlxTimer.wait((speed + offset) / 2 + .05, function()
+				{
+					dialog.x = character.getGraphicMidpoint().x;
+				});
+			});
+		}
+
+		FlxTimer.wait(((speed + offset) * dialogs.length) * 2, function()
 		{
 			setDialogueText("", .01);
 			canInteract = true;

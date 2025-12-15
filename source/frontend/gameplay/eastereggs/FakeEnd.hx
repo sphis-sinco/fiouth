@@ -20,6 +20,11 @@ class FakeEnd extends PathState
 		super(START);
 	}
 
+	override function get_finished():Bool
+	{
+		return true;
+	}
+
 	var randomCheaterCheaterLines:Array<String> = [
 		'Cheater Cheater Meater Beater',
 		'Cheater Cheater Pussy Eatter',

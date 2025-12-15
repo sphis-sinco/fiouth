@@ -136,11 +136,6 @@ class ArmyMeetingInteractive extends MeetTheArmy
 			{
 				trace(line);
 				setDialogueText(line, speed);
-
-				FlxTimer.wait(speed / 2 + .05, function()
-				{
-					dialog.x = camFollow.x;
-				});
 			});
 
 			i++;
@@ -151,5 +146,12 @@ class ArmyMeetingInteractive extends MeetTheArmy
 			setDialogueText("", .01);
 			canInteract = true;
 		});
+	}
+
+	override function setDialogueTextNoFade(text:String)
+	{
+		super.setDialogueTextNoFade(text);
+
+		dialog.x = camFollow.x - (FlxG.width / 2);
 	}
 }

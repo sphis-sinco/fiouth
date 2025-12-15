@@ -88,9 +88,9 @@ class HexCodeCreator
 			var createdLine = 'new FlxTextFormatMarkerPair(new FlxTextFormat(' + generatedHex() + '), "<' + generatedHex() + '>"),' + '\n';
 			if (!listOfHexCodes.contains(createdLine))
 			{
-				Sys.println(generatedHex());
 				listOfHexCodes += createdLine;
 				File.saveContent('listOfHexCodes.txt', listOfHexCodes);
+				Sys.println(generatedHex() + ' (${listOfHexCodes.split('\n').length})');
 			}
 		}
 		// listOfHexCodes.push(generatedHex());

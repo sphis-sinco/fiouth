@@ -90,6 +90,7 @@ class HexCodeCreator
 			{
 				listOfHexCodes += createdLine;
 				File.saveContent('listOfHexCodes.txt', listOfHexCodes);
+                if (generatedHex().contains('F'))
 				Sys.println(generatedHex() + ' (${listOfHexCodes.split('\n').length})');
 			}
 		}

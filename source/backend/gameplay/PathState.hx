@@ -44,8 +44,11 @@ class PathState extends State
 	{
 		dialog.text = text;
 
-		playDialogueSound();
-		TextTags.apply(dialog);
+		if (text.length > 0)
+		{
+			playDialogueSound();
+			TextTags.apply(dialog);
+		}
 
 		dialog.screenCenter(X);
 	}

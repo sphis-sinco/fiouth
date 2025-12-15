@@ -32,14 +32,18 @@ class ArmyMeetingInteractive extends MeetTheArmy
 		emalf.ID = 2;
 		tistec.ID = 3;
 
+		leave.scale.set(Sprite.DEFAULT_SCALE / 2, Sprite.DEFAULT_SCALE / 2);
+		leave.updateHitbox();
+
 		leave.screenCenter(X);
-		leave.y = (FlxG.height - leave.height) - 32;
+		leave.y = (FlxG.height - leave.height);
 		leave.justReleased = function()
 		{
-			if (dialog.text != '') return;
-
-			FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new GiveConfirmation()));
-			FlxG.sound.music?.fadeOut(3, 0);
+			if (leave.visible && dialog.text == '')
+			{
+				FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new GiveConfirmation()));
+				FlxG.sound.music?.fadeOut(3, 0);
+			}
 		};
 		leave.visible = false;
 		add(leave);

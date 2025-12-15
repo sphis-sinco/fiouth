@@ -22,6 +22,9 @@ class TextTags
 
 			new FlxTextFormatMarkerPair(new FlxTextFormat(0x22FFFF), "<cyan>"),
 
+			new FlxTextFormatMarkerPair(new FlxTextFormat(0x62D2FF), "<tistec>"),
+			new FlxTextFormatMarkerPair(new FlxTextFormat(0xFF9962), "<emalf>"),
+			new FlxTextFormatMarkerPair(new FlxTextFormat(0xFF6C43), "<oaps>"),
 		];
 
 		flxtext.applyMarkup(flxtext.text, markups);

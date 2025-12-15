@@ -128,6 +128,10 @@ class ArmyMeetingInteractive extends MeetTheArmy
 
 		if (character == bluespike)
 			dialogs = Dialog.getLinesFromPathFolder('bluespike', path);
+		if (character == emalf)
+			dialogs = Dialog.getLinesFromPathFolder('emalf', path);
+		if (character == tistec)
+			dialogs = Dialog.getLinesFromPathFolder('tistec', path);
 
 		var i = 0;
 		for (line in dialogs)

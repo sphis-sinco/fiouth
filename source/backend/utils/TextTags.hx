@@ -6,7 +6,7 @@ class TextTags
 {
 	public static function apply(flxtext:FlxText)
 	{
-		flxtext.applyMarkup(flxtext.text, [
+		var markups = [
 			new FlxTextFormatMarkerPair(new FlxTextFormat(0xFF2222), "<red>"),
 			new FlxTextFormatMarkerPair(new FlxTextFormat(0xFF7722), "<orange>"),
 			new FlxTextFormatMarkerPair(new FlxTextFormat(0xFFFF22), "<yellow>"),
@@ -22,6 +22,8 @@ class TextTags
 
 			new FlxTextFormatMarkerPair(new FlxTextFormat(0x22FFFF), "<cyan>"),
 
-		]);
+		];
+
+		flxtext.applyMarkup(flxtext.text, markups);
 	}
 }

@@ -145,8 +145,9 @@ class ArmyMeetingInteractive extends MeetTheArmy
 			i++;
 		}
 
-		FlxTimer.wait(speed * (dialogs.length * 2), function()
+		FlxTimer.wait(speed * (dialogs.length * 2) + 2, function()
 		{
+			setDialogueText("", speed);
 			canInteract = true;
 			selection = 0;
 		});

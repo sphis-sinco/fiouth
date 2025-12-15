@@ -1,5 +1,7 @@
 package frontend.gameplay.scenes.firstchoiceyes;
 
+import flixel.util.FlxColor;
+import frontend.objects.ui.Directional;
 import backend.utils.Dialog;
 import flixel.math.FlxPoint;
 import haxe.Timer;
@@ -18,7 +20,7 @@ class ArmyMeetingInteractive extends MeetTheArmy
 	}
 
 	override function get_finished():Bool
-		return false;
+		return true;
 
 	public var canInteract:Bool = false;
 
@@ -29,11 +31,25 @@ class ArmyMeetingInteractive extends MeetTheArmy
 		bluespike.ID = 1;
 		emalf.ID = 2;
 		tistec.ID = 3;
+
+		leave.screenCenter(X);
+		leave.y = (FlxG.height - leave.height) - 32;
+		leave.justReleased = function()
+		{
+			if (dialog.text != '') return;
+
+			FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new GiveConfirmation()));
+			FlxG.sound.music?.fadeOut(3, 0);
+		};
+		leave.visible = false;
+		add(leave);
 	}
 
 	public var selection:Int = 0;
 
 	public var hadInteraction:Bool = false;
+
+	public var leave:Directional = new Directional(DOWN);
 
 	override function startSequence()
 	{
@@ -155,6 +171,16 @@ class ArmyMeetingInteractive extends MeetTheArmy
 			setDialogueText('', speed);
 			canInteract = true;
 			selection = 0;
+
+			if (!leave.visible)
+			{
+				leave.alpha = 0;
+				leave.visible = true;
+
+				FlxTween.tween(leave, {alpha: 1}, 1, {
+					ease: FlxEase.sineInOut
+				});
+			}
 		});
 	}
 

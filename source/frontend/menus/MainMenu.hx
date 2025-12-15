@@ -49,7 +49,7 @@ class MainMenu extends State
 		if (Save.data.gameplay.hasBegun)
 			playText.text = Dialog.getLineFromPrefixPath('mainmenu/continue', 'menus/');
 
-		#if debug playText.text += " [" + Save.data.gameplay.path + "]"; #end
+		#if debug playText.text += ' [' + Save.data.gameplay.path + ']'; #end
 
 		add(playText);
 

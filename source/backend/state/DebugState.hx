@@ -15,7 +15,7 @@ class DebugState extends State
 	{
 		super.resetWatermark();
 
-		watermark.text += "\nDebug State";
+		watermark.text += '\nDebug State';
 	}
 
 	override function update(elapsed:Float)
@@ -28,14 +28,14 @@ class DebugState extends State
 
 	override public function debugWatermarks()
 	{
-		watermark.text += "\n\nState: " + Type.getClassName(Type.getClass(FlxG.state));
+		watermark.text += '\n\nState: ' + Type.getClassName(Type.getClass(FlxG.state));
 		if (Std.isOfType(FlxG.state, PathState))
 		{
 			var pathState:PathState = cast FlxG.state;
 
-			watermark.text += "\n * Path: " + pathState.path;
+			watermark.text += '\n * Path: ' + pathState.path;
 		}
 
-		watermark.text += "\n\nSave slot: " + Save.currentSaveSlot;
+		watermark.text += '\n\nSave slot: ' + Save.currentSaveSlot;
 	}
 }

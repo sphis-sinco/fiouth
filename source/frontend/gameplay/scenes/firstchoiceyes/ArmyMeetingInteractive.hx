@@ -117,7 +117,7 @@ class ArmyMeetingInteractive extends MeetTheArmy
 	{
 		super.debugWatermarks();
 
-		watermark.text += "\n\nSelected Character: " + ['none', 'bluespike', 'emalf', 'tistec'][selection];
+		watermark.text += '\n\nSelected Character: ' + ['none', 'bluespike', 'emalf', 'tistec'][selection];
 	}
 
 	public function characterDialogue(character:Sprite)
@@ -147,7 +147,7 @@ class ArmyMeetingInteractive extends MeetTheArmy
 
 		FlxTimer.wait(speed * (dialogs.length * 2) + speed, function()
 		{
-			setDialogueText("", speed);
+			setDialogueText('', speed);
 			canInteract = true;
 			selection = 0;
 		});

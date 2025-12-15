@@ -38,11 +38,11 @@ class InitState extends State
 			}
 		});
 
-		if (Compiler.getDefine('STARTING_STATE') != null && Compiler.getDefine('STARTING_STATE') != "1")
-			startingState = Compiler.getDefine('STARTING_STATE').split("=")[0];
+		if (Compiler.getDefine('STARTING_STATE') != null && Compiler.getDefine('STARTING_STATE') != '1')
+			startingState = Compiler.getDefine('STARTING_STATE').split('=')[0];
 		startingState = startingState.toLowerCase();
 
-		if (Compiler.getDefine('PATH_IN_TITLE') == "1")
+		if (Compiler.getDefine('PATH_IN_TITLE') == '1')
 			FlxG.signals.preStateCreate.add(_state ->
 			{
 				Application.current.window.title = 'Fiouth';

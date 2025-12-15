@@ -69,8 +69,8 @@ class Save
 
 		globalData.lastSlot = Std.int(FlxMath.bound(globalData.lastSlot, DEFAULT_SLOT, globalData?.maxSlot ?? FlxMath.MAX_VALUE_INT));
 
-		if (Compiler.getDefine('SAVE_SLOT') != null && Compiler.getDefine('SAVE_SLOT') != "1")
-			loadFromIntSlot(Std.parseInt(Compiler.getDefine('SAVE_SLOT').split("=")[0]));
+		if (Compiler.getDefine('SAVE_SLOT') != null && Compiler.getDefine('SAVE_SLOT') != '1')
+			loadFromIntSlot(Std.parseInt(Compiler.getDefine('SAVE_SLOT').split('=')[0]));
 		else
 			loadFromIntSlot(globalData.lastSlot ?? DEFAULT_SLOT);
 	}

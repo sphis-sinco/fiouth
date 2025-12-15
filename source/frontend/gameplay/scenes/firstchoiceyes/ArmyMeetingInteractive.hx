@@ -32,9 +32,6 @@ class ArmyMeetingInteractive extends MeetTheArmy
 		emalf.ID = 2;
 		tistec.ID = 3;
 
-		leave.scale.set(Sprite.DEFAULT_SCALE / 2, Sprite.DEFAULT_SCALE / 2);
-		leave.updateHitbox();
-
 		leave.screenCenter(X);
 		leave.y = (FlxG.height - leave.height);
 		leave.justReleased = function()

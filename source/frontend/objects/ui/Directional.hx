@@ -42,6 +42,14 @@ class Directional extends Sprite
 		updateHitbox();
 	}
 
+	override function resetScale()
+	{
+		super.resetScale();
+
+		scale.set(Sprite.DEFAULT_SCALE / 2, Sprite.DEFAULT_SCALE / 2);
+		updateHitbox();
+	}
+
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);

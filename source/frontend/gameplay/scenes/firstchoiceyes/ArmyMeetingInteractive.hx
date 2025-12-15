@@ -33,10 +33,14 @@ class ArmyMeetingInteractive extends MeetTheArmy
 
 	public var selection:Int = 0;
 
+	public var hadInteraction:Bool = false;
+
 	override function startSequence()
 	{
 		remove(commander);
 		commander.destroy();
+
+		enableCursor = true;
 
 		var i = 3;
 
@@ -65,7 +69,6 @@ class ArmyMeetingInteractive extends MeetTheArmy
 		new FlxTimer().start(3, t ->
 		{
 			canInteract = true;
-			enableCursor = true;
 		});
 	}
 
@@ -147,6 +150,8 @@ class ArmyMeetingInteractive extends MeetTheArmy
 
 		FlxTimer.wait(speed * (dialogs.length * 2) + speed, function()
 		{
+			hadInteraction = true;
+
 			setDialogueText('', speed);
 			canInteract = true;
 			selection = 0;

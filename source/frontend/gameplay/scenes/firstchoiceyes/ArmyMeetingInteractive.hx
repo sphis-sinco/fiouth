@@ -73,6 +73,9 @@ class ArmyMeetingInteractive extends MeetTheArmy
 	{
 		super.update(elapsed);
 
+		dialog.fieldWidth = FlxG.width;
+		dialog.alignment = CENTER;
+
 		selection = 0;
 		for (character in [bluespike, emalf, tistec])
 		{
@@ -120,7 +123,6 @@ class ArmyMeetingInteractive extends MeetTheArmy
 	public function characterDialogue(character:Sprite)
 	{
 		var speed:Float = 1;
-		var offset:Float = 0;
 
 		var dialogs = Dialog.getLinesFromPathFolder('temp', path);
 
@@ -130,21 +132,21 @@ class ArmyMeetingInteractive extends MeetTheArmy
 		var i = 0;
 		for (line in dialogs)
 		{
-			FlxTimer.wait(i * 2, () ->
+			FlxTimer.wait(speed * (i * 2), () ->
 			{
 				trace(line);
 				setDialogueText(line, speed);
 
-				FlxTimer.wait((speed + offset) / 2 + .05, function()
+				FlxTimer.wait(speed / 2 + .05, function()
 				{
-					dialog.x = character.getGraphicMidpoint().x;
+					dialog.x = camFollow.x;
 				});
 			});
 
 			i++;
 		}
 
-		FlxTimer.wait(((speed + offset) * dialogs.length) * 2, function()
+		FlxTimer.wait(speed * (dialogs.length * 2), function()
 		{
 			setDialogueText("", .01);
 			canInteract = true;

@@ -29,11 +29,27 @@ class HexCodeCreator
 
 		if (FileSystem.exists('listOfHexCodes.txt'))
 		{
-            trace('existing list');
+			trace('existing list');
 			listOfHexCodes = File.getContent('listOfHexCodes.txt');
-		}
-		var startTime:Float = Date.now().getTime();
 
+            var lastCode = listOfHexCodes.split('\n')[listOfHexCodes.split('\n').length - 2];
+            trace(lastCode);
+            lastCode = lastCode.split('(')[2].split(')')[0];
+            trace(lastCode);
+            lastCode = lastCode.replace('0x', '');
+            trace(lastCode);
+
+            l1 = lastCode.charAt(0);
+            l2 = lastCode.charAt(1);
+            l3 = lastCode.charAt(2);
+            l4 = lastCode.charAt(3);
+            l5 = lastCode.charAt(4);
+            l6 = lastCode.charAt(5);
+            l7 = lastCode.charAt(6);
+            l8 = lastCode.charAt(7);
+
+            // return;
+		}
 		while (generatedHex() != '0xFFFFFFFF')
 		{
 			if (letters[letters.indexOf(l8) + 1] == null)
@@ -90,12 +106,9 @@ class HexCodeCreator
 			{
 				listOfHexCodes += createdLine;
 				File.saveContent('listOfHexCodes.txt', listOfHexCodes);
-                if (generatedHex().contains('F'))
-				Sys.println(generatedHex() + ' (${listOfHexCodes.split('\n').length})');
+				// if (generatedHex().contains('F') && (Math.random() * 1000 < 10))
+					// Sys.println(generatedHex() + ' (${listOfHexCodes.split('\n').length})');
 			}
 		}
-		// listOfHexCodes.push(generatedHex());
-
-		trace('Time Taken: ' + (((Date.now().getTime() - startTime) / 1000) / 60) + 'm');
 	}
 }

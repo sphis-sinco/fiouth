@@ -13,6 +13,8 @@ import backend.state.DebugState as State;
 import backend.errors.Pettiness;
 import backend.save.Save;
 
+using StringTools;
+
 class PathState extends State
 {
 	public var path:GameplayPaths;
@@ -44,7 +46,7 @@ class PathState extends State
 	{
 		dialog.text = text;
 
-		if (text.length > 0)
+		if (text.trim().length > 0 && text.trim() != null && text.trim() != '')
 		{
 			playDialogueSound();
 			TextTags.apply(dialog);

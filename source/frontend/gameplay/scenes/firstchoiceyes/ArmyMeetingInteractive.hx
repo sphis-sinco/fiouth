@@ -127,12 +127,12 @@ class ArmyMeetingInteractive extends MeetTheArmy
 		if (character == bluespike)
 			dialogs = Dialog.getLinesFromPathFolder('bluespike', path);
 
-		trace(dialogs);
 		var i = 0;
 		for (line in dialogs)
 		{
 			FlxTimer.wait(i * 2, () ->
 			{
+				trace(line);
 				setDialogueText(line, speed);
 
 				FlxTimer.wait((speed + offset) / 2 + .05, function()
@@ -140,6 +140,8 @@ class ArmyMeetingInteractive extends MeetTheArmy
 					dialog.x = character.getGraphicMidpoint().x;
 				});
 			});
+
+			i++;
 		}
 
 		FlxTimer.wait(((speed + offset) * dialogs.length) * 2, function()

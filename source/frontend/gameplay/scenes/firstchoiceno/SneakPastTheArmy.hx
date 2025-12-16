@@ -38,6 +38,8 @@ class SneakPastTheArmy extends PathState
 		var time = 0;
 		for (dialog in intro_dialog)
 		{
+			dialog = dialog.trim();
+
 			FlxTimer.wait(time, function()
 			{
 				if (dialog.startsWith('<event>') && dialog.endsWith('<event>'))

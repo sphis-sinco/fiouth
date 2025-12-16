@@ -25,8 +25,6 @@ class SneakPastTheArmy extends PathState
 
 	public var intro_dialog:Array<String>;
 
-	public var playing:Bool = false;
-
 	override function create()
 	{
 		super.create();
@@ -91,7 +89,7 @@ class SneakPastTheArmy extends PathState
 		if (events.contains('commander_move') || events.contains('commander_leave'))
 		{
 			var tick = 0;
-			FlxTween.tween(commander, {x: events.contains('commander_leave') ? (commander.width * (FlxG.width / commander.width)) * 2: commander.x + bluespike.width * 4}, events.contains('commander_leave') ? 6 : 2, {
+			FlxTween.tween(commander, {x: events.contains('commander_leave') ? (commander.width * (FlxG.width / commander.width)): commander.x + bluespike.width * 4}, events.contains('commander_leave') ? 12 : 2, {
 				onUpdate: function(t:FlxTween)
 				{
 					tick++;
@@ -107,6 +105,9 @@ class SneakPastTheArmy extends PathState
 				onComplete: function(t:FlxTween)
 				{
 					commander.loadGraphic(commander.graphic.key.split('-')[0] + '-idle.png');
+
+					if (events.contains('commander_leave'))
+						commander.visible = false;
 				}
 			});
 		}

@@ -31,7 +31,7 @@ class Directional extends Sprite
 
 	override public function new(directional:DirectionalDirection = LEFT, ?x:Float, ?y:Float, ?scaleOffset:Int = 0)
 	{
-		super(x, y, -2 + scaleOffset);
+		super(x, y, -Std.int(Sprite.DEFAULT_SCALE / 2) + scaleOffset);
 
 		loadDirectional(directional);
 	}

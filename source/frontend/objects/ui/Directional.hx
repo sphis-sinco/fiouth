@@ -29,9 +29,9 @@ class Directional extends Sprite
 	public var releasedMiddle:Void->Void = null;
 	public var releasedRight:Void->Void = null;
 
-	override public function new(directional:DirectionalDirection = LEFT, ?x:Float, ?y:Float)
+	override public function new(directional:DirectionalDirection = LEFT, ?x:Float, ?y:Float, ?scaleOffset:Int = 0)
 	{
-		super(x, y);
+		super(x, y, -2 + scaleOffset);
 
 		loadDirectional(directional);
 	}
@@ -39,14 +39,6 @@ class Directional extends Sprite
 	public function loadDirectional(directional:DirectionalDirection = LEFT)
 	{
 		loadGraphic('ui/directionals/$directional'.imagePath());
-		updateHitbox();
-	}
-
-	override function resetScale()
-	{
-		super.resetScale();
-
-		scale.set(Sprite.DEFAULT_SCALE / 2, Sprite.DEFAULT_SCALE / 2);
 		updateHitbox();
 	}
 

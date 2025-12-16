@@ -64,12 +64,12 @@ class SneakPastTheArmy extends PathState
 		{
 			var tick = 0;
 
-			var x = commander.x + bluespike.width * 4;
+			var newX = commander.x + bluespike.width * 4;
 
 			if (events.contains('bluespike_backup'))
-				x = commander.x + bluespike.width * 8;
+				newX = commander.x + bluespike.width * 8;
 
-			FlxTween.tween(bluespike, {x: x}, 1, {
+			FlxTween.tween(bluespike, {x: newX}, 1, {
 				onUpdate: function(t:FlxTween)
 				{
 					tick++;

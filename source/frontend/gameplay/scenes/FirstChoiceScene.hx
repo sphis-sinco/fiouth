@@ -114,16 +114,24 @@ class FirstChoiceScene extends PathState
 					switch (selection)
 					{
 						case 0:
-							setDialogueText(Dialog.getLine('decision_yes'));
+							var time = -3;
+							for (dialog in Dialog.getLinesFromPathFolder('decision_yes', path))
+							{
+								time += 3;
+								FlxTimer.wait(time, () -> setDialogueText(dialog));
+							}
 
 							MusicMan.playMusic('toldYou-intro');
 
-							FlxG.sound.play('transportation'.soundsPath());
-							FlxTimer.wait(3.65, () ->
+							FlxTimer.wait(time, () ->
 							{
-								dialog.visible = false;
-								FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new MeetTheArmy()));
-								FlxG.sound.music?.fadeOut(3, 0, t -> FlxG.sound.music?.stop());
+								FlxG.sound.play('transportation'.soundsPath());
+								FlxTimer.wait(3.65, () ->
+								{
+									dialog.visible = false;
+									FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new MeetTheArmy()));
+									FlxG.sound.music?.fadeOut(3, 0, t -> FlxG.sound.music?.stop());
+								});
 							});
 						case 1:
 							var decision_no:Array<String> = Dialog.getLinesFromPathFolder('decision_no', path);

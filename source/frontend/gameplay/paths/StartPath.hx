@@ -49,6 +49,8 @@ class StartPath extends PathState
 		// 3, 6, 9, 12, 15, 18, 21
 		readDialogueList(lines, 3);
 
+		time = (lines.length - 1) * 3;
+
 		FlxTimer.wait(time, () ->
 		{
 			FlxG.sound.play('transportation'.soundsPath());

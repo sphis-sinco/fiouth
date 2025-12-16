@@ -55,6 +55,17 @@ class InitState extends State
 				}
 			});
 
+		FlxG.signals.postUpdate.add(() ->
+		{
+			if (Std.isOfType(FlxG.state, PathState))
+			{
+				var pathState:PathState = cast FlxG.state;
+
+				if (!pathState.finished && FlxG.keys.justReleased.ESCAPE)
+					FlxG.switchState(() -> new MainMenu());
+			}
+		});
+
 		switch (startingState.toLowerCase())
 		{
 			case 'path-select':

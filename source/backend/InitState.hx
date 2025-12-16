@@ -1,5 +1,6 @@
 package backend;
 
+import frontend.debug.Preloading;
 import lime.utils.Assets;
 import backend.state.State;
 import backend.gameplay.PathState;
@@ -70,8 +71,12 @@ class InitState extends State
 		switch (startingState.toLowerCase())
 		{
 			case 'path-select':
-				Save.loadFromSlot('pathSelect');
+				Save.loadFromSlot('debug');
 				FlxG.switchState(() -> new PathSelect());
+
+			case 'preloading':
+				Save.loadFromSlot('debug');
+				FlxG.switchState(() -> new Preloading());
 
 			default:
 				FlxG.switchState(() -> new MainMenu());

@@ -1,5 +1,6 @@
 package backend;
 
+import lime.utils.Assets;
 import backend.state.State;
 import backend.gameplay.PathState;
 import haxe.macro.Compiler;
@@ -65,6 +66,8 @@ class InitState extends State
 					FlxG.switchState(() -> new MainMenu());
 			}
 		});
+
+		Assets.list();
 
 		switch (startingState.toLowerCase())
 		{

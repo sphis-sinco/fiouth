@@ -9,3 +9,9 @@
 <event>commander_flip_direction<event><event>commander_move<event><event>bluespike_backup<event><event>fade_dialog_out<event>
 <cyan>YOU WEREN'T.<cyan>
 <cyan>PAYING ATTENTION!?!?!?<cyan>
+<blue>...<blue>
+<blue>...no...<blue>
+<blue>...we weren't.<blue>
+<cyan>...<cyan>
+<event>commander_leave<event>
+<cyan>I should ring you by the neck<cyan>

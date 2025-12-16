@@ -88,10 +88,10 @@ class SneakPastTheArmy extends PathState
 				}
 			});
 		}
-		if (events.contains('commander_move'))
+		if (events.contains('commander_move') || events.contains('commander_leave'))
 		{
 			var tick = 0;
-			FlxTween.tween(commander, {x: commander.x + bluespike.width * 4}, 2, {
+			FlxTween.tween(commander, {x: events.contains('commander_leave') ? (commander.width * (FlxG.width / commander.width)) * 2: commander.x + bluespike.width * 4}, events.contains('commander_leave') ? 6 : 2, {
 				onUpdate: function(t:FlxTween)
 				{
 					tick++;

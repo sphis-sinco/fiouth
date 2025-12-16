@@ -60,7 +60,7 @@ class AssetPaths
 	public static function exists(path:String):Bool
 	{
 		#if sys
-		// return sys.FileSystem.exists(path);
+		return sys.FileSystem.exists(path);
 		#end
 
 		return Assets.exists(path) && Assets.getText(path) != null;

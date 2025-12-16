@@ -67,8 +67,6 @@ class InitState extends State
 			}
 		});
 
-		trace(Assets.list());
-
 		switch (startingState.toLowerCase())
 		{
 			case 'path-select':

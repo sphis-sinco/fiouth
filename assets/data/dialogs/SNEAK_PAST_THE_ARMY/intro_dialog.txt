@@ -1,0 +1,4 @@
+<cyan>HOW COULD YOU LET HIM GET AWAY!?<cyan>
+<event>bluespike_move<event>
+<blue>We weren't...<blue>
+<blue>Paying attention...<blue>

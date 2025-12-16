@@ -69,7 +69,7 @@ class SneakPastTheArmy extends PathState
 			if (events.contains('bluespike_backup'))
 				newX = commander.x + bluespike.width * 8;
 
-			FlxTween.tween(bluespike, {x: newX}, 1, {
+			FlxTween.tween(bluespike, {x: newX}, 2, {
 				onUpdate: function(t:FlxTween)
 				{
 					tick++;
@@ -91,7 +91,7 @@ class SneakPastTheArmy extends PathState
 		if (events.contains('commander_move'))
 		{
 			var tick = 0;
-			FlxTween.tween(commander, {x: commander.x + bluespike.width * 4}, 1, {
+			FlxTween.tween(commander, {x: commander.x + bluespike.width * 4}, 2, {
 				onUpdate: function(t:FlxTween)
 				{
 					tick++;

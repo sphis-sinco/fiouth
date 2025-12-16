@@ -41,7 +41,7 @@ class State extends FlxState
 	}
 
 	public function resetWatermark()
-		watermark.text = Application.current.meta.get('version');
+		watermark.text = Global.VERSION;
 
 	public function debugWatermarks() {}
 

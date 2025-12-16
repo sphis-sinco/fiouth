@@ -51,8 +51,23 @@ class SneakPastTheArmy extends PathState
 		}
 	}
 
-	public function eventFunction(event:Array<String>)
+	public function eventFunction(events:Array<String>)
 	{
-		trace(event);
+		for (event in events)
+		{
+			event = event.trim();
+
+			if (event == '')
+				events.remove(event);
+		}
+
+		trace(events);
+	}
+
+	override function setDialogueTextNoFade(text:String)
+	{
+		super.setDialogueTextNoFade(text);
+
+		dialog.y = 32;
 	}
 }

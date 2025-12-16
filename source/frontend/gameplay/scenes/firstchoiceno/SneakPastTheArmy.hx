@@ -45,7 +45,14 @@ class SneakPastTheArmy extends PathState
 
 		bluespike.x += bluespike.width * 8;
 
+		var time = 0;
 		readDialogueList(intro_dialog);
+		time = 2 * (intro_dialog.length - 1);
+
+		FlxTimer.wait(time, function()
+		{
+			FlxG.switchState(() -> new PreventConfirmation());
+		});
 	}
 
 	override function eventFunction(events:Array<String>)
@@ -89,27 +96,29 @@ class SneakPastTheArmy extends PathState
 		if (events.contains('commander_move') || events.contains('commander_leave'))
 		{
 			var tick = 0;
-			FlxTween.tween(commander, {x: events.contains('commander_leave') ? (commander.width * (FlxG.width / commander.width)): commander.x + bluespike.width * 4}, events.contains('commander_leave') ? 12 : 2, {
-				onUpdate: function(t:FlxTween)
-				{
-					tick++;
-
-					if (tick % 10 == 0)
+			FlxTween.tween(commander,
+				{x: events.contains('commander_leave') ? (commander.width * (FlxG.width / commander.width)) : commander.x + bluespike.width * 4},
+				events.contains('commander_leave') ? 12 : 2, {
+					onUpdate: function(t:FlxTween)
 					{
-						if (commander.graphic.key.endsWith('walk.png'))
-							commander.loadGraphic(commander.graphic.key.split('-')[0] + '-idle.png');
-						else
-							commander.loadGraphic(commander.graphic.key.split('-')[0] + '-walk.png');
-					}
-				},
-				onComplete: function(t:FlxTween)
-				{
-					commander.loadGraphic(commander.graphic.key.split('-')[0] + '-idle.png');
+						tick++;
 
-					if (events.contains('commander_leave'))
-						commander.visible = false;
-				}
-			});
+						if (tick % 10 == 0)
+						{
+							if (commander.graphic.key.endsWith('walk.png'))
+								commander.loadGraphic(commander.graphic.key.split('-')[0] + '-idle.png');
+							else
+								commander.loadGraphic(commander.graphic.key.split('-')[0] + '-walk.png');
+						}
+					},
+					onComplete: function(t:FlxTween)
+					{
+						commander.loadGraphic(commander.graphic.key.split('-')[0] + '-idle.png');
+
+						if (events.contains('commander_leave'))
+							commander.visible = false;
+					}
+				});
 		}
 	}
 

@@ -15,7 +15,7 @@ class Overlay extends Sprite
 	{
 		var combinedScale = 1 + scaleOffset;
 
-		scale.set((FlxG.width / combinedScale), (FlxG.height / combinedScale));
+		scale.set((FlxG.width / (this.width * combinedScale)), (FlxG.height / (this.height * combinedScale)));
 		updateHitbox();
 	}
 }

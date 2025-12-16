@@ -60,12 +60,14 @@ class SneakPastTheArmy extends PathState
 
 		ventOverlay = new Overlay();
 		ventOverlay.loadGraphic('overlays/vent'.imagePath());
-		ventOverlay.updateHitbox();
+		ventOverlay.resetScale();
 		add(ventOverlay);
 
-		remove(dialog);
-		add(dialog);
+		members.remove(dialog);
+		members.push(dialog);
+
 		dialog.antialiasing = true; // the vent makes it harder to hear
+		dialog.alpha = 0.5;
 	}
 
 	override function eventFunction(events:Array<String>)
@@ -146,7 +148,7 @@ class SneakPastTheArmy extends PathState
 		var dialogueSfx = new FlxSound().loadStream('dialogue'.soundsPath());
 	
 		dialogueSfx.volume = 0.7;
-		
+
 		dialogueSfx.play(true);
 	}
 }

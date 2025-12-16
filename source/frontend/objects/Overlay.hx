@@ -13,7 +13,7 @@ class Overlay extends Sprite
 
 	override function resetScale()
 	{
-		var combinedScale = Sprite.DEFAULT_SCALE + scaleOffset;
+		var combinedScale = 1 + scaleOffset;
 
 		scale.set((FlxG.width / combinedScale), (FlxG.height / combinedScale));
 		updateHitbox();

@@ -1,4 +1,11 @@
 <cyan>HOW COULD YOU LET HIM GET AWAY!?<cyan>
-<event>bluespike_move<event>
+<event>bluespike_move<event><event>fade_dialog_out<event>
 <blue>We weren't...<blue>
 <blue>Paying attention...<blue>
+<event>fade_dialog_out<event><event>commander_idle<event>
+<cyan>...<cyan>
+<cyan>You weren't...<cyan>
+<cyan>Paying attention?<cyan>
+<event>commander_move<event><event>bluespike_backup<event><event>fade_dialog_out<event>
+<cyan>YOU WEREN'T.<cyan>
+<cyan>PAYING ATTENTION!?!?!?<cyan>

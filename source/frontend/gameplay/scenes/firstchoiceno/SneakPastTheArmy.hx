@@ -54,6 +54,12 @@ class SneakPastTheArmy extends PathState
 	{
 		super.eventFunction(events);
 
+		if (events.contains('commander_flip_direction'))
+			commander.loadGraphic(commander.graphic.key.replace('_left', '_right'));
+
+		if (events.contains('commander_idle'))
+			commander.loadGraphic(commander.graphic.key.split('-')[0] + '-idle.png');
+
 		if (events.contains('bluespike_move'))
 		{
 			var tick = 0;

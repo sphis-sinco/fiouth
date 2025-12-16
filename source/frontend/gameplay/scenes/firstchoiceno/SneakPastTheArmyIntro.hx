@@ -25,11 +25,8 @@ class SneakPastTheArmyIntro extends PathState
 		intro_dialog = Dialog.getLinesFromPathFolder('intro_dialog', path);
 
 		var time = 0;
-		for (dialog in intro_dialog)
-		{
-			FlxTimer.wait(time, () -> setDialogueText(dialog, 1));
-			time += 2;
-		}
+		readDialogueList(intro_dialog);
+		time = 2 * (intro_dialog.length - 1);
 
 		FlxTimer.wait(time, function()
 		{

@@ -47,12 +47,7 @@ class StartPath extends PathState
 		var time = 0;
 
 		// 3, 6, 9, 12, 15, 18, 21
-		for (line in lines)
-		{
-			FlxTimer.wait(time, () -> setDialogueText(line));
-
-			time += 3;
-		}
+		readDialogueList(lines, 3);
 
 		FlxTimer.wait(time, () ->
 		{

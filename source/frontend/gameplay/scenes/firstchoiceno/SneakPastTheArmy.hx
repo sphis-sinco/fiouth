@@ -35,33 +35,7 @@ class SneakPastTheArmy extends PathState
 
 		commander.screenCenter();
 
-		var time = 0;
-		for (dialog in intro_dialog)
-		{
-			dialog = dialog.trim();
-
-			FlxTimer.wait(time, function()
-			{
-				if (dialog.startsWith('<event>') && dialog.endsWith('<event>'))
-					eventFunction(dialog.split('<event>'));
-				else
-					setDialogueText(dialog, 1);
-			});
-			time += 2;
-		}
-	}
-
-	public function eventFunction(events:Array<String>)
-	{
-		for (event in events)
-		{
-			event = event.trim();
-
-			if (event == '')
-				events.remove(event);
-		}
-
-		trace(events);
+		readDialogueList(intro_dialog);
 	}
 
 	override function setDialogueTextNoFade(text:String)

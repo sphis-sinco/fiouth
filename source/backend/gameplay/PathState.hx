@@ -1,5 +1,6 @@
 package backend.gameplay;
 
+import flixel.util.FlxTimer;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -58,6 +59,37 @@ class PathState extends State
 	public function playDialogueSound()
 	{
 		new FlxSound().loadStream('dialogue'.soundsPath()).play(true);
+	}
+
+	public function eventFunction(events:Array<String>)
+	{
+		for (event in events)
+		{
+			event = event.trim();
+
+			if (event == '')
+				events.remove(event);
+		}
+
+		trace(events);
+	}
+
+	public function readDialogueList(list:Array<String>, additional_time:Int = 2, starting_time:Int = 0, dialogue_speed:Int = 1)
+	{
+		var time = starting_time;
+		for (dialog in list)
+		{
+			dialog = dialog.trim();
+
+			FlxTimer.wait(time, function()
+			{
+				if (dialog.startsWith('<event>') && dialog.endsWith('<event>'))
+					eventFunction(dialog.split('<event>'));
+				else
+					setDialogueText(dialog, dialogue_speed);
+			});
+			time += additional_time;
+		}
 	}
 
 	override public function new(path:GameplayPaths)

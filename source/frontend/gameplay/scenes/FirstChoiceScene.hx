@@ -115,11 +115,9 @@ class FirstChoiceScene extends PathState
 					{
 						case 0:
 							var time = -3;
-							for (dialog in Dialog.getLinesFromPathFolder('decision_yes', path))
-							{
-								time += 3;
-								FlxTimer.wait(time, () -> setDialogueText(dialog));
-							}
+							var decision_yes = Dialog.getLinesFromPathFolder('decision_yes', path);
+							readDialogueList(decision_yes, 3, -3);
+							time = 3 * (decision_yes.length - 1);
 
 							MusicMan.playMusic('toldYou-intro');
 

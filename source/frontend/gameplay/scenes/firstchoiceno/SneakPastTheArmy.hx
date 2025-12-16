@@ -1,5 +1,7 @@
 package frontend.gameplay.scenes.firstchoiceno;
 
+import flixel.util.FlxColor;
+import flixel.FlxSprite;
 import flixel.sound.FlxSound;
 import frontend.objects.Overlay;
 import flixel.tweens.FlxTween;
@@ -55,7 +57,16 @@ class SneakPastTheArmy extends PathState
 
 		FlxTimer.wait(time, function()
 		{
-			FlxG.switchState(() -> new PreventConfirmation());
+			var blk = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0x17181F);
+			add(blk);
+			blk.x = blk.width;
+			FlxTween.tween(blk, {x: 0}, 3, {
+				onComplete: t ->
+				{
+					FlxG.switchState(() -> new PreventConfirmation());
+				}
+			});
+			FlxTween.tween(ventOverlay, {x: -blk.width}, 3);
 		});
 
 		ventOverlay = new Overlay();
@@ -145,9 +156,10 @@ class SneakPastTheArmy extends PathState
 		dialog.y = 32;
 	}
 
-	override function playDialogueSound() {
+	override function playDialogueSound()
+	{
 		var dialogueSfx = new FlxSound().loadStream('dialogue'.soundsPath());
-	
+
 		dialogueSfx.volume = 0.7;
 
 		dialogueSfx.play(true);

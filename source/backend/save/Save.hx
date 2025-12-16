@@ -23,7 +23,7 @@ class Save
 	public static function getDefault():SaveData
 	{
 		return {
-			version: Application.current.meta.get('version'),
+			version: Global.VERSION,
 			slot: currentSaveSlot,
 
 			gameplay: {

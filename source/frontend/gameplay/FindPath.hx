@@ -1,6 +1,7 @@
 package frontend.gameplay;
 
 import frontend.gameplay.scenes.firstchoiceyes.ArmyMeetingInteractive;
+import frontend.gameplay.scenes.firstchoiceno.SneakPastTheArmyIntro;
 import frontend.gameplay.scenes.firstchoiceno.SneakPastTheArmy;
 import frontend.gameplay.scenes.firstchoiceno.PreventConfirmation;
 import frontend.gameplay.paths.loyalty_path.LoyaltyPathIntro;
@@ -28,6 +29,7 @@ class FindPath
 			case GIVE_CONFIRMATION: return new GiveConfirmation();
 			case KEYPAD_SCENE: return new KeypadScene();
 			case PREVENT_CONFIRMATION: return new PreventConfirmation();
+			case SNEAK_PAST_THE_ARMY_INTRO: return new SneakPastTheArmyIntro();
 			case SNEAK_PAST_THE_ARMY: return new SneakPastTheArmy();
 			case BETRAYAL_PATH_INTRO: return new BetrayerPathIntro();
 			case ENDING_REMEMBERANCE: return new RememberanceEnding();

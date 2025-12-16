@@ -132,7 +132,7 @@ class KeypadScene extends PathState
 						{
 							displayRegularKeypad = false;
 							keypad.visible = false;
-							FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new SneakPastTheArmy()));
+							FlxG.camera.flash(FlxColor.WHITE, 3, () -> FlxG.switchState(() -> new SneakPastTheArmyIntro()));
 							FlxG.sound.music?.fadeOut(3, 0);
 						});
 					}

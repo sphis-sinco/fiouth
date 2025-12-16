@@ -45,7 +45,7 @@ class SneakPastTheArmy extends PathState
 
 		bluespike.screenCenter();
 
-		bluespike.x += bluespike.width * 4;
+		bluespike.x += bluespike.width * 8;
 
 		readDialogueList(intro_dialog);
 	}
@@ -57,7 +57,7 @@ class SneakPastTheArmy extends PathState
 		if (events.contains('bluespike_move'))
 		{
 			var tick = 0;
-			FlxTween.tween(bluespike, {x: commander.x + bluespike.width * 2}, 1, {
+			FlxTween.tween(bluespike, {x: commander.x + bluespike.width * 4}, 1, {
 				onUpdate: function(t:FlxTween)
 				{
 					tick++;
@@ -69,6 +69,10 @@ class SneakPastTheArmy extends PathState
 						else
 							bluespike.loadGraphic('characters/sprites/army/bluespike-walk'.imagePath());
 					}
+				},
+				onComplete: function(t:FlxTween)
+				{
+					bluespike.loadGraphic('characters/sprites/army/bluespike-idle'.imagePath());
 				}
 			});
 		}

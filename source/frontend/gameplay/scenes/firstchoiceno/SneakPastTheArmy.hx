@@ -60,10 +60,16 @@ class SneakPastTheArmy extends PathState
 		if (events.contains('commander_idle'))
 			commander.loadGraphic(commander.graphic.key.split('-')[0] + '-idle.png');
 
-		if (events.contains('bluespike_move'))
+		if (events.contains('bluespike_move') || events.contains('bluespike_backup'))
 		{
 			var tick = 0;
-			FlxTween.tween(bluespike, {x: commander.x + bluespike.width * 4}, 1, {
+
+			var x = commander.x + bluespike.width * 4;
+
+			if (events.contains('bluespike_backup'))
+				x = commander.x + bluespike.width * 8;
+
+			FlxTween.tween(bluespike, {x: x}, 1, {
 				onUpdate: function(t:FlxTween)
 				{
 					tick++;
@@ -79,6 +85,28 @@ class SneakPastTheArmy extends PathState
 				onComplete: function(t:FlxTween)
 				{
 					bluespike.loadGraphic('characters/sprites/army/bluespike-idle'.imagePath());
+				}
+			});
+		}
+		if (events.contains('commander_move'))
+		{
+			var tick = 0;
+			FlxTween.tween(commander, {x: commander.x + bluespike.width * 4}, 1, {
+				onUpdate: function(t:FlxTween)
+				{
+					tick++;
+
+					if (tick % 10 == 0)
+					{
+						if (commander.graphic.key.endsWith('walk.png'))
+							commander.loadGraphic(commander.graphic.key.split('-')[0] + '-idle.png');
+						else
+							commander.loadGraphic(commander.graphic.key.split('-')[0] + '-walk.png');
+					}
+				},
+				onComplete: function(t:FlxTween)
+				{
+					commander.loadGraphic(commander.graphic.key.split('-')[0] + '-idle.png');
 				}
 			});
 		}

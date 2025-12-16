@@ -6,6 +6,6 @@
 <cyan>...<cyan>
 <cyan>You weren't...<cyan>
 <cyan>Paying attention?<cyan>
-<event>commander_move<event><event>bluespike_backup<event><event>fade_dialog_out<event>
+<event>commander_flip_direction<event><event>commander_move<event><event>bluespike_backup<event><event>fade_dialog_out<event>
 <cyan>YOU WEREN'T.<cyan>
 <cyan>PAYING ATTENTION!?!?!?<cyan>

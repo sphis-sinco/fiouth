@@ -1,5 +1,7 @@
 package frontend.gameplay.scenes.firstchoiceno;
 
+import flixel.sound.FlxSound;
+import frontend.objects.Overlay;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import backend.utils.Dialog;
@@ -24,6 +26,8 @@ class SneakPastTheArmy extends PathState
 	public var bluespike:Sprite;
 
 	public var intro_dialog:Array<String>;
+
+	public var ventOverlay:Overlay;
 
 	override function create()
 	{
@@ -53,6 +57,15 @@ class SneakPastTheArmy extends PathState
 		{
 			FlxG.switchState(() -> new PreventConfirmation());
 		});
+
+		ventOverlay = new Overlay();
+		ventOverlay.loadGraphic('overlays/vent'.imagePath());
+		ventOverlay.updateHitbox();
+		add(ventOverlay);
+
+		remove(dialog);
+		add(dialog);
+		dialog.antialiasing = true; // the vent makes it harder to hear
 	}
 
 	override function eventFunction(events:Array<String>)
@@ -127,5 +140,13 @@ class SneakPastTheArmy extends PathState
 		super.setDialogueTextNoFade(text);
 
 		dialog.y = 32;
+	}
+
+	override function playDialogueSound() {
+		var dialogueSfx = new FlxSound().loadStream('dialogue'.soundsPath());
+	
+		dialogueSfx.volume = 0.7;
+		
+		dialogueSfx.play(true);
 	}
 }

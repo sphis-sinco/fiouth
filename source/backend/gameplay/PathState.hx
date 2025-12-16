@@ -78,7 +78,12 @@ class PathState extends State
 			if (events.contains('hide_dialog'))
 				dialog.alpha = 0;
 			if (events.contains('fade_dialog_out'))
-				FlxTween.tween(dialog, {alpha: 0}, Std.parseFloat(events[events.indexOf('fade_dialog_out_speed') + 1] ?? '1.0'));
+			{
+				if (events.indexOf('fade_dialog_out_speed') > -1)
+					FlxTween.tween(dialog, {alpha: 0}, Std.parseFloat(events[events.indexOf('fade_dialog_out_speed') + 1] ?? '1.0'));
+				else
+					FlxTween.tween(dialog, {alpha: 0}, 1.0);
+			}
 		}
 	}
 

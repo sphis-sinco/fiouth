@@ -4,6 +4,13 @@ import backend.Sprite;
 
 class Overlay extends Sprite
 {
+	override public function new(?x:Float, ?y:Float, ?scaleOffset:Int = 0)
+	{
+		super(x, y, scaleOffset);
+
+		antialiasing = true;
+	}
+
 	override function resetScale()
 	{
 		var combinedScale = Sprite.DEFAULT_SCALE + scaleOffset;

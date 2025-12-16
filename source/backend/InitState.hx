@@ -67,7 +67,7 @@ class InitState extends State
 			}
 		});
 
-		Assets.list();
+		trace(Assets.list());
 
 		switch (startingState.toLowerCase())
 		{

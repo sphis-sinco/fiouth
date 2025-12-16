@@ -27,6 +27,8 @@ class PathState extends State
 
 	public var dialog:FlxText;
 
+	public var dialogueFadeEndAlpha:Float = 1;
+
 	public function setDialogueText(text:String, ?speed:Float = 1, ?formatTag:String)
 	{
 		FlxTween.cancelTweensOf(dialog);
@@ -36,7 +38,7 @@ class PathState extends State
 			{
 				setDialogueTextNoFade(((formatTag != null) ? '<$formatTag>' : '') + text + ((formatTag != null) ? '<$formatTag>' : ''));
 
-				FlxTween.tween(dialog, {alpha: 1}, speed / 2, {
+				FlxTween.tween(dialog, {alpha: dialogueFadeEndAlpha}, speed / 2, {
 					ease: FlxEase.sineInOut
 				});
 			}

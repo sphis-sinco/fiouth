@@ -51,7 +51,7 @@ class SneakPastTheArmy extends PathState
 
 		var time = 0;
 		readDialogueList(intro_dialog);
-		time = 2 * (intro_dialog.length - 1);
+		time = 2 * (intro_dialog.length);
 
 		FlxTimer.wait(time, function()
 		{
@@ -67,7 +67,8 @@ class SneakPastTheArmy extends PathState
 		members.push(dialog);
 
 		dialog.antialiasing = true; // the vent makes it harder to hear
-		dialog.alpha = 0.5;
+		dialog.size = 8;
+		dialogueFadeEndAlpha = .5;
 	}
 
 	override function eventFunction(events:Array<String>)

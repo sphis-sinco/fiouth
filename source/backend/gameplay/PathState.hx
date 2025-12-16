@@ -73,10 +73,13 @@ class PathState extends State
 
 		trace(events);
 
-		if (events.contains('hide_dialog'))
-			dialog.alpha = 0;
-		if (events.contains('fade_dialog_out'))
-			FlxTween.tween(dialog, {alpha: 0}, Std.parseFloat(events[events.indexOf('fade_dialog_out') + 1]));
+		if (dialog != null)
+		{
+			if (events.contains('hide_dialog'))
+				dialog.alpha = 0;
+			if (events.contains('fade_dialog_out'))
+				FlxTween.tween(dialog, {alpha: 0}, Std.parseFloat(events[events.indexOf('fade_dialog_out_speed') + 1] ?? '1.0'));
+		}
 	}
 
 	public function readDialogueList(list:Array<String>, additional_time:Int = 2, starting_time:Int = 0, dialogue_speed:Int = 1)

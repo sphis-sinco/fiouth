@@ -1,5 +1,6 @@
 package frontend.gameplay.scenes.firstchoiceno;
 
+import flixel.FlxObject;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import flixel.sound.FlxSound;
@@ -42,6 +43,7 @@ class SneakPastTheArmy extends PathState
 		add(commander);
 
 		commander.screenCenter();
+		commander.x -= commander.width * 2;
 
 		bluespike = new Sprite(0, 0, commander.scaleOffset);
 		bluespike.loadGraphic('characters/sprites/army/bluespike-idle'.imagePath());
@@ -49,7 +51,7 @@ class SneakPastTheArmy extends PathState
 
 		bluespike.screenCenter();
 
-		bluespike.x += bluespike.width * 8;
+		bluespike.x += bluespike.width * 10;
 
 		var time = 0;
 		readDialogueList(intro_dialog);
@@ -61,6 +63,8 @@ class SneakPastTheArmy extends PathState
 			add(blk);
 			blk.x = blk.width;
 			blk.antialiasing = true;
+
+			new FlxSound().loadStream('vent'.soundsPath()).play(false, 0);
 			FlxTween.tween(blk, {x: 0}, 3, {
 				onComplete: t ->
 				{
@@ -68,6 +72,8 @@ class SneakPastTheArmy extends PathState
 				}
 			});
 			FlxTween.tween(ventOverlay, {x: -blk.width}, 3);
+			FlxTween.tween(commander, {x: -blk.width + commander.x}, 3);
+			FlxTween.tween(bluespike, {x: -blk.width + bluespike.x}, 3);
 		});
 
 		ventOverlay = new Overlay();
@@ -81,7 +87,16 @@ class SneakPastTheArmy extends PathState
 		dialog.antialiasing = true; // the vent makes it harder to hear
 		dialog.size = 8;
 		dialogueFadeEndAlpha = .5;
+
+		camFollow = new FlxObject();
+		add(camFollow);
+		camFollow.x = FlxG.width / 2;
+		camFollow.y = FlxG.height / 2;
+
+		FlxG.camera.follow(camFollow, LOCKON, 1);
 	}
+
+	var camFollow:FlxObject;
 
 	override function eventFunction(events:Array<String>)
 	{
@@ -97,10 +112,10 @@ class SneakPastTheArmy extends PathState
 		{
 			var tick = 0;
 
-			var newX = commander.x + bluespike.width * 4;
+			var newX = commander.x + bluespike.width * 6;
 
 			if (events.contains('bluespike_backup'))
-				newX = commander.x + bluespike.width * 8;
+				newX = commander.x + bluespike.width * 10;
 
 			FlxTween.tween(bluespike, {x: newX}, 2, {
 				onUpdate: function(t:FlxTween)
@@ -125,7 +140,7 @@ class SneakPastTheArmy extends PathState
 		{
 			var tick = 0;
 			FlxTween.tween(commander,
-				{x: events.contains('commander_leave') ? (commander.width * (FlxG.width / commander.width)) : commander.x + bluespike.width * 4},
+				{x: events.contains('commander_leave') ? (commander.width * (FlxG.width / commander.width)) : commander.x + bluespike.width * 6},
 				events.contains('commander_leave') ? 12 : 2, {
 					onUpdate: function(t:FlxTween)
 					{

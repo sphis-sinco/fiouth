@@ -57,9 +57,10 @@ class SneakPastTheArmy extends PathState
 
 		FlxTimer.wait(time, function()
 		{
-			var blk = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0x17181F);
+			var blk = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromString('0x17181F'));
 			add(blk);
 			blk.x = blk.width;
+			blk.antialiasing = true;
 			FlxTween.tween(blk, {x: 0}, 3, {
 				onComplete: t ->
 				{

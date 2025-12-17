@@ -1,5 +1,6 @@
 package frontend.gameplay.scenes.firstchoiceno;
 
+import flixel.util.FlxColor;
 import flixel.tweens.FlxTween;
 import flixel.FlxSprite;
 import backend.gameplay.PathState;
@@ -20,9 +21,8 @@ class PreventConfirmation extends PathState
 	{
 		super.create();
 
-		var blk = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0x17181F);
+		var blk = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromString('0x17181F'));
 		add(blk);
-		blk.x = blk.width;
-		FlxTween.tween(blk, {x: -blk.width}, 3);
+		FlxTween.tween(blk, {x: -blk.width, alpha: 0}, 3);
 	}
 }

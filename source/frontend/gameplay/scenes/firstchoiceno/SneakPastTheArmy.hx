@@ -21,7 +21,7 @@ class SneakPastTheArmy extends PathState
 
 	override function get_finished():Bool
 	{
-		return false;
+		return true;
 	}
 
 	public var commander:Sprite;
@@ -159,7 +159,7 @@ class SneakPastTheArmy extends PathState
 
 	override function playDialogueSound()
 	{
-		var dialogueSfx = new FlxSound().loadStream('dialogue'.soundsPath());
+		var dialogueSfx = new FlxSound().loadStream('dialogue_muted'.soundsPath());
 
 		dialogueSfx.volume = 0.7;
 

@@ -48,9 +48,6 @@ class Directional extends Sprite
 
 		if (CursorController.mouse.overlaps(this))
 		{
-			if (CursorController.cursor_state == DEFAULT)
-				CursorController.cursor_state = POINT;
-
 			if (CursorController.mouse.justPressed && justPressed != null)
 				justPressed();
 			if (CursorController.mouse.justPressedMiddle && justPressedMiddle != null)

@@ -47,8 +47,6 @@ class State extends FlxState
 
 	override public function update(elapsed:Float)
 	{
-		if (CursorController.cursor_state != DEFAULT)
-			CursorController.cursor_state = DEFAULT;
 		super.update(elapsed);
 
 		members.sort((basic1, basic2) ->

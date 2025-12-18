@@ -1,0 +1,2 @@
+git tag _
+git push origin --tags

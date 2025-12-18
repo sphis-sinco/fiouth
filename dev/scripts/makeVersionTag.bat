@@ -1,1 +1,0 @@
-haxe -m dev.scripts.MakeVersionTag --interp

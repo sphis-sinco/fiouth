@@ -46,34 +46,37 @@ class Directional extends Sprite
 	{
 		super.update(elapsed);
 
-		if (FlxG.mouse.overlaps(this))
+		if (CursorController.mouse.overlaps(this))
 		{
-			if (FlxG.mouse.justPressed && justPressed != null)
+			if (CursorController.cursor_state == DEFAULT)
+				CursorController.cursor_state = POINT;
+
+			if (CursorController.mouse.justPressed && justPressed != null)
 				justPressed();
-			if (FlxG.mouse.justPressedMiddle && justPressedMiddle != null)
+			if (CursorController.mouse.justPressedMiddle && justPressedMiddle != null)
 				justPressedMiddle();
-			if (FlxG.mouse.justPressedRight && justPressedRight != null)
+			if (CursorController.mouse.justPressedRight && justPressedRight != null)
 				justPressedRight();
 
-			if (FlxG.mouse.justReleased && justReleased != null)
+			if (CursorController.mouse.justReleased && justReleased != null)
 				justReleased();
-			if (FlxG.mouse.justReleasedMiddle && justReleasedMiddle != null)
+			if (CursorController.mouse.justReleasedMiddle && justReleasedMiddle != null)
 				justReleasedMiddle();
-			if (FlxG.mouse.justReleasedRight && justReleasedRight != null)
+			if (CursorController.mouse.justReleasedRight && justReleasedRight != null)
 				justReleasedRight();
 
-			if (FlxG.mouse.pressed && pressed != null)
+			if (CursorController.mouse.pressed && pressed != null)
 				pressed();
-			if (FlxG.mouse.pressedMiddle && pressedMiddle != null)
+			if (CursorController.mouse.pressedMiddle && pressedMiddle != null)
 				pressedMiddle();
-			if (FlxG.mouse.pressedRight && pressedRight != null)
+			if (CursorController.mouse.pressedRight && pressedRight != null)
 				pressedRight();
 
-			if (FlxG.mouse.released && released != null)
+			if (CursorController.mouse.released && released != null)
 				released();
-			if (FlxG.mouse.releasedMiddle && releasedMiddle != null)
+			if (CursorController.mouse.releasedMiddle && releasedMiddle != null)
 				releasedMiddle();
-			if (FlxG.mouse.releasedRight && releasedRight != null)
+			if (CursorController.mouse.releasedRight && releasedRight != null)
 				releasedRight();
 		}
 	}

@@ -58,19 +58,22 @@ class State extends FlxState
 			return 0;
 		});
 
-		FlxG.mouse.visible = FlxG.mouse.enabled;
+		CursorController.mouse.visible = CursorController.mouse.enabled;
 
 		resetWatermark();
 
 		if (debugToggle)
 			debugWatermarks();
+
+		if (CursorController.cursor_state != DEFAULT)
+			CursorController.cursor_state = DEFAULT;
 	}
-	
+
 	public var debugToggle:Bool = false;
 
 	public function turnOffCursor()
-		FlxG.mouse.enabled = false;
+		CursorController.mouse.enabled = false;
 
 	public function turnOnCursor()
-		FlxG.mouse.enabled = true;
+		CursorController.mouse.enabled = true;
 }

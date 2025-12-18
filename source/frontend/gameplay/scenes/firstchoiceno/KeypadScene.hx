@@ -104,10 +104,10 @@ class KeypadScene extends PathState
 		if (scene == 0)
 		{
 			FlxG.watch.addQuick('canSelect', canSelect);
-			FlxG.watch.addQuick('FlxG.mouse.overlaps(keypad)', FlxG.mouse.overlaps(keypad));
-			FlxG.watch.addQuick('FlxG.mouse.justReleased', FlxG.mouse.justReleased);
+			FlxG.watch.addQuick('CursorController.mouse.overlaps(keypad)', CursorController.mouse.overlaps(keypad));
+			FlxG.watch.addQuick('CursorController.mouse.justReleased', CursorController.mouse.justReleased);
 			
-			if (canSelect && FlxG.mouse.overlaps(keypad) && FlxG.mouse.justReleased)
+			if (canSelect && CursorController.mouse.overlaps(keypad) && CursorController.mouse.justReleased)
 			{
 				FlxG.sound.play('keypad_${(hasKeycard) ? 'accepted' : 'denied'}'.soundsPath());
 				
@@ -144,7 +144,7 @@ class KeypadScene extends PathState
 			if (!hasKeycard)
 			{
 				keycard.visible = true;
-				if (FlxG.mouse.overlaps(keycard) && FlxG.mouse.justReleased)
+				if (CursorController.mouse.overlaps(keycard) && CursorController.mouse.justReleased)
 				{
 					hasKeycard = !hasKeycard;
 					keycard.screenCenter();

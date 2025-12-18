@@ -11,6 +11,8 @@ class CursorController extends FlxBasic
 		super();
 
 		updateCursor();
+		mouse.cursor.scaleX = 4;
+		mouse.cursor.scaleY = 4;
 	}
 
 	public static var mouse(get, never):FlxMouse;
@@ -31,11 +33,12 @@ class CursorController extends FlxBasic
 
 	public static function updateCursor()
 	{
-		mouse.cursor.bitmapData = BitmapData.loadFromFile('ui/cursors/default'.imagePath()).value;
+		mouse.load('ui/cursors/$cursor_state'.imagePath());
 	}
 }
 
 enum abstract CursorStates(String)
 {
 	var DEFAULT = 'default';
+	var POINT = 'point';
 }

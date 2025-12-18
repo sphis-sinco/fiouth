@@ -100,14 +100,14 @@ class ArmyMeetingInteractive extends MeetTheArmy
 		for (character in [bluespike, emalf, tistec])
 		{
 			character.color = 0xCECECE;
-			if (canInteract && FlxG.mouse.overlaps(character))
+			if (canInteract && CursorController.mouse.overlaps(character))
 			{
 				character.color = 0xFFFFFF;
 				selection = character.ID;
 			}
 		}
 
-		if (FlxG.mouse.justReleased && canInteract)
+		if (CursorController.mouse.justReleased && canInteract)
 		{
 			var offset = FlxPoint.get();
 

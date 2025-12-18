@@ -1,5 +1,6 @@
 package backend;
 
+import backend.plugins.CursorController;
 import frontend.debug.Preloading;
 import lime.utils.Assets;
 import backend.state.State;
@@ -22,6 +23,29 @@ class InitState extends State
 		Save.init();
 		Application.current.onExit.add(l -> Save.save());
 
+		flixelSetup();
+
+		if (Compiler.getDefine('STARTING_STATE') != null && Compiler.getDefine('STARTING_STATE') != '1')
+			startingState = Compiler.getDefine('STARTING_STATE').split('=')[0];
+		startingState = startingState.toLowerCase();
+
+		switch (startingState.toLowerCase())
+		{
+			case 'path-select':
+				Save.loadFromSlot('debug');
+				FlxG.switchState(() -> new PathSelect());
+
+			case 'preloading':
+				Save.loadFromSlot('debug');
+				FlxG.switchState(() -> new Preloading());
+
+			default:
+				FlxG.switchState(() -> new MainMenu());
+		}
+	}
+
+	function flixelSetup()
+	{
 		FlxG.sound.muteKeys = [];
 		FlxG.sound.volumeUpKeys = [];
 		FlxG.sound.volumeUpKeys = [];
@@ -40,10 +64,17 @@ class InitState extends State
 			}
 		});
 
-		if (Compiler.getDefine('STARTING_STATE') != null && Compiler.getDefine('STARTING_STATE') != '1')
-			startingState = Compiler.getDefine('STARTING_STATE').split('=')[0];
-		startingState = startingState.toLowerCase();
+		flixelSignals();
+		flixelPlugins();
+	}
 
+	function flixelPlugins()
+	{
+		FlxG.plugins.addPlugin(new CursorController());
+	}
+
+	function flixelSignals()
+	{
 		if (Compiler.getDefine('PATH_IN_TITLE') == '1')
 			FlxG.signals.preStateCreate.add(_state ->
 			{
@@ -67,24 +98,5 @@ class InitState extends State
 					FlxG.switchState(() -> new MainMenu());
 			}
 		});
-
-		switch (startingState.toLowerCase())
-		{
-			case 'path-select':
-				Save.loadFromSlot('debug');
-				FlxG.switchState(() -> new PathSelect());
-
-			case 'preloading':
-				Save.loadFromSlot('debug');
-				FlxG.switchState(() -> new Preloading());
-
-			default:
-				FlxG.switchState(() -> new MainMenu());
-		}
-	}
-
-	override public function update(elapsed:Float)
-	{
-		super.update(elapsed);
 	}
 }

@@ -22,7 +22,7 @@ class CursorController extends FlxBasic
 		return FlxG.mouse;
 	}
 
-	public static var cursor_state(default, set):CursorStates;
+	public static var cursor_state(default, set):CursorStates = DEFAULT;
 
 	static function set_cursor_state(value:CursorStates):CursorStates
 	{

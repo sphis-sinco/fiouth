@@ -18,13 +18,30 @@ class PreventConfirmation extends PathState
 		return false;
 	}
 
+	public var confirm:Sprite;
+	public var deny:Sprite;
+
 	override function create()
 	{
 		super.create();
 
+		confirm = new Sprite();
+		confirm.loadGraphic('objects/confirmationButton/confirm'.imagePath());
+		add(confirm);
+
+		deny = new Sprite();
+		deny.loadGraphic('objects/confirmationButton/deny'.imagePath());
+		add(deny);
+
+		confirm.screenCenter();
+		confirm.x -= confirm.width;
+
+		deny.screenCenter();
+		deny.x += deny.width;
+
 		var blk = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromString('0x17181F'));
-		add(blk);
 		FlxTween.tween(blk, {x: -blk.width, alpha: 0}, 3);
 		new FlxSound().loadStream('vent'.soundsPath()).play(false, 3);
+		add(blk);
 	}
 }

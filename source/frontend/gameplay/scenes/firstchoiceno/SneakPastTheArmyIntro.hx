@@ -26,7 +26,7 @@ class SneakPastTheArmyIntro extends PathState
 
 		var time = 0;
 		readDialogueList(intro_dialog);
-		time = 2 * (intro_dialog.length - 1);
+		time = 2 * intro_dialog.length;
 
 		FlxTimer.wait(time, function()
 		{

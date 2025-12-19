@@ -18,11 +18,11 @@ class GiveConfirmation extends PathState
 		super.create();
 
 		confirm = new Sprite();
-		confirm.loadGraphic('objects/confirmationButton/confirm'.imagePath());
+		confirm.loadGraphicAndUpdateHitbox('objects/confirmationButton/confirm'.imagePath());
 		add(confirm);
 
 		deny = new Sprite();
-		deny.loadGraphic('objects/confirmationButton/deny'.imagePath());
+		deny.loadGraphicAndUpdateHitbox('objects/confirmationButton/deny'.imagePath());
 		add(deny);
 
 		confirm.screenCenter();

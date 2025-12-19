@@ -41,10 +41,10 @@ class MeetTheArmy extends PathState
 	{
 		super.create();
 
-		bluespike.loadGraphic('characters/portraits/army/bluespike'.imagePath());
-		commander.loadGraphic('characters/portraits/army/commander'.imagePath());
-		emalf.loadGraphic('characters/portraits/army/emalf'.imagePath());
-		tistec.loadGraphic('characters/portraits/army/tistec'.imagePath());
+		bluespike.loadGraphicAndUpdateHitbox('characters/portraits/army/bluespike'.imagePath());
+		commander.loadGraphicAndUpdateHitbox('characters/portraits/army/commander'.imagePath());
+		emalf.loadGraphicAndUpdateHitbox('characters/portraits/army/emalf'.imagePath());
+		tistec.loadGraphicAndUpdateHitbox('characters/portraits/army/tistec'.imagePath());
 
 		for (object in [bluespike, emalf, tistec, commander])
 		{

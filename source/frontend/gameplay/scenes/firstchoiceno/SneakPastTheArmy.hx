@@ -39,14 +39,14 @@ class SneakPastTheArmy extends PathState
 		intro_dialog = Dialog.getLinesFromPathFolder('intro_dialog', path);
 
 		commander = new Sprite(0, 0, -Std.int(Sprite.DEFAULT_SCALE / 2));
-		commander.loadGraphic('characters/sprites/army/commander_left-angry'.imagePath());
+		commander.loadGraphicAndUpdateHitbox('characters/sprites/army/commander_left-angry'.imagePath());
 		add(commander);
 
 		commander.screenCenter();
 		commander.x -= commander.width * 2;
 
 		bluespike = new Sprite(0, 0, commander.scaleOffset);
-		bluespike.loadGraphic('characters/sprites/army/bluespike-idle'.imagePath());
+		bluespike.loadGraphicAndUpdateHitbox('characters/sprites/army/bluespike-idle'.imagePath());
 		add(bluespike);
 
 		bluespike.screenCenter();
@@ -77,7 +77,7 @@ class SneakPastTheArmy extends PathState
 		});
 
 		ventOverlay = new Overlay();
-		ventOverlay.loadGraphic('overlays/vent'.imagePath());
+		ventOverlay.loadGraphicAndUpdateHitbox('overlays/vent'.imagePath());
 		ventOverlay.resetScale();
 		add(ventOverlay);
 
@@ -103,10 +103,10 @@ class SneakPastTheArmy extends PathState
 		super.eventFunction(events);
 
 		if (events.contains('commander_flip_direction'))
-			commander.loadGraphic(commander.graphic.key.replace('_left', '_right'));
+			commander.loadGraphicAndUpdateHitbox(commander.graphic.key.replace('_left', '_right'));
 
 		if (events.contains('commander_idle'))
-			commander.loadGraphic(commander.graphic.key.split('-')[0] + '-idle.png');
+			commander.loadGraphicAndUpdateHitbox(commander.graphic.key.split('-')[0] + '-idle.png');
 
 		if (events.contains('bluespike_move') || events.contains('bluespike_backup'))
 		{
@@ -125,14 +125,14 @@ class SneakPastTheArmy extends PathState
 					if (tick % 10 == 0)
 					{
 						if (bluespike.graphic.key.endsWith('walk.png'))
-							bluespike.loadGraphic('characters/sprites/army/bluespike-idle'.imagePath());
+							bluespike.loadGraphicAndUpdateHitbox('characters/sprites/army/bluespike-idle'.imagePath());
 						else
-							bluespike.loadGraphic('characters/sprites/army/bluespike-walk'.imagePath());
+							bluespike.loadGraphicAndUpdateHitbox('characters/sprites/army/bluespike-walk'.imagePath());
 					}
 				},
 				onComplete: function(t:FlxTween)
 				{
-					bluespike.loadGraphic('characters/sprites/army/bluespike-idle'.imagePath());
+					bluespike.loadGraphicAndUpdateHitbox('characters/sprites/army/bluespike-idle'.imagePath());
 				}
 			});
 		}
@@ -149,14 +149,14 @@ class SneakPastTheArmy extends PathState
 						if (tick % 10 == 0)
 						{
 							if (commander.graphic.key.endsWith('walk.png'))
-								commander.loadGraphic(commander.graphic.key.split('-')[0] + '-idle.png');
+								commander.loadGraphicAndUpdateHitbox(commander.graphic.key.split('-')[0] + '-idle.png');
 							else
-								commander.loadGraphic(commander.graphic.key.split('-')[0] + '-walk.png');
+								commander.loadGraphicAndUpdateHitbox(commander.graphic.key.split('-')[0] + '-walk.png');
 						}
 					},
 					onComplete: function(t:FlxTween)
 					{
-						commander.loadGraphic(commander.graphic.key.split('-')[0] + '-idle.png');
+						commander.loadGraphicAndUpdateHitbox(commander.graphic.key.split('-')[0] + '-idle.png');
 
 						if (events.contains('commander_leave'))
 							commander.visible = false;

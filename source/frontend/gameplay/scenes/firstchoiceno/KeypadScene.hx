@@ -35,13 +35,13 @@ class KeypadScene extends PathState
 		super.create();
 		
 		keycard = new Sprite();
-		keycard.loadGraphic('objects/keycard'.imagePath());
+		keycard.loadGraphicAndUpdateHitbox('objects/keycard'.imagePath());
 		
 		keypad = new Sprite();
-		keypad.loadGraphic('objects/keypad'.imagePath());
+		keypad.loadGraphicAndUpdateHitbox('objects/keypad'.imagePath());
 		
 		confirmOrDenyKeypad = new Sprite();
-		confirmOrDenyKeypad.loadGraphic('objects/keypad-${(hasKeycard) ? 'accepted' : 'denied'}'.imagePath());
+		confirmOrDenyKeypad.loadGraphicAndUpdateHitbox('objects/keypad-${(hasKeycard) ? 'accepted' : 'denied'}'.imagePath());
 		
 		confirmOrDenyKeypad.resetScale();
 		keycard.resetScale();
@@ -114,7 +114,7 @@ class KeypadScene extends PathState
 				displayRegularKeypad = false;
 				displayConfirmDenyKeypad = true;
 				
-				confirmOrDenyKeypad.loadGraphic('objects/keypad-${(hasKeycard) ? 'accepted' : 'denied'}'.imagePath());
+				confirmOrDenyKeypad.loadGraphicAndUpdateHitbox('objects/keypad-${(hasKeycard) ? 'accepted' : 'denied'}'.imagePath());
 				confirmOrDenyKeypad.resetScale();
 				
 				FlxTimer.wait(.5, () ->

@@ -1,5 +1,6 @@
 package backend;
 
+import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.FlxSprite;
 
 class Sprite extends FlxSprite
@@ -20,5 +21,14 @@ class Sprite extends FlxSprite
 	{
 		scale.set(DEFAULT_SCALE + scaleOffset, DEFAULT_SCALE + scaleOffset);
 		updateHitbox();
+	}
+
+	public function loadGraphicAndUpdateHitbox(graphic:FlxGraphicAsset, animated:Bool = false, frameWidth:Int = 0, frameHeight:Int = 0, unique:Bool = false,
+			?key:String):FlxSprite
+	{
+		loadGraphic(graphic, animated, frameWidth, frameHeight, unique, key);
+		updateHitbox();
+
+		return this;
 	}
 }

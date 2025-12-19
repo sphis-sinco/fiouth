@@ -42,7 +42,7 @@ class PreventConfirmation extends PathState
 
 		var blk = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromString('0x17181F'));
 		FlxTween.tween(blk, {x: -blk.width, alpha: 0}, 3);
-		new FlxSound().loadStream('vent'.soundsPath()).play(false, 3);
+		// new FlxSound().loadStream('vent'.soundsPath()).play(false, 3);
 		add(blk);
 	}
 }

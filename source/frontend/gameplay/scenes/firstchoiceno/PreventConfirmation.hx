@@ -1,5 +1,6 @@
 package frontend.gameplay.scenes.firstchoiceno;
 
+import backend.Sprite;
 import flixel.sound.FlxSound;
 import flixel.util.FlxColor;
 import flixel.tweens.FlxTween;

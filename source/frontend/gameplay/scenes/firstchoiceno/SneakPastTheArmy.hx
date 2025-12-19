@@ -77,7 +77,7 @@ class SneakPastTheArmy extends PathState
 		});
 
 		ventOverlay = new Overlay();
-		ventOverlay.loadGraphicAndUpdateHitbox('overlays/vent'.imagePath());
+		ventOverlay.loadGraphic('overlays/vent'.imagePath());
 		ventOverlay.resetScale();
 		add(ventOverlay);
 
